@@ -1,5 +1,6 @@
-package git.lewisbirks.adventofcode.day;
+package git.lewisbirks.adventofcode.year21.day;
 
+import git.lewisbirks.adventofcode.common.Day;
 import git.lewisbirks.adventofcode.utils.ResourceUtil;
 
 import java.io.IOException;
@@ -15,12 +16,12 @@ public final class Day1 extends Day<List<Long>, Long> {
   }
 
   @Override
-  Long calculateResultsPart1(List<Long> input) {
+  protected Long part1(List<Long> input) {
     return calculate(input, 1);
   }
 
   @Override
-  Long calculateResultsPart2(List<Long> input) {
+  protected Long part2(List<Long> input) {
     return calculate(input, 3);
   }
 
@@ -41,7 +42,7 @@ public final class Day1 extends Day<List<Long>, Long> {
   }
 
   @Override
-  List<Long> readInput(String file) throws IOException {
+  protected List<Long> readInput(String file) throws IOException {
     String inputStrings = ResourceUtil.getResourceFileAsString(file);
     if (inputStrings == null) {
       return List.of();
