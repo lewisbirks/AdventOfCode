@@ -7,10 +7,10 @@ import java.util.List;
 
 public class DayProcessor {
 
-  private static final List<Day<?,?>> days = List.of(new Day1());
+  private static final List<Day<?,?>> DAYS = List.of(new Day1());
 
   public static void main(String[] args) {
-    days.forEach(Day::process);
+    DAYS.forEach(Day::process);
   }
 
 }
