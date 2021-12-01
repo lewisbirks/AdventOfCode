@@ -16,16 +16,28 @@ public final class Day1 extends Day<List<Long>, Long> {
 
   @Override
   Long calculateResultsPart1(List<Long> input) {
-    return IntStream.range(1, input.size()).filter(i -> input.get(i) > input.get(i - 1)).count();
+    return calculate(input, 1);
   }
 
   @Override
   Long calculateResultsPart2(List<Long> input) {
-    return IntStream.range(3, input.size()).filter(i -> {
-      long previousWindow = input.get(i - 3) + input.get(i - 2) + input.get(i - 1);
-      long currentWindow = input.get(i - 2) + input.get(i - 1) + input.get(i);
-      return previousWindow < currentWindow;
-    }).count();
+    return calculate(input, 3);
+  }
+
+  private Long calculate(List<Long> input, int windowSize) {
+    return IntStream.range(windowSize, input.size())
+        .filter(i -> isWindowIncreasing(input, i, windowSize))
+        .count();
+  }
+
+  private boolean isWindowIncreasing(List<Long> input, int index, int windowSize) {
+    long previousWindow = 0;
+    long currentWindow = 0;
+    for (int offset = 0; offset < windowSize; offset++) {
+      previousWindow += input.get(index - offset - 1);
+      currentWindow += input.get(index - offset);
+    }
+    return previousWindow < currentWindow;
   }
 
   @Override
