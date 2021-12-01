@@ -3,26 +3,29 @@ package git.lewisbirks.adventofcode.year21.day;
 import git.lewisbirks.adventofcode.common.Day;
 import git.lewisbirks.adventofcode.utils.ResourceUtil;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public final class Day1 extends Day<List<Long>, Long> {
+public final class Day1 extends Day {
+
+  private List<Long> depths;
 
   public Day1() {
     super(1);
+    depths = null;
   }
 
   @Override
-  protected Long part1(List<Long> input) {
-    return calculate(input, 1);
+  protected Object part1() {
+    return calculate(getDepths(), 1);
   }
 
   @Override
-  protected Long part2(List<Long> input) {
-    return calculate(input, 3);
+  protected Object part2() {
+    return calculate(getDepths(), 3);
   }
 
   private Long calculate(List<Long> input, int windowSize) {
@@ -41,14 +44,14 @@ public final class Day1 extends Day<List<Long>, Long> {
     return previousWindow < currentWindow;
   }
 
-  @Override
-  protected List<Long> readInput(String file) throws IOException {
-    String inputStrings = ResourceUtil.getResourceFileAsString(file);
-    if (inputStrings == null) {
-      return List.of();
-    }
-    return Arrays.stream(inputStrings.split(System.lineSeparator()))
-        .map(Long::parseLong)
-        .collect(Collectors.toList());
+  private List<Long> getDepths() {
+    depths = Objects.requireNonNullElseGet(depths, () -> {
+      String input = ResourceUtil.getResourceFileAsString("day1.txt");
+      Objects.requireNonNull(input, "input must not be null");
+      return Arrays.stream(input.split(System.lineSeparator()))
+          .map(Long::parseLong)
+          .collect(Collectors.toList());
+    });
+    return depths;
   }
 }

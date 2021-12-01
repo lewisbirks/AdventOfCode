@@ -8,14 +8,14 @@ import java.util.List;
 
 public class Year2021 extends Year {
 
+  private static final List<Day> DAYS = List.of(new Day1());
+
   public Year2021() {
     super(2021);
   }
 
-  private static final List<Day<?,?>> DAYS = List.of(new Day1());
-
   @Override
-  protected List<Day<?, ?>> getDays() {
+  protected List<Day> getDays() {
     return DAYS;
   }
 }

@@ -15,11 +15,10 @@ public abstract class Year {
     System.out.println("==========================");
     System.out.println("Year " + year);
     System.out.println("==========================");
-    List<Day<?,?>> days = getDays();
-    Objects.requireNonNull(days, "year must have days");
-    days.stream().sorted().forEach(Day::process);
+    Objects.requireNonNull(getDays(), "year must have days").stream().sorted()
+        .forEach(Day::process);
     System.out.println("==========================\n");
   }
 
-  protected abstract List<Day<?, ?>> getDays();
+  protected abstract List<Day> getDays();
 }
