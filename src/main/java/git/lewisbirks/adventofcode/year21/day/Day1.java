@@ -1,15 +1,10 @@
 package git.lewisbirks.adventofcode.year21.day;
 
-import git.lewisbirks.adventofcode.common.Day;
-import git.lewisbirks.adventofcode.utils.ResourceUtil;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public final class Day1 extends Day {
+public final class Day1 extends DayOf2021 {
 
   private List<Long> depths;
 
@@ -45,13 +40,7 @@ public final class Day1 extends Day {
   }
 
   private List<Long> getDepths() {
-    depths = Objects.requireNonNullElseGet(depths, () -> {
-      String input = ResourceUtil.getResourceFileAsString("day1.txt");
-      Objects.requireNonNull(input, "input must not be null");
-      return Arrays.stream(input.split(System.lineSeparator()))
-          .map(Long::parseLong)
-          .collect(Collectors.toList());
-    });
+    depths = Objects.requireNonNullElseGet(depths, () -> getInput(Long::parseLong));
     return depths;
   }
 }

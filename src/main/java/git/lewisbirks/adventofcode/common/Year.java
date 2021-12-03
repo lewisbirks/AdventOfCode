@@ -3,11 +3,11 @@ package git.lewisbirks.adventofcode.common;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Year {
+public abstract class Year<D extends Day> {
 
   private final int year;
 
-  protected Year(int year) {
+  public Year(int year) {
     this.year = year;
   }
 
@@ -20,5 +20,5 @@ public abstract class Year {
     System.out.println("==========================\n");
   }
 
-  protected abstract List<Day> getDays();
+  protected abstract List<D> getDays();
 }

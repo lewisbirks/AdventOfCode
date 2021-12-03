@@ -1,15 +1,11 @@
 package git.lewisbirks.adventofcode.year21.day;
 
-import git.lewisbirks.adventofcode.common.Day;
-import git.lewisbirks.adventofcode.utils.ResourceUtil;
 import git.lewisbirks.adventofcode.year21.utils.Vector;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-public final class Day2 extends Day {
+public final class Day2 extends DayOf2021 {
 
   private List<Vector> vectors;
 
@@ -66,11 +62,7 @@ public final class Day2 extends Day {
 
 
   private List<Vector> readInput() {
-    vectors = Objects.requireNonNullElseGet(vectors, () -> {
-      String input = ResourceUtil.getResourceFileAsString("day2.txt");
-      Objects.requireNonNull(input, "input must not be null");
-      return input.lines().map(Vector::of).collect(Collectors.toUnmodifiableList());
-    });
+    vectors = Objects.requireNonNullElseGet(vectors, () -> getInput(Vector::of));
     return vectors;
   }
 }
