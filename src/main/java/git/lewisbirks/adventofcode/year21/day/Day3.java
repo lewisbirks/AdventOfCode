@@ -42,7 +42,6 @@ public final class Day3 extends DayOf2021 {
     BiPredicate<Integer, Integer> moreZeros = (num0, num1) -> num0 > num1;
     long oxygen = processLifeSupportSubsystem(moreZeros);
     long co2 = processLifeSupportSubsystem(moreZeros.negate());
-
     return oxygen * co2;
   }
 

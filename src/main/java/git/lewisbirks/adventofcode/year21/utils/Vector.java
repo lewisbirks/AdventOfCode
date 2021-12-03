@@ -1,15 +1,6 @@
 package git.lewisbirks.adventofcode.year21.utils;
 
-public class Vector {
-
-  public int distance;
-  public Direction direction;
-
-  private Vector(int distance, Direction direction) {
-    this.distance = distance;
-    this.direction = direction;
-  }
-
+public record Vector(int distance, Direction direction) {
   public static Vector of(String line) {
     String[] split = line.split(" ");
     Direction direction = Direction.valueOf(split[0].toUpperCase());
