@@ -12,7 +12,8 @@ public abstract class Year<D extends Day> implements Comparable<Year<?>> {
   }
 
   public void process() {
-    System.out.println("=========================="); System.out.println("Year " + year);
+    System.out.println("==========================");
+    System.out.println("Year " + year);
     System.out.println("==========================");
     Objects.requireNonNull(getDays(), "year must have days").stream().sorted().forEach(Day::process);
     System.out.println("==========================\n");

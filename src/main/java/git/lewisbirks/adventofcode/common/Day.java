@@ -3,7 +3,11 @@ package git.lewisbirks.adventofcode.common;
 import git.lewisbirks.adventofcode.utils.ResourceUtil;
 
 import java.io.File;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public abstract class Day implements Comparable<Day> {
 
@@ -34,7 +38,43 @@ public abstract class Day implements Comparable<Day> {
 
   protected abstract Object part2();
 
-  protected String readFile(String folder) {
+  protected <I> List<I> getInput(Function<String, I> transformer) {
+    return getInput(transformer, Collectors.toUnmodifiableList());
+  }
+
+  protected <C> C getInput(Collector<String, ?, C> collector) {return getInput(Function.identity(), collector);}
+
+  protected <I, C> C getInput(Function<String, I> transformer, Collector<I, ?, C> collector) {
+    return readInput().lines().map(transformer).collect(collector);
+  }
+
+  protected List<String> getInput() {
+    return readInput().lines().toList();
+  }
+
+  protected String readInput() {
+    return readFile(INPUTS_FOLDER);
+  }
+
+  protected <I> List<I> getExample(Function<String, I> transformer) {
+    return getExample(transformer, Collectors.toUnmodifiableList());
+  }
+
+  protected <C> C getExample(Collector<String, ?, C> collector) {return getExample(Function.identity(), collector);}
+
+  protected <I, C> C getExample(Function<String, I> transformer, Collector<I, ?, C> collector) {
+    return readExample().lines().map(transformer).collect(collector);
+  }
+
+  protected List<String> getExample() {
+    return readExample().lines().toList();
+  }
+
+  protected String readExample() {
+    return readFile(EXAMPLES_FOLDER);
+  }
+
+  private String readFile(String folder) {
     String location = folder + SEPARATOR + year + SEPARATOR + "day" + num + ".txt";
     String input = ResourceUtil.getResourceFileAsString(location);
     return Objects.requireNonNull(input, "input must not be null");
