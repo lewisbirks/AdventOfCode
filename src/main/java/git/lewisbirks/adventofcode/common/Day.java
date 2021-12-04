@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 public abstract class Day implements Comparable<Day> {
 
   protected static final String SEPARATOR = File.separator;
-  protected static final String EXAMPLES_FOLDER = "examples";
-  protected static final String INPUTS_FOLDER = "inputs";
 
   private final int num;
   private final String year;
@@ -53,29 +51,11 @@ public abstract class Day implements Comparable<Day> {
   }
 
   protected String readInput() {
-    return readFile(INPUTS_FOLDER);
+    return readFile();
   }
 
-  protected <I> List<I> getExample(Function<String, I> transformer) {
-    return getExample(transformer, Collectors.toUnmodifiableList());
-  }
-
-  protected <C> C getExample(Collector<String, ?, C> collector) {return getExample(Function.identity(), collector);}
-
-  protected <I, C> C getExample(Function<String, I> transformer, Collector<I, ?, C> collector) {
-    return readExample().lines().map(transformer).collect(collector);
-  }
-
-  protected List<String> getExample() {
-    return readExample().lines().toList();
-  }
-
-  protected String readExample() {
-    return readFile(EXAMPLES_FOLDER);
-  }
-
-  private String readFile(String folder) {
-    String location = folder + SEPARATOR + year + SEPARATOR + "day" + num + ".txt";
+  private String readFile() {
+    String location = year + SEPARATOR + "day" + num + ".txt";
     String input = ResourceUtil.getResourceFileAsString(location);
     return Objects.requireNonNull(input, "input must not be null");
   }
