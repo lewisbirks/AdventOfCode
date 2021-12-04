@@ -18,9 +18,9 @@ public class ResourceUtil {
   public static String getResourceFileAsString(String fileName) {
     ClassLoader classLoader = ClassLoader.getSystemClassLoader();
     try (InputStream is = classLoader.getResourceAsStream(fileName)) {
-      if (is == null) return null;
-      try (InputStreamReader isr = new InputStreamReader(is);
-          BufferedReader reader = new BufferedReader(isr)) {
+      if (is == null) {
+        return null;
+      } try (InputStreamReader isr = new InputStreamReader(is); BufferedReader reader = new BufferedReader(isr)) {
         return reader.lines().collect(Collectors.joining(System.lineSeparator()));
       }
     } catch (IOException e) {
