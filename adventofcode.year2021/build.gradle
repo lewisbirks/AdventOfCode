@@ -1,0 +1,23 @@
+plugins {
+    id 'application'
+}
+
+version = '1.0'
+
+application {
+    mainClass = 'com.lewisbirks.adventofcode.Driver'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':adventofcode.common')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
+}
+
+test {
+    useJUnitPlatform()
+}

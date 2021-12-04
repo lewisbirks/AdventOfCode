@@ -1,7 +1,13 @@
 # Advent Of Code 🎅
-Java implementation of the [advent of code](https://adventofcode.com/) 
+
+Java implementation of the [advent of code](https://adventofcode.com/)
 
 ----
 
+Also being used as a test bed for learning things such as new java features and workflows
+
 ### TODO 📝
-- Revamp with modules: one for each year and then a common one for the `Day`/`Year` + `ResourceUtil`
+
+- Add github workflow for running tests on PRs
+    - protect master branch
+    - add workflow hook on pushes to a PR
