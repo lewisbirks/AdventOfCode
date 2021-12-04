@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.year21.utils;
+package git.lewisbirks.adventofcode.year21.utils.vectors;
 
 public record Vector(int distance, Direction direction) {
     public static Vector of(String line) {

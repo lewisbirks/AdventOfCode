@@ -1,7 +1,7 @@
 package git.lewisbirks.adventofcode.year21.day;
 
 import git.lewisbirks.adventofcode.common.CachedSupplier;
-import git.lewisbirks.adventofcode.year21.utils.Vector;
+import git.lewisbirks.adventofcode.year21.utils.vectors.Vector;
 
 import java.util.List;
 import java.util.function.Supplier;
