@@ -1,17 +1,18 @@
 package git.lewisbirks.adventofcode.year21.day;
 
+import git.lewisbirks.adventofcode.common.CachedSupplier;
 import git.lewisbirks.adventofcode.year21.utils.Vector;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.function.Supplier;
 
 public final class Day2 extends DayOf2021 {
 
-  private List<Vector> vectors;
+  private final Supplier<List<Vector>> vectorsSupplier;
 
   public Day2() {
     super(2);
-    vectors = null;
+    vectorsSupplier = CachedSupplier.memoize(() -> getInput(Vector::of));
   }
 
   @Override
@@ -19,7 +20,7 @@ public final class Day2 extends DayOf2021 {
     int depth = 0;
     int horizontal = 0;
 
-    for (Vector vector : readInput()) {
+    for (Vector vector : vectorsSupplier.get()) {
       switch (vector.direction()) {
         case UP -> depth -= vector.distance();
         case DOWN -> depth += vector.distance();
@@ -36,7 +37,7 @@ public final class Day2 extends DayOf2021 {
     int horizontal = 0;
     int aim = 0;
 
-    for (Vector vector : readInput()) {
+    for (Vector vector : vectorsSupplier.get()) {
       switch (vector.direction()) {
         case UP -> aim -= vector.distance();
         case DOWN -> aim += vector.distance();
@@ -48,11 +49,5 @@ public final class Day2 extends DayOf2021 {
     }
 
     return depth * horizontal;
-  }
-
-
-  private List<Vector> readInput() {
-    vectors = Objects.requireNonNullElseGet(vectors, () -> getInput(Vector::of));
-    return vectors;
   }
 }

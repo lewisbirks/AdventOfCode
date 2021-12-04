@@ -1,26 +1,28 @@
 package git.lewisbirks.adventofcode.year21.day;
 
+import git.lewisbirks.adventofcode.common.CachedSupplier;
+
 import java.util.List;
-import java.util.Objects;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public final class Day1 extends DayOf2021 {
 
-  private List<Long> depths;
+  private final Supplier<List<Long>> depthsSupplier;
 
   public Day1() {
     super(1);
-    depths = null;
+    depthsSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
   }
 
   @Override
   protected Object part1() {
-    return calculate(getDepths(), 1);
+    return calculate(depthsSupplier.get(), 1);
   }
 
   @Override
   protected Object part2() {
-    return calculate(getDepths(), 3);
+    return calculate(depthsSupplier.get(), 3);
   }
 
   private Long calculate(List<Long> input, int windowSize) {
@@ -37,10 +39,5 @@ public final class Day1 extends DayOf2021 {
       currentWindow += input.get(index - offset);
     }
     return previousWindow < currentWindow;
-  }
-
-  private List<Long> getDepths() {
-    depths = Objects.requireNonNullElseGet(depths, () -> getInput(Long::parseLong));
-    return depths;
   }
 }

@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiPredicate;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class Day3 extends DayOf2021 {
 
-  private List<String> diagnostics;
-  private List<List<Character>> transformedDiagnostics;
+  private List<String> diagnostics = null;
+  private List<List<Character>> transformedDiagnostics = null;
 
   public Day3() {
     super(3);
@@ -72,14 +71,8 @@ public final class Day3 extends DayOf2021 {
     if (diagnostics != null) {
       return;
     }
-
-    List<String> inputs = getInput(Function.identity());
-    if (!inputs.isEmpty() && !inputs.stream().map(String::length).allMatch(i -> i == inputs.get(0).length())) {
-      throw new IllegalArgumentException("All diagnostics must have the same length");
-    }
-
-    diagnostics = Collections.unmodifiableList(inputs);
-    transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(inputs));
+    diagnostics = getInput();
+    transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(diagnostics));
   }
 
   private List<List<Character>> transformDiagnostics(List<String> inputs) {
