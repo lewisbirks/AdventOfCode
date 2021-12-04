@@ -8,6 +8,3 @@ Also being used as a test bed for learning things such as new java features and 
 
 ### TODO 📝
 
-- Add github workflow for running tests on PRs
-    - protect master branch
-    - add workflow hook on pushes to a PR
