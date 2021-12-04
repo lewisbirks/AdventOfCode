@@ -8,3 +8,5 @@
  */
 
 rootProject.name = 'AdventOfCode'
+include 'adventofcode.common'
+include 'adventofcode.year2020'
