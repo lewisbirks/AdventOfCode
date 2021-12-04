@@ -24,3 +24,9 @@ jobs:
                 with:
                     gradle-version: 7.2
                     arguments: build
+            -   name: Archive results
+                uses: actions/upload-artifact@v2
+                with:
+                    name: test-results
+                    path: adventofcode.year*/build/reports/tests/test
+                    retention-days: 5
