@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.common.cache;
+package com.lewisbirks.adventofcode.common.cache;
 
 import java.util.Objects;
 import java.util.function.Supplier;

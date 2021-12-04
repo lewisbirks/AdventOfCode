@@ -1,10 +1,10 @@
-package git.lewisbirks.adventofcode.year;
+package com.lewisbirks.adventofcode.year;
 
-import git.lewisbirks.adventofcode.common.domain.Year;
-import git.lewisbirks.adventofcode.day.Day1;
-import git.lewisbirks.adventofcode.day.Day2;
-import git.lewisbirks.adventofcode.day.Day3;
-import git.lewisbirks.adventofcode.day.DayOf2020;
+import com.lewisbirks.adventofcode.common.domain.Year;
+import com.lewisbirks.adventofcode.day.Day1;
+import com.lewisbirks.adventofcode.day.Day2;
+import com.lewisbirks.adventofcode.day.Day3;
+import com.lewisbirks.adventofcode.day.DayOf2020;
 
 import java.util.List;
 

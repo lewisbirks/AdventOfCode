@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.day;
+package com.lewisbirks.adventofcode.day;
 
 import org.junit.jupiter.api.Test;
 

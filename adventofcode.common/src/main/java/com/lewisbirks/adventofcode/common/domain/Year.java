@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.common.domain;
+package com.lewisbirks.adventofcode.common.domain;
 
 import java.util.List;
 import java.util.Objects;

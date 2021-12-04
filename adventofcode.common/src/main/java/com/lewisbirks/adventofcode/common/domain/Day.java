@@ -1,6 +1,6 @@
-package git.lewisbirks.adventofcode.common.domain;
+package com.lewisbirks.adventofcode.common.domain;
 
-import git.lewisbirks.adventofcode.common.utils.ResourceUtil;
+import com.lewisbirks.adventofcode.common.utils.ResourceUtil;
 
 import java.util.List;
 import java.util.Objects;

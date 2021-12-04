@@ -1,4 +1,4 @@
 module adventofcode.common {
-    exports git.lewisbirks.adventofcode.common.domain;
-    exports git.lewisbirks.adventofcode.common.cache;
+    exports com.lewisbirks.adventofcode.common.domain;
+    exports com.lewisbirks.adventofcode.common.cache;
 }

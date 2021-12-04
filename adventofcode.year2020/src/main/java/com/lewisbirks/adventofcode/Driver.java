@@ -1,6 +1,6 @@
-package git.lewisbirks.adventofcode;
+package com.lewisbirks.adventofcode;
 
-import git.lewisbirks.adventofcode.year.Year2020;
+import com.lewisbirks.adventofcode.year.Year2020;
 
 public class Driver {
     public static void main(String[] args) {

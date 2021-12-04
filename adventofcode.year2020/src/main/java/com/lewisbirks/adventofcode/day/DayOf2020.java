@@ -1,6 +1,6 @@
-package git.lewisbirks.adventofcode.day;
+package com.lewisbirks.adventofcode.day;
 
-import git.lewisbirks.adventofcode.common.domain.Day;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 public abstract class DayOf2020 extends Day {
 

@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.utils;
+package com.lewisbirks.adventofcode.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

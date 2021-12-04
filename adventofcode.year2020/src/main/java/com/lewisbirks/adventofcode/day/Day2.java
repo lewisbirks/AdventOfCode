@@ -1,7 +1,7 @@
-package git.lewisbirks.adventofcode.day;
+package com.lewisbirks.adventofcode.day;
 
-import git.lewisbirks.adventofcode.common.cache.CachedSupplier;
-import git.lewisbirks.adventofcode.utils.PasswordPolicy;
+import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.utils.PasswordPolicy;
 
 import java.util.List;
 import java.util.Map;

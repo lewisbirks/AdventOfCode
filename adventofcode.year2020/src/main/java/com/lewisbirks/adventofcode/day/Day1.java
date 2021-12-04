@@ -1,6 +1,6 @@
-package git.lewisbirks.adventofcode.day;
+package com.lewisbirks.adventofcode.day;
 
-import git.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 
 import java.util.List;
 import java.util.function.Supplier;

@@ -1,4 +1,4 @@
-package git.lewisbirks.adventofcode.common.utils;
+package com.lewisbirks.adventofcode.common.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
