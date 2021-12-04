@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 version '1.0'
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     implementation project(':adventofcode.common')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     testImplementation 'org.assertj:assertj-core:3.21.0'
 }
 
