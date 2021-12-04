@@ -10,14 +10,14 @@ import java.util.List;
 
 public class Year2021 extends Year<DayOf2021> {
 
-  private static final List<DayOf2021> DAYS = List.of(new Day1(), new Day2(), new Day3());
+    private static final List<DayOf2021> DAYS = List.of(new Day1(), new Day2(), new Day3());
 
-  public Year2021() {
-    super(2021);
-  }
+    public Year2021() {
+        super(2021);
+    }
 
-  @Override
-  protected List<DayOf2021> getDays() {
-    return DAYS;
-  }
+    @Override
+    protected List<DayOf2021> getDays() {
+        return DAYS;
+    }
 }

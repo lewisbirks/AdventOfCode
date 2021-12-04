@@ -11,57 +11,57 @@ import java.util.stream.Collectors;
 
 public abstract class Day implements Comparable<Day> {
 
-  protected static final String SEPARATOR = File.separator;
+    protected static final String SEPARATOR = File.separator;
 
-  private final int num;
-  private final String year;
+    private final int num;
+    private final String year;
 
-  public Day(int num, String year) {
-    this.num = num;
-    this.year = year;
-  }
-
-  public void process() {
-    System.out.printf("Day %02d%n", num);
-    try {
-      System.out.printf("\tPart 1: %s%n", part1());
-      System.out.printf("\tPart 2: %s%n", part2());
-    } catch (Exception e) {
-      System.err.printf("Failed to process day %02d%n", num);
-      e.printStackTrace();
+    public Day(int num, String year) {
+        this.num = num;
+        this.year = year;
     }
-  }
 
-  protected abstract Object part1();
+    public void process() {
+        System.out.printf("Day %02d%n", num);
+        try {
+            System.out.printf("\tPart 1: %s%n", part1());
+            System.out.printf("\tPart 2: %s%n", part2());
+        } catch (Exception e) {
+            System.err.printf("Failed to process day %02d%n", num);
+            e.printStackTrace();
+        }
+    }
 
-  protected abstract Object part2();
+    protected abstract Object part1();
 
-  protected <I> List<I> getInput(Function<String, I> transformer) {
-    return getInput(transformer, Collectors.toUnmodifiableList());
-  }
+    protected abstract Object part2();
 
-  protected <C> C getInput(Collector<String, ?, C> collector) {return getInput(Function.identity(), collector);}
+    protected <I> List<I> getInput(Function<String, I> transformer) {
+        return getInput(transformer, Collectors.toUnmodifiableList());
+    }
 
-  protected <I, C> C getInput(Function<String, I> transformer, Collector<I, ?, C> collector) {
-    return readInput().lines().map(transformer).collect(collector);
-  }
+    protected <C> C getInput(Collector<String, ?, C> collector) {return getInput(Function.identity(), collector);}
 
-  protected List<String> getInput() {
-    return readInput().lines().toList();
-  }
+    protected <I, C> C getInput(Function<String, I> transformer, Collector<I, ?, C> collector) {
+        return readInput().lines().map(transformer).collect(collector);
+    }
 
-  protected String readInput() {
-    return readFile();
-  }
+    protected List<String> getInput() {
+        return readInput().lines().toList();
+    }
 
-  private String readFile() {
-    String location = year + SEPARATOR + "day" + num + ".txt";
-    String input = ResourceUtil.getResourceFileAsString(location);
-    return Objects.requireNonNull(input, "input must not be null");
-  }
+    protected String readInput() {
+        return readFile();
+    }
 
-  @Override
-  public int compareTo(Day o) {
-    return Integer.compare(num, o.num);
-  }
+    private String readFile() {
+        String location = year + SEPARATOR + "day" + num + ".txt";
+        String input = ResourceUtil.getResourceFileAsString(location);
+        return Objects.requireNonNull(input, "input must not be null");
+    }
+
+    @Override
+    public int compareTo(Day o) {
+        return Integer.compare(num, o.num);
+    }
 }
