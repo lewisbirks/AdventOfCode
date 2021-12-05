@@ -1,15 +1,25 @@
 package com.lewisbirks.adventofcode.day;
 
+import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.utils.point.Point;
+
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 
 public final class Day5 extends DayOf2021 {
 
+    private final Supplier<List<List<Point>>> coordinateGroupsSupplier;
 
     public Day5() {
         super(5);
+        coordinateGroupsSupplier = CachedSupplier.memoize(() -> getInput(line -> {
+            String[] points = line.split(" -> ");
+            return Arrays.stream(points).map(Point::of).toList();
+        }));
     }
 
     @Override
@@ -23,15 +33,16 @@ public final class Day5 extends DayOf2021 {
     }
 
     private long getOverlapCount(BiPredicate<Point, Point> linesToConsider) {
-        List<Pair<Point, Point>> coordinatePairs = getCoordinatePairs();
-        Pair<Integer, Integer> dimensions = getDimensions(coordinatePairs);
-        int[][] board = new int[dimensions.left()][dimensions.right()];
-        for (Pair<Point, Point> pair : coordinatePairs) {
-            Point start = pair.left();
-            Point end = pair.right();
+        List<List<Point>> coordinateGroups = coordinateGroupsSupplier.get();
+        int[] dimensions = getDimensions(coordinateGroups);
+        int[][] board = new int[dimensions[0]][dimensions[1]];
+        for (List<Point> coordinateGroup : coordinateGroups) {
+            // could loop internally to allow for more than 2 points, loop and remove until the size of the list is 1
+            Point start = coordinateGroup.get(0);
+            Point end = coordinateGroup.get(1);
             if (linesToConsider.test(start, end)) {
-                Pair<Integer, Integer> direction = start.getDirection(end);
-                int yIncrement = direction.right(), xIncrement = direction.left();
+                int[] direction = start.getDirection(end);
+                int xIncrement = direction[0], yIncrement = direction[1];
                 int x = start.x(), y = start.y();
                 int endX = end.x() + xIncrement, endY = end.y() + yIncrement;
                 while (x != endX || y != endY) {
@@ -45,54 +56,9 @@ public final class Day5 extends DayOf2021 {
 
     }
 
-    private Pair<Integer, Integer> getDimensions(List<Pair<Point, Point>> points) {
-        OptionalInt width = points.stream().mapToInt(pair -> Math.max(pair.left().x(), pair.right().x())).max();
-        OptionalInt height = points.stream().mapToInt(pair -> Math.max(pair.left().y(), pair.right().y())).max();
-
-        return new Pair<>(width.orElse(0) + 1, height.orElse(0) + 1);
+    private int[] getDimensions(List<List<Point>> points) {
+        OptionalInt width = points.stream().flatMap(Collection::stream).mapToInt(Point::x).max();
+        OptionalInt height = points.stream().flatMap(Collection::stream).mapToInt(Point::y).max();
+        return new int[]{width.orElse(0) + 1, height.orElse(0) + 1};
     }
-
-    private List<Pair<Point, Point>> getCoordinatePairs() {
-        return getInput(line -> {
-            String[] points = line.split(" -> ");
-            return new Pair<>(Point.of(points[0]), Point.of(points[1]));
-        });
-    }
-
-    public record Point(int x, int y) {
-        public static Point of(String pair) {
-            String[] points = pair.split(",");
-            return new Point(Integer.parseInt(points[0]), Integer.parseInt(points[1]));
-        }
-
-        public boolean isDiagonalLine(Point other) {
-            return !(isHorizontalLine(other) || isVerticalLine(other));
-        }
-
-        public boolean isVerticalLine(Point other) {
-            return this.x == other.x;
-        }
-
-        public boolean isHorizontalLine(Point other) {
-            return this.y == other.y;
-        }
-
-        public Pair<Integer, Integer> getDirection(Point other) {
-            int xDirection = 0;
-            if (other.x > x) {
-                xDirection = 1;
-            } else if (other.x < x) {
-                xDirection = -1;
-            }
-            int yDirection = 0;
-            if (other.y > y) {
-                yDirection = 1;
-            } else if (other.y < y) {
-                yDirection = -1;
-            }
-            return new Pair<>(xDirection, yDirection);
-        }
-    }
-
-    public record Pair<L, R>(L left, R right) {}
 }
