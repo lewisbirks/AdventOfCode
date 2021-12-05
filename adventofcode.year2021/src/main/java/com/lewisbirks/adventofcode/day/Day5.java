@@ -19,7 +19,7 @@ public final class Day5 extends DayOf2021 {
 
     @Override
     protected Object part2() {
-        return null;
+        return getOverlapCount((start, end) -> true);
     }
 
     private long getOverlapCount(BiPredicate<Point, Point> linesToConsider) {
