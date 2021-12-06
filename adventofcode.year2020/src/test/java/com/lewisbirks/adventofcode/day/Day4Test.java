@@ -10,11 +10,11 @@ class Day4Test {
 
     @Test
     void part1() {
-        assertThat(underTest.part1()).isEqualTo(4512L);
+        assertThat(underTest.part1()).isEqualTo(2L);
     }
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isEqualTo(1924L);
+        assertThat(underTest.part2()).isEqualTo(1L);
     }
 }

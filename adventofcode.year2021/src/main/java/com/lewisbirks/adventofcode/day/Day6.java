@@ -5,7 +5,7 @@ import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-public class Day6 extends DayOf2021 {
+public final class Day6 extends DayOf2021 {
     private static final int NEW_LIFE_TIMER_START = 8;
     private static final int STANDARD_LIFE_TIMER_START = 6;
     private final Supplier<long[]> fishSupplier;
