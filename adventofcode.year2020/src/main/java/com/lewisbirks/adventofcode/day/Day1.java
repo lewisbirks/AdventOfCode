@@ -5,7 +5,7 @@ import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class Day1 extends DayOf2020 {
+public final class Day1 extends DayOf2020 {
 
     private final Supplier<List<Long>> expensesSupplier;
 

@@ -9,7 +9,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class Day2 extends DayOf2020 {
+public final class Day2 extends DayOf2020 {
 
     private final Supplier<Map<PasswordPolicy, List<String>>> policySupplier;
 

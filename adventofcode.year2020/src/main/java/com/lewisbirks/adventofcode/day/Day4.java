@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class Day4 extends DayOf2020 {
+public final class Day4 extends DayOf2020 {
 
     private final Supplier<List<Passport>> passportsSupplier;
 
