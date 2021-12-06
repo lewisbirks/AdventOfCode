@@ -1,6 +1,5 @@
 package com.lewisbirks.adventofcode.day;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +13,6 @@ class Day4Test {
         assertThat(underTest.part1()).isEqualTo(4512L);
     }
 
-    @Disabled
     @Test
     void part2() {
         assertThat(underTest.part2()).isEqualTo(1924L);
