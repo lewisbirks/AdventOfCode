@@ -1,12 +1,13 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-public final class Day1 extends DayOf2021 {
+public final class Day1 extends Day {
 
     private final Supplier<List<Long>> depthsSupplier;
 

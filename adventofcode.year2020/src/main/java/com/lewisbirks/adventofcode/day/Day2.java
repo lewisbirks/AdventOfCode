@@ -1,6 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.PasswordPolicy;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public final class Day2 extends DayOf2020 {
+public final class Day2 extends Day {
 
     private final Supplier<Map<PasswordPolicy, List<String>>> policySupplier;
 

@@ -1,12 +1,13 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.utils.vectors.Vector;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public final class Day2 extends DayOf2021 {
+public final class Day2 extends Day {
 
     private final Supplier<List<Vector>> vectorsSupplier;
 

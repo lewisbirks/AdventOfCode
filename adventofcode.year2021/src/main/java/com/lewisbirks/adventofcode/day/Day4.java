@@ -1,5 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
+import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.utils.bingo.Board;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class Day4 extends DayOf2021 {
+public final class Day4 extends Day {
 
     private List<Integer> values;
     private List<Board> boards;

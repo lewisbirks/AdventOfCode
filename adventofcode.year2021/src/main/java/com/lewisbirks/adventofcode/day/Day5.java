@@ -1,6 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.utils.point.Point;
 
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import java.util.OptionalInt;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
-public final class Day5 extends DayOf2021 {
+public final class Day5 extends Day {
 
     private final Supplier<List<List<Point>>> coordinateGroupsSupplier;
 

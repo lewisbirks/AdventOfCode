@@ -1,11 +1,12 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public final class Day5 extends DayOf2020 {
+public final class Day5 extends Day {
 
     private final Supplier<List<String>> seatsSupplier;
 
