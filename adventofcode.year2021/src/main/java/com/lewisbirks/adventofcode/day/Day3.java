@@ -1,18 +1,20 @@
 package com.lewisbirks.adventofcode.day;
 
+import com.lewisbirks.adventofcode.common.domain.Day;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
-public final class Day3 extends DayOf2021 {
+public final class Day3 extends Day {
 
     private List<String> diagnostics = null;
     private List<List<Character>> transformedDiagnostics = null;
 
     public Day3() {
-        super(3);
+        super(3, "Binary Diagnostic");
     }
 
     @Override

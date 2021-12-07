@@ -1,16 +1,17 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public final class Day1 extends DayOf2020 {
+public final class Day1 extends Day {
 
     private final Supplier<List<Long>> expensesSupplier;
 
     public Day1() {
-        super(1);
+        super(1, "Report Repair");
         expensesSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
     }
 

@@ -1,17 +1,18 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public final class Day3 extends DayOf2020 {
+public final class Day3 extends Day {
 
     private static final char TREE = '#';
     private final Supplier<char[][]> mapSupplier;
 
     public Day3() {
-        super(3);
+        super(3, "Toboggan Trajectory");
         mapSupplier = CachedSupplier.memoize(() -> {
             List<char[]> example = getInput(String::toCharArray);
             return example.toArray(char[][]::new);

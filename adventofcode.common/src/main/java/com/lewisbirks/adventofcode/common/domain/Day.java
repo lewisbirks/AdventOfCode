@@ -11,13 +11,15 @@ import java.util.stream.Collectors;
 public abstract class Day implements Comparable<Day> {
 
     private final int num;
+    private final String name;
 
-    public Day(int num) {
+    public Day(int num, String name) {
         this.num = num;
+        this.name = name;
     }
 
     public void process() {
-        System.out.printf("Day %02d%n", num);
+        System.out.printf("Day %02d: %s%n", num, name);
         try {
             System.out.printf("\tPart 1: %s%n", part1());
             System.out.printf("\tPart 2: %s%n", part2());

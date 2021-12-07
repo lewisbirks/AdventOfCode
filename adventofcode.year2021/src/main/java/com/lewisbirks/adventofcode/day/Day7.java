@@ -1,6 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.stream.LongStream;
 
 import static java.lang.Long.MAX_VALUE;
 
-public final class Day7 extends DayOf2021 {
+public final class Day7 extends Day {
 
     private final Supplier<List<Long>> crabPositions;
 
     public Day7() {
-        super(7);
+        super(7, "Treachery of Whales");
         crabPositions = CachedSupplier.memoize(
             () -> Arrays.stream(readInput().split(",")).map(Long::parseLong).toList()
         );
