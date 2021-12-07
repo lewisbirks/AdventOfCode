@@ -3,7 +3,7 @@ package com.lewisbirks.adventofcode.common.domain;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Year<D extends Day> implements Comparable<Year<?>> {
+public abstract class Year<D extends Day> {
 
     private final int year;
 
@@ -21,8 +21,4 @@ public abstract class Year<D extends Day> implements Comparable<Year<?>> {
 
     protected abstract List<D> getDays();
 
-    @Override
-    public int compareTo(Year<?> o) {
-        return Integer.compare(year, o.year);
-    }
 }
