@@ -15,7 +15,7 @@ public final class Day2 extends Day {
     private final Supplier<Map<PasswordPolicy, List<String>>> policySupplier;
 
     public Day2() {
-        super(2);
+        super(2, "Password Philosophy");
         policySupplier = CachedSupplier.memoize(() -> getInput(Collectors.groupingBy(
             s -> PasswordPolicy.of(s.split(": ")[0].trim()),
             Collectors.mapping(s -> s.split(": ")[1].trim(), Collectors.toList())

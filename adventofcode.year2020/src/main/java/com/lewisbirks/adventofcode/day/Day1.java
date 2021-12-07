@@ -11,7 +11,7 @@ public final class Day1 extends Day {
     private final Supplier<List<Long>> expensesSupplier;
 
     public Day1() {
-        super(1);
+        super(1, "Report Repair");
         expensesSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
     }
 

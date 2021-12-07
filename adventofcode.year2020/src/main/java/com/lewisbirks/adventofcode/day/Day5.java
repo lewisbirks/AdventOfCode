@@ -11,7 +11,7 @@ public final class Day5 extends Day {
     private final Supplier<List<String>> seatsSupplier;
 
     public Day5() {
-        super(5);
+        super(5, "Binary Boarding");
         seatsSupplier = CachedSupplier.memoize(this::getInput);
     }
 

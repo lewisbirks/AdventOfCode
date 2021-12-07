@@ -16,7 +16,7 @@ public final class Day7 extends Day {
     private final Supplier<List<Long>> crabPositions;
 
     public Day7() {
-        super(7);
+        super(7, "Treachery of Whales");
         crabPositions = CachedSupplier.memoize(
             () -> Arrays.stream(readInput().split(",")).map(Long::parseLong).toList()
         );

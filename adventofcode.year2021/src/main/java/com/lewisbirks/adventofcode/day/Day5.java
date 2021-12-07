@@ -16,7 +16,7 @@ public final class Day5 extends Day {
     private final Supplier<List<List<Point>>> coordinateGroupsSupplier;
 
     public Day5() {
-        super(5);
+        super(5, "Hydrothermal Venture");
         coordinateGroupsSupplier = CachedSupplier.memoize(() -> getInput(line -> {
             String[] points = line.split(" -> ");
             return Arrays.stream(points).map(Point::of).toList();

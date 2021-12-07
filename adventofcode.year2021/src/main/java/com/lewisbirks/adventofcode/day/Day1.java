@@ -12,7 +12,7 @@ public final class Day1 extends Day {
     private final Supplier<List<Long>> depthsSupplier;
 
     public Day1() {
-        super(1);
+        super(1, "Sonar Sweep");
         depthsSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
     }
 

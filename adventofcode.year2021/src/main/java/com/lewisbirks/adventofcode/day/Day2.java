@@ -12,7 +12,7 @@ public final class Day2 extends Day {
     private final Supplier<List<Vector>> vectorsSupplier;
 
     public Day2() {
-        super(2);
+        super(2, "Dive!");
         vectorsSupplier = CachedSupplier.memoize(() -> getInput(Vector::of));
     }
 

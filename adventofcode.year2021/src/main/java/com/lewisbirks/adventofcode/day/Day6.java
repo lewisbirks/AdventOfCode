@@ -12,7 +12,7 @@ public final class Day6 extends Day {
     private final Supplier<long[]> fishSupplier;
 
     public Day6() {
-        super(STANDARD_LIFE_TIMER_START);
+        super(6, "Lanternfish");
         fishSupplier = CachedSupplier.memoize(
             () -> {
                 long[] numFishPerAge = new long[NEW_LIFE_TIMER_START + 1];

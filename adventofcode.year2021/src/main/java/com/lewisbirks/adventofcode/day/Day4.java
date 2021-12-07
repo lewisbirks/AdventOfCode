@@ -15,7 +15,7 @@ public final class Day4 extends Day {
     private List<Board> boards;
 
     public Day4() {
-        super(4);
+        super(4, "Giant Squid");
     }
 
     @Override

@@ -15,7 +15,7 @@ public final class Day4 extends Day {
     private final Supplier<List<Passport>> passportsSupplier;
 
     public Day4() {
-        super(4);
+        super(4, "Passport Processing");
         passportsSupplier = CachedSupplier.memoize(() -> {
             List<String> lines = getInput(Collectors.toCollection(ArrayList::new));
             List<Passport> passports = new ArrayList<>();

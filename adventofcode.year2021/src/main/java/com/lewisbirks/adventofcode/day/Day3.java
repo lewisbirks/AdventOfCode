@@ -14,7 +14,7 @@ public final class Day3 extends Day {
     private List<List<Character>> transformedDiagnostics = null;
 
     public Day3() {
-        super(3);
+        super(3, "Binary Diagnostic");
     }
 
     @Override

@@ -12,7 +12,7 @@ public final class Day3 extends Day {
     private final Supplier<char[][]> mapSupplier;
 
     public Day3() {
-        super(3);
+        super(3, "Toboggan Trajectory");
         mapSupplier = CachedSupplier.memoize(() -> {
             List<char[]> example = getInput(String::toCharArray);
             return example.toArray(char[][]::new);
