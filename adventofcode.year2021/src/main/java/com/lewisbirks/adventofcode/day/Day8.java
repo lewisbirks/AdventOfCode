@@ -1,22 +1,22 @@
 package com.lewisbirks.adventofcode.day;
 
+import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public final class Day8 extends Day {
 
-    private final List<Integer> UNIQUE_LENGTHS = List.of(2, 3, 4, 7);
-    Map<Set<String>, Integer> foo = Map.of(
+    private static final List<Integer> UNIQUE_LENGTHS = List.of(2, 3, 4, 7);
+    private static final Map<Set<String>, Integer> CHARS_TO_NUMBERS = Map.of(
         Set.of("c", "f"), 1,
         Set.of("a", "c", "d", "e", "g"), 2,
         Set.of("a", "c", "d", "f", "g"), 3,
@@ -28,16 +28,18 @@ public final class Day8 extends Day {
         Set.of("a", "b", "c", "d", "f", "g"), 9,
         Set.of("a", "b", "c", "e", "f", "g"), 0
     );
+    private final Supplier<List<String[]>> displays;
+
 
     public Day8() {
         super(8, "Seven Segment Search");
+        displays = CachedSupplier.memoize(() -> getInput(input -> input.split("\\|")));
     }
 
     @Override
     protected Object part1() {
-
-        return getInput().stream()
-            .map(input -> input.split("\\|")[1].trim())
+        return displays.get().stream()
+            .map(input -> input[1].trim())
             .flatMap(parts -> Arrays.stream(parts.split(" ")))
             .mapToInt(String::length)
             .filter(UNIQUE_LENGTHS::contains)
@@ -46,31 +48,34 @@ public final class Day8 extends Day {
 
     @Override
     protected Object part2() {
-        return getInput().stream()
-            .map(input -> input.split("\\|"))
+        return displays.get().stream()
             .map(input -> List.of(input[0].trim().split(" "), input[1].trim().split(" ")))
             .mapToLong(line -> parse(line.get(1), decode(line.get(0))))
             .sum();
     }
 
     private Map<String, String> decode(String[] codes) {
-        List<String> sorted = new ArrayList<>(Arrays.asList(codes));
-        sorted.sort(Comparator.comparingInt(String::length));
-
         // 1, 7, 4, 8
-        String cf = sorted.remove(0); // 1 length 2
-        String acf = sorted.remove(0); // 7 length 3
-        String bcdf = sorted.remove(0); // 4 length 4
-        String abcdefg = sorted.remove(sorted.size() - 1); // 8 length 7
+        String cf = "", acf = "", bcdf = "", abcdefg = "";
+        Map<String, Integer> occurrence = new HashMap<>(8);
+        for (String code : codes) {
+            switch (code.length()) {
+                case 2 -> cf = code;
+                case 3 -> acf = code;
+                case 4 -> bcdf = code;
+                case 7 -> abcdefg = code;
+                case 6 -> {
+                    for (int i = 0; i < code.length(); i++) {
+                        String c = String.valueOf(code.charAt(i));
+                        occurrence.merge(c, 1, Integer::sum);
+                    }
+                }
+            }
+        }
 
-        String cde = sorted.stream()
-            .filter(s -> s.length() == 6) // 6/0/9
-            .flatMap(s -> IntStream.range(0, s.length()).mapToObj(s::charAt))
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-            .entrySet()
-            .stream()
-            .filter(entry -> entry.getValue() == 2L)
-            .map(entry -> entry.getKey().toString())
+        String cde = occurrence.entrySet().stream()
+            .filter(entry -> entry.getValue() == 2)
+            .map(Map.Entry::getKey)
             .collect(Collectors.joining());
 
         String de = removeAll(cde, cf);
@@ -87,6 +92,16 @@ public final class Day8 extends Day {
         return Map.of(a, "a", b, "b", c, "c", d, "d", e, "e", f, "f", g, "g");
     }
 
+    // cde - cd -> e
+    // cde - cf -> de
+    private String removeAll(final String s1, final String s2) {
+        String removed = s1;
+        for (int i = 0; i < s2.length(); i++) {
+            removed = removed.replace(String.valueOf(s2.charAt(i)), "");
+        }
+        return removed;
+    }
+
     private int parse(String[] numbers, Map<String, String> map) {
         int parsed = 0;
         for (String number : numbers) {
@@ -101,19 +116,9 @@ public final class Day8 extends Day {
             .mapToObj(i -> map.get(String.valueOf(number.charAt(i))))
             .collect(Collectors.toSet());
 
-        if (!foo.containsKey(toMatch)) {
+        if (!CHARS_TO_NUMBERS.containsKey(toMatch)) {
             throw new NoSuchElementException("Could not find " + toMatch);
         }
-        return foo.get(toMatch);
-    }
-
-    // cde - cd -> e
-    // cde - cf -> de
-    private String removeAll(String s1, String s2) {
-        String removed = s1;
-        for (int i = 0; i < s2.length(); i++) {
-            removed = removed.replace(String.valueOf(s2.charAt(i)), "");
-        }
-        return removed;
+        return CHARS_TO_NUMBERS.get(toMatch);
     }
 }
