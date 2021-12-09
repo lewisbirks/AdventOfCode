@@ -15,5 +15,6 @@ class Day9Test {
 
     @Test
     void part2() {
+        assertThat(underTest.part2()).isEqualTo(1134L);
     }
 }
