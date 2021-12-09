@@ -10,13 +10,14 @@ import com.lewisbirks.adventofcode.day.Day5;
 import com.lewisbirks.adventofcode.day.Day6;
 import com.lewisbirks.adventofcode.day.Day7;
 import com.lewisbirks.adventofcode.day.Day8;
+import com.lewisbirks.adventofcode.day.Day9;
 
 import java.util.List;
 
 public class Year2021 extends Year<Day> {
 
     private static final List<Day> DAYS = List.of(
-        new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(), new Day8()
+        new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(), new Day8(), new Day9()
     );
 
     public Year2021() {
