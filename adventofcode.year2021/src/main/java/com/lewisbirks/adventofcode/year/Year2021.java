@@ -3,6 +3,7 @@ package com.lewisbirks.adventofcode.year;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.domain.Year;
 import com.lewisbirks.adventofcode.day.Day1;
+import com.lewisbirks.adventofcode.day.Day10;
 import com.lewisbirks.adventofcode.day.Day2;
 import com.lewisbirks.adventofcode.day.Day3;
 import com.lewisbirks.adventofcode.day.Day4;
@@ -17,7 +18,8 @@ import java.util.List;
 public class Year2021 extends Year<Day> {
 
     private static final List<Day> DAYS = List.of(
-        new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(), new Day8(), new Day9()
+        new Day1(), new Day2(), new Day3(), new Day4(), new Day5(), new Day6(), new Day7(), new Day8(), new Day9(),
+        new Day10()
     );
 
     public Year2021() {
