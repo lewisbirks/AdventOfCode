@@ -4,9 +4,9 @@ import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.utils.MultiValueMap;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public final class Day12 extends Day {
@@ -24,42 +24,47 @@ public final class Day12 extends Day {
                 map.put(a[0], a[1]);
                 map.put(a[1], a[0]);
             });
-            return map.immutable();
+            return map;
         });
     }
 
     @Override
     protected Object part1() {
-        return getRoutesCount(START, routesSupplier.get(), Set.of(START));
+        return getRoutesCount(START, routesSupplier.get(), Map.of(START, 1), 1);
     }
 
-    private int getRoutesCount(String current, MultiValueMap<String, String> map, Set<String> visited) {
+    @Override
+    protected Object part2() {
+        return getRoutesCount(START, routesSupplier.get(), Map.of(START, 2), 2);
+    }
+
+    private int getRoutesCount(final String current, final MultiValueMap<String, String> routesMap,
+                               final Map<String, Integer> visited, final int maxVisits) {
         if (END.equals(current)) {
             return 1;
         }
         int totalRoutes = 0;
-        List<String> availableRoutes = map.get(current);
+        List<String> availableRoutes = routesMap.get(current);
         for (String route : availableRoutes) {
-            if (visited.contains(route)) {
+            if (!canVisit(route, visited, maxVisits)) {
                 continue;
             }
-            Set<String> visitedClone = new HashSet<>(visited);
+            Map<String, Integer> visitedClone = new HashMap<>(visited);
             if (isSmallCave(route)) {
-                visitedClone.add(route);
+                visitedClone.merge(route, 1, Integer::sum);
             }
-            totalRoutes += getRoutesCount(route, map, visitedClone);
+            totalRoutes += getRoutesCount(route, routesMap, visitedClone, maxVisits);
         }
         return totalRoutes;
+    }
+
+    private boolean canVisit(String route, Map<String, Integer> visited, int maxVisits) {
+        return !visited.containsKey(route)
+               || visited.getOrDefault(route, 0) < maxVisits
+                  && visited.values().stream().filter(visits -> visits == maxVisits).count() <= 1;
     }
 
     private boolean isSmallCave(String route) {
         return route.toLowerCase().equals(route);
     }
-
-    @Override
-    protected Object part2() {
-        return null;
-    }
-
-
 }

@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class Day12Test {
 
@@ -16,6 +15,6 @@ class Day12Test {
 
     @Test
     void part2() {
-        fail();
+        assertThat(underTest.part2()).isEqualTo(36);
     }
 }
