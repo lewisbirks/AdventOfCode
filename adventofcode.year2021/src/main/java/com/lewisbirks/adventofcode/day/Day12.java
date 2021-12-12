@@ -59,9 +59,8 @@ public final class Day12 extends Day {
     }
 
     private boolean canVisit(String route, Map<String, Integer> visited, int maxVisits) {
-        return !visited.containsKey(route)
-               || visited.getOrDefault(route, 0) < maxVisits
-                  && visited.values().stream().filter(visits -> visits == maxVisits).count() <= 1;
+        long maxVisitsCount = visited.values().stream().filter(visits -> visits == maxVisits).count();
+        return !visited.containsKey(route) || (visited.getOrDefault(route, 0) < maxVisits && maxVisitsCount <= 1);
     }
 
     private boolean isSmallCave(String route) {
