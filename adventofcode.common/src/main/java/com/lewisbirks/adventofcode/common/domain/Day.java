@@ -22,14 +22,17 @@ public abstract class Day implements Comparable<Day> {
         System.out.printf("Day %02d: %s%n", num, name);
         try {
             long start, end;
+            System.out.print("\tPart 1: ");
             start = System.currentTimeMillis();
             Object result = part1();
             end = System.currentTimeMillis();
-            System.out.printf("\tPart 1: %s (%dms)%n", result, end - start);
+            System.out.printf("%s (%dms)%n", result, end - start);
+
+            System.out.print("\tPart 2: ");
             start = System.currentTimeMillis();
             result = part2();
             end = System.currentTimeMillis();
-            System.out.printf("\tPart 2: %s (%dms)%n", result, end - start);
+            System.out.printf("%s (%dms)%n", result, end - start);
         } catch (Exception e) {
             System.err.printf("Failed to process day %02d%n", num);
             e.printStackTrace();
