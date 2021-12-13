@@ -3,15 +3,15 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.utils.point.Point;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Day13 extends Day {
 
     private List<Point> folds;
-    private boolean[][] paper;
+    private List<Point> marks;
 
     public Day13() {
         super(13, "Transparent Origami");
@@ -20,49 +20,26 @@ public class Day13 extends Day {
     @Override
     protected Object part1() {
         read();
-        boolean[][] paper = copyPaper(this.paper);
-        paper = fold(folds.get(0), paper);
-        return countDots(paper);
+        return fold(folds.get(0), this.marks).size();
     }
 
     @Override
     protected Object part2() {
         read();
-        boolean[][] paper = copyPaper(this.paper);
+        Collection<Point> marks = this.marks;
         for (Point fold : folds) {
-            paper = fold(fold, paper);
+            marks = fold(fold, marks);
         }
-        printPaper(paper);
+        printPaper(marks);
         return null;
     }
 
-    private boolean[][] fold(Point foldPoint, boolean[][] paper) {
-        boolean foldX = foldPoint.x() > foldPoint.y();
-
-        int deltaReverseX = foldX ? -1 : 1;
-        int deltaReverseY = foldX ? 1 : -1;
-
-        int y = Math.max(0, foldPoint.y() + 1);
-        for (int reverseY = foldX ? y : foldPoint.y() - 1; y < paper.length; y++, reverseY += deltaReverseY) {
-            int x = Math.max(0, foldPoint.x() + 1);
-            for (int reverseX = foldX ? foldPoint.x() - 1 : x; x < paper[y].length; x++, reverseX += deltaReverseX) {
-                paper[reverseY][reverseX] = paper[reverseY][reverseX] || paper[y][x];
-            }
-        }
-
-        boolean[][] reducedPaper = new boolean[!foldX ? foldPoint.y() : paper.length][];
-        Arrays.setAll(reducedPaper, i -> Arrays.copyOf(paper[i], foldX ? foldPoint.x() : paper[i].length));
-        return reducedPaper;
-    }
-
-    private int countDots(boolean[][] paper) {
-        int count = 0;
-        for (boolean[] row : paper) {
-            for (boolean b : row) {
-                count += (b ? 1 : 0);
-            }
-        }
-        return count;
+    private Collection<Point> fold(final Point fold, Collection<Point> marks) {
+        boolean foldX = fold.x() > fold.y();
+        return marks.stream()
+            .map(mark -> foldX ? (fold.x() < mark.x() ? new Point(fold.x() - (mark.x() - fold.x()), mark.y()) : mark)
+                               : (fold.y() < mark.y() ? new Point(mark.x(), fold.y() - (mark.y() - fold.y())) : mark)
+            ).collect(Collectors.toSet());
     }
 
     private void read() {
@@ -70,45 +47,29 @@ public class Day13 extends Day {
             return;
         }
 
-        List<String> inputs = getInput(Collectors.toCollection(ArrayList::new));
+        List<String> inputs = getInput();
+        List<String> markInputs = inputs.subList(0, inputs.indexOf(""));
+        List<String> foldInputs = inputs.subList(inputs.indexOf("") + 1, inputs.size());
 
-        List<Point> points = new ArrayList<>();
-        int maxX = 0, maxY = 0;
-        String line;
-        while (!(line = inputs.remove(0)).isBlank()) {
-            Point mark = Point.of(line);
-            points.add(mark);
-            maxX = Math.max(maxX, mark.x());
-            maxY = Math.max(maxY, mark.y());
-        }
-        List<Point> folds = new ArrayList<>();
-        while (!inputs.isEmpty()) {
-            line = inputs.remove(0).substring(11);
-            String[] fold = line.split("=");
-            Point foldPoint;
-            if (fold[0].equals("x")) {
-                foldPoint = new Point(Integer.parseInt(fold[1]), -1);
-            } else {
-                foldPoint = new Point(-1, Integer.parseInt(fold[1]));
-            }
-            folds.add(foldPoint);
-        }
-        this.paper = new boolean[maxY + 1][maxX + 1];
-        points.forEach(point -> this.paper[point.y()][point.x()] = true);
-        this.folds = folds;
+        this.marks = markInputs.stream().map(Point::of).toList();
+        this.folds = foldInputs.stream()
+            .map(line -> {
+                String[] fold = line.substring(11).split("=");
+                return fold[0].equals("x") ? new Point(Integer.parseInt(fold[1]), -1)
+                                           : new Point(-1, Integer.parseInt(fold[1]));
+            })
+            .toList();
     }
 
-    private boolean[][] copyPaper(boolean[][] paper) {
-        return Arrays.stream(paper).map(boolean[]::clone).toArray(boolean[][]::new);
-    }
-
-    private void printPaper(boolean[][] paper) {
+    private void printPaper(Collection<Point> points) {
+        int maxX = points.stream().max(Comparator.comparingInt(Point::x)).map(Point::x).orElse(0) + 1;
+        int maxY = points.stream().max(Comparator.comparingInt(Point::y)).map(Point::y).orElse(0) + 1;
         System.out.println();
-        Arrays.stream(paper).forEach(row -> {
-            for (boolean b : row) {
-                System.out.print(b ? "#" : " ");
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                System.out.print(points.contains(new Point(x, y)) ? "#" : " ");
             }
             System.out.println();
-        });
+        }
     }
 }
