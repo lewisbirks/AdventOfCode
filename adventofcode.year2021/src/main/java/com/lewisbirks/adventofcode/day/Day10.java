@@ -47,16 +47,12 @@ public final class Day10 extends Day {
         long score = 0;
         for (String chunk : chunks.get()) {
             Deque<Character> stack = new ArrayDeque<>();
-            char[] characters = chunk.toCharArray();
-            for (char character : characters) {
+            for (char character : chunk.toCharArray()) {
                 if (OPENING.contains(character)) {
                     stack.push(character);
-                } else if (CLOSING.contains(character)) {
-                    Character pop = stack.pop();
-                    if (PAIRS.get(pop) != character) {
-                        score += CORRUPT_POINTS.get(character);
-                        break;
-                    }
+                } else if (CLOSING.contains(character) && PAIRS.get(stack.pop()) != character) {
+                    score += CORRUPT_POINTS.get(character);
+                    break;
                 }
             }
         }
@@ -68,27 +64,21 @@ public final class Day10 extends Day {
     protected Object part2() {
         List<Long> scores = new ArrayList<>();
         for (String chunk : chunks.get()) {
-            long score = 0;
             Deque<Character> stack = new ArrayDeque<>();
             boolean corrupt = false;
-            char[] characters = chunk.toCharArray();
-            for (char character : characters) {
+            for (char character : chunk.toCharArray()) {
                 if (OPENING.contains(character)) {
                     stack.push(character);
-                } else if (CLOSING.contains(character)) {
-                    Character pop = stack.pop();
-                    if (PAIRS.get(pop) != character) {
-                        corrupt = true;
-                        break;
-                    }
+                } else if (CLOSING.contains(character) && PAIRS.get(stack.pop()) != character) {
+                    corrupt = true;
+                    break;
                 }
             }
             if (!corrupt) {
+                long score = 0;
                 while (!stack.isEmpty()) {
-                    Character pop = stack.pop();
-                    int points = INCOMPLETE_POINTS.get(pop);
                     score *= 5;
-                    score += points;
+                    score += INCOMPLETE_POINTS.get(stack.pop());
                 }
                 scores.add(score);
             }
