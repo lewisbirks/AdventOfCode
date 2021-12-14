@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.common.utils;
+package com.lewisbirks.adventofcode.common.resource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,5 +28,4 @@ public class ResourceUtil {
             throw new UncheckedIOException(e);
         }
     }
-
 }

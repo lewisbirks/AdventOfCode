@@ -1,6 +1,6 @@
 package com.lewisbirks.adventofcode.common.domain;
 
-import com.lewisbirks.adventofcode.common.utils.ResourceUtil;
+import com.lewisbirks.adventofcode.common.resource.ResourceUtil;
 
 import java.util.List;
 import java.util.Objects;
