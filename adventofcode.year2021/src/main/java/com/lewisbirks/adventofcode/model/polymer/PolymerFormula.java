@@ -1,26 +1,22 @@
 package com.lewisbirks.adventofcode.model.polymer;
 
+import com.lewisbirks.adventofcode.collection.FrequencyMap;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class PolymerFormula {
     private final Map<String, String> insertionPairs;
-    private String template;
+    private final String template;
+    private FrequencyMap<Character> characterCounts;
 
     public PolymerFormula(String template, Map<String, String> insertionPairs) {
         this.template = template;
         this.insertionPairs = insertionPairs;
-    }
-
-    public PolymerFormula(PolymerFormula formula) {
-        this.template = formula.template;
-        this.insertionPairs = Map.copyOf(formula.insertionPairs);
     }
 
     public static PolymerFormula of(List<String> components) {
@@ -33,33 +29,34 @@ public final class PolymerFormula {
         return new PolymerFormula(template, insertionPairs);
     }
 
-    public void process(int times) {
-        String template = this.template;
+    public PolymerFormula process(final int times) {
+        characterCounts = template.chars().mapToObj(c -> (char) c).collect(FrequencyMap.collector());
+
+        FrequencyMap<String> pairs = IntStream.range(0, template.length() - 1)
+            .mapToObj(i -> template.substring(i, i + 2))
+            .collect(FrequencyMap.collector());
 
         for (int i = 0; i < times; i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int index = 0; index < template.length(); index++) {
-                sb.append(template.charAt(index));
-                if (index >= template.length() - 1) {
-                    continue;
-                }
-                String pair = template.substring(index, index + 2);
-                String insertion = this.insertionPairs.get(pair);
-                if (insertion != null) {
-                    sb.append(insertion);
+            FrequencyMap<String> updatedPairs = new FrequencyMap<>();
+            for (String pair : pairs.keySet()) {
+                long currentFrequency = pairs.get(pair);
+                if (insertionPairs.containsKey(pair)) {
+                    String insertionCharacter = insertionPairs.get(pair);
+                    updatedPairs.put(pair.charAt(0) + insertionCharacter, currentFrequency);
+                    updatedPairs.put(insertionCharacter + pair.charAt(1), currentFrequency);
+                    characterCounts.put(insertionCharacter.charAt(0), currentFrequency);
+                } else {
+                    updatedPairs.put(pair, currentFrequency);
                 }
             }
-            template = sb.toString();
+            pairs = updatedPairs;
         }
-        this.template = template;
+
+        return this;
     }
 
     public LongSummaryStatistics summaryStats() {
-        return Arrays.stream(template.split(""))
-            .collect(Collectors.groupingBy(Function.identity(), HashMap::new, Collectors.counting()))
-            .values()
-            .stream()
-            .mapToLong(Long::longValue)
-            .summaryStatistics();
+        return characterCounts.valueStream().summaryStatistics();
     }
+
 }

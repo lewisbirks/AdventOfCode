@@ -18,17 +18,16 @@ public final class Day14 extends Day {
 
     @Override
     protected Object part1() {
-        PolymerFormula formula = new PolymerFormula(formulaSupplier.get());
-        formula.process(10);
-        LongSummaryStatistics stats = formula.summaryStats();
-        return stats.getMax() - stats.getMin();
+        return process(10);
     }
 
     @Override
     protected Object part2() {
-        PolymerFormula formula = new PolymerFormula(formulaSupplier.get());
-        formula.process(40);
-        LongSummaryStatistics stats = formula.summaryStats();
+        return process(40);
+    }
+
+    private long process(final int times) {
+        LongSummaryStatistics stats = formulaSupplier.get().process(times).summaryStats();
         return stats.getMax() - stats.getMin();
     }
 }
