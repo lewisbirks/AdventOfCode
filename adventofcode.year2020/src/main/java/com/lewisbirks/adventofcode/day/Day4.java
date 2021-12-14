@@ -2,7 +2,7 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.model.Passport;
+import com.lewisbirks.adventofcode.model.passport.Passport;
 
 import java.util.ArrayList;
 import java.util.Collections;
