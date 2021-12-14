@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.model;
+package com.lewisbirks.adventofcode.model.password;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

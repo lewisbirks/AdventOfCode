@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.model;
+package com.lewisbirks.adventofcode.model.passport;
 
 import com.lewisbirks.adventofcode.utils.ObjectUtils;
 
