@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.utils.point;
+package com.lewisbirks.adventofcode.model.point;
 
 public record Point(int x, int y) {
     public static Point of(String pair) {

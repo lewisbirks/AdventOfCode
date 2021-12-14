@@ -1,7 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.utils.bingo.Board;
+import com.lewisbirks.adventofcode.model.bingo.Board;
 
 import java.util.ArrayList;
 import java.util.Arrays;

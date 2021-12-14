@@ -2,7 +2,7 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.utils.point.Point;
+import com.lewisbirks.adventofcode.model.point.Point;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;

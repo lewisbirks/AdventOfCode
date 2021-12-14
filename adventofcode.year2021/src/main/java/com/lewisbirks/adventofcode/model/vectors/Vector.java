@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.utils.vectors;
+package com.lewisbirks.adventofcode.model.vectors;
 
 public record Vector(int distance, Direction direction) {
     public static Vector of(String line) {
