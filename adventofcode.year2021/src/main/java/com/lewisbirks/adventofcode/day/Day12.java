@@ -1,8 +1,8 @@
 package com.lewisbirks.adventofcode.day;
 
+import com.lewisbirks.adventofcode.collection.MultiValueMap;
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.utils.MultiValueMap;
 
 import java.util.HashMap;
 import java.util.List;

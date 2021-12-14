@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.utils.bingo;
+package com.lewisbirks.adventofcode.model.bingo;
 
 public final class BingoNumber {
     private final int value;

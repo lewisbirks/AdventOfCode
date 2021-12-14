@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.utils;
+package com.lewisbirks.adventofcode.collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.utils.bingo;
+package com.lewisbirks.adventofcode.model.bingo;
 
 import java.util.Arrays;
 import java.util.List;
