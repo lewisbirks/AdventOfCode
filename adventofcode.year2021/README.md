@@ -13,7 +13,7 @@
             <th>Part 2</th>
         </tr>
         <tr>
-            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day1.java">Day 1 </a></td>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day1.java">Day 1</a></td>
             <td>1715</td>
             <td>1739</td>
         </tr>
