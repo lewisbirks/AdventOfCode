@@ -2,7 +2,7 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.model.PasswordPolicy;
+import com.lewisbirks.adventofcode.model.password.PasswordPolicy;
 
 import java.util.List;
 import java.util.Map;

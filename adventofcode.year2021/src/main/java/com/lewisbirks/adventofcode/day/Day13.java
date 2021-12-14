@@ -1,14 +1,14 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.utils.point.Point;
+import com.lewisbirks.adventofcode.model.point.Point;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day13 extends Day {
+public final class Day13 extends Day {
 
     private List<Point> folds;
     private List<Point> marks;
@@ -31,7 +31,7 @@ public class Day13 extends Day {
             marks = fold(fold, marks);
         }
         printPaper(marks);
-        return null;
+        return "";
     }
 
     private Collection<Point> fold(final Point fold, Collection<Point> marks) {
@@ -67,7 +67,7 @@ public class Day13 extends Day {
         System.out.println();
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {
-                System.out.print(points.contains(new Point(x, y)) ? "#" : " ");
+                System.out.print(points.contains(new Point(x, y)) ? "██" : "  ");
             }
             System.out.println();
         }
