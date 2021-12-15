@@ -19,6 +19,7 @@ public abstract class Day implements Comparable<Day> {
     }
 
     public void process() {
+        System.out.println("spooky");
         System.out.printf("Day %02d: %s%n", num, name);
         try {
             long start, end;
