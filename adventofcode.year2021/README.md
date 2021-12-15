@@ -82,6 +82,11 @@
             <td>2602</td>
             <td>2942885922173</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day15.java">Day 15</a></td>
+            <td>673</td>
+            <td>2893</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -139,6 +144,9 @@ Day 13: Transparent Origami
 Day 14: Extended Polymerization
 	Part 1: 2602 (16ms)
 	Part 2: 2942885922173 (9ms)
+Day 15: Chiton
+	Part 1: 673 (18ms)
+	Part 2: 2893 (113ms)
 ==========================
 </pre>
 </details>
