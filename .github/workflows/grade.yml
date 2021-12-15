@@ -10,7 +10,27 @@ on:
         branches: [ master ]
 
 jobs:
-    build:
+    changedmodules:
+        runs-on: ubuntu-latest
+        outputs:
+            common: ${{ steps.changes.outputs.common}}
+            year2020: ${{ steps.changes.outputs.year2020 }}
+            year2021: ${{ steps.changes.outputs.year2021 }}
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v2
+                with:
+                    fetch-depth: 0
+            -   name: Determine tests to run
+                id: changes
+                run: |
+                    echo "::set-output name=common::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *common*)" ] &&  echo :adventofcode.common:test)"
+                    echo "::set-output name=year2020::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2020*)" ] &&  echo :adventofcode.year2020:test)"
+                    echo "::set-output name=year2021::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2021*)" ] &&  echo :adventofcode.year2021:test)"
+
+    test:
+        needs: changedmodules
+        if: ${{ needs.changedmodules.outputs.common || needs.changedmodules.outputs.year2020 || needs.changedmodules.outputs.year2021 }}
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v2
@@ -19,9 +39,11 @@ jobs:
                 with:
                     java-version: '17'
                     distribution: 'temurin'
-            -   name: Build with Gradle
+            -   name: Test with Gradle
                 uses: gradle/gradle-build-action@v2
                 with:
                     arguments: |
                         clean
-                        build
+                        ${{ needs.changedmodules.outputs.common }}
+                        ${{ needs.changedmodules.outputs.year2020 }}
+                        ${{ needs.changedmodules.outputs.year2021 }}
