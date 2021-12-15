@@ -10,9 +10,8 @@ on:
         branches: [ master ]
 
 jobs:
-    changedfiles:
+    changedmodules:
         runs-on: ubuntu-latest
-        # Map a step output to a job output
         outputs:
             common: ${{ steps.changes.outputs.common}}
             year2020: ${{ steps.changes.outputs.year2020 }}
@@ -29,9 +28,9 @@ jobs:
                     echo "::set-output name=year2020::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2020*)" ] &&  echo :adventofcode.year2020:test)"
                     echo "::set-output name=year2021::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2021*)" ] &&  echo :adventofcode.year2021:test)"
 
-    build:
-        if: ${{ needs.changedfiles.outputs.common || needs.changedfiles.outputs.year2020 || needs.changedfiles.outputs.year2021 }}
-        needs: changedfiles
+    test:
+        needs: changedmodules
+        if: ${{ needs.changedmodules.outputs.common || needs.changedmodules.outputs.year2020 || needs.changedmodules.outputs.year2021 }}
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v2
@@ -45,6 +44,6 @@ jobs:
                 with:
                     arguments: |
                         clean
-                        ${{ needs.changedfiles.outputs.common }}
-                        ${{ needs.changedfiles.outputs.year2020 }}
-                        ${{ needs.changedfiles.outputs.year2021 }}
+                        ${{ needs.changedmodules.outputs.common }}
+                        ${{ needs.changedmodules.outputs.year2020 }}
+                        ${{ needs.changedmodules.outputs.year2021 }}

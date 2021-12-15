@@ -15,7 +15,6 @@ public class Day15 extends Day {
 
 
     private final Supplier<int[][]> riskLevelsSupplier;
-    int removeMe = 0;
 
     public Day15() {
         super(15, "Chiton");
