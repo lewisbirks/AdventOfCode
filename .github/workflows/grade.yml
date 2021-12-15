@@ -18,18 +18,16 @@ jobs:
             year2020: ${{ steps.changes.outputs.year2020 }}
             year2021: ${{ steps.changes.outputs.year2021 }}
         steps:
-            # Make sure we have some code to diff.
             -   name: Checkout repository
                 uses: actions/checkout@v2
                 with:
                     fetch-depth: 0
-            -   name: Get changed files
+            -   name: Determine tests to run
                 id: changes
-                # Set outputs using the command.
                 run: |
-                    echo "::set-output name=common::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *common* | xargs)" ] &&  echo :adventofcode.common:test)"
-                    echo "::set-output name=year2020::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2020* | xargs)" ] &&  echo :adventofcode.year2020:test)"
-                    echo "::set-output name=year2021::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2021* | xargs)" ] &&  echo :adventofcode.year2021:test)"
+                    echo "::set-output name=common::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *common*)" ] &&  echo :adventofcode.common:test)"
+                    echo "::set-output name=year2020::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2020*)" ] &&  echo :adventofcode.year2020:test)"
+                    echo "::set-output name=year2021::$([ "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep *2021*)" ] &&  echo :adventofcode.year2021:test)"
 
     build:
         if: ${{ needs.changedfiles.outputs.common || needs.changedfiles.outputs.year2020 || needs.changedfiles.outputs.year2021 }}
@@ -42,7 +40,7 @@ jobs:
                 with:
                     java-version: '17'
                     distribution: 'temurin'
-            -   name: Build with Gradle
+            -   name: Test with Gradle
                 uses: gradle/gradle-build-action@v2
                 with:
                     arguments: |
