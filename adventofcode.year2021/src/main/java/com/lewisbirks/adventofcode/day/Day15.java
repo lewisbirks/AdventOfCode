@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
 
-public class Day15 extends Day {
+public final class Day15 extends Day {
 
 
     private final Supplier<int[][]> riskLevelsSupplier;
