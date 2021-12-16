@@ -87,6 +87,11 @@
             <td>673</td>
             <td>2893</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day16.java">Day 16</a></td>
+            <td>938</td>
+            <td>1495959086337</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -147,6 +152,9 @@ Day 14: Extended Polymerization
 Day 15: Chiton
 	Part 1: 673 (18ms)
 	Part 2: 2893 (113ms)
+Day 16: Packet Decoder
+	Part 1: 938 (12ms)
+	Part 2: 1495959086337 (9ms)
 ==========================
 </pre>
 </details>
