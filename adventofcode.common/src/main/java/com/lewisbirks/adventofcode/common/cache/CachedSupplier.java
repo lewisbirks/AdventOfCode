@@ -1,6 +1,5 @@
 package com.lewisbirks.adventofcode.common.cache;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
 public class CachedSupplier<T> implements Supplier<T> {
@@ -19,7 +18,9 @@ public class CachedSupplier<T> implements Supplier<T> {
 
     @Override
     public T get() {
-        cached = Objects.requireNonNullElseGet(cached, supplier);
+        if (cached == null) {
+            cached = supplier.get();
+        }
         return cached;
     }
 }
