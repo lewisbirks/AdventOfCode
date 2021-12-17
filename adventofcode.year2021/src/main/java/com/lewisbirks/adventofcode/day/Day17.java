@@ -25,33 +25,14 @@ public final class Day17 extends Day {
 
     @Override
     protected Object part1() {
-        // brute force
         Target target = targetSupplier.get();
-        int maxY = 0;
-        // initial y cannot go greater than the abs value of the lowest point of the box + 1 as otherwise
-        // it would just skip over it on the step before it hits
-        int yBound = Math.abs(target.bottomRight().y()) + 1;
-        for (int y = 0; y < yBound; y++) {
-            maxY = Math.max(maxY, maxHeight(target, y));
-        }
-
-        return maxY;
-    }
-
-    private int maxHeight(Target target, int yVelocity) {
-        int y = 0;
-        int maxY = 0;
-        while (true) {
-            if (y <= target.topLeft().y() && y >= target.bottomRight().y()) {
-                return maxY;
-            }
-            if (y < target.bottomRight().y()) {
-                return -1;
-            }
-            y += yVelocity;
-            maxY = Math.max(maxY, y);
-            yVelocity--;
-        }
+        // Tracking the horizontal velocity is redundant here, the probe can be modelled only in the vertical axis.
+        // The max height will be when the velocity at height = 0 is equal to the lowest y position of the target + 1,
+        // any faster than this it will skip over the target on the next step.
+        // Therefore, as the y velocity decrease by 1 on each step we are essentially doing arithmetic sum as at the
+        // height = max the velocity = 0 and at height = 0 velocity = max
+        int yBound = Math.abs(target.bottomRight().y() + 1);
+        return yBound * (yBound + 1) / 2;
     }
 
     @Override
@@ -60,7 +41,7 @@ public final class Day17 extends Day {
         Target target = targetSupplier.get();
         // no point starting at a y velocity lower than the y lower bound of the target as it will just immediately
         // skip once it reaches the next step
-        int yUpperBound = Math.abs(target.bottomRight().y()) + 1;
+        int yUpperBound = Math.abs(target.bottomRight().y());
         int yLowerBound = target.bottomRight.y();
         // no point going faster than the x upper bound of the target
         int xUpperBound = target.bottomRight().x() + 1;
