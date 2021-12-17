@@ -92,10 +92,16 @@
             <td>938</td>
             <td>1495959086337</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day17.java">Day 17</a></td>
+            <td>5253</td>
+            <td>1770</td>
+        </tr>
     </table>
 </details>
 <details>
     <summary>Console output</summary>
+    <p>Note that for part 1 timings that it would include parsing the input.</p>
     <pre>
 ==========================
 Year 2021
@@ -155,6 +161,9 @@ Day 15: Chiton
 Day 16: Packet Decoder
 	Part 1: 938 (12ms)
 	Part 2: 1495959086337 (9ms)
+Day 17: Trick Shot
+	Part 1: 5253 (3ms)
+	Part 2: 1770 (13ms)
 ==========================
 </pre>
 </details>

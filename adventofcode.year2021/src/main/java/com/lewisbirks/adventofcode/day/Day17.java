@@ -79,7 +79,7 @@ public final class Day17 extends Day {
         }
     }
 
-    record Target(Point topLeft, Point bottomRight) {
+    private record Target(Point topLeft, Point bottomRight) {
         public boolean intersects(Point point) {
             return point.x() >= topLeft.x()
                    && point.x() <= bottomRight.x()
