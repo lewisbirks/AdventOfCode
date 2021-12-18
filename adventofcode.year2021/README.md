@@ -97,6 +97,11 @@
             <td>5253</td>
             <td>1770</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day18.java">Day 18</a></td>
+            <td>4008</td>
+            <td>4667</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -164,6 +169,9 @@ Day 16: Packet Decoder
 Day 17: Trick Shot
 	Part 1: 5253 (3ms)
 	Part 2: 1770 (13ms)
+Day 18: Snailfish
+	Part 1: 4008 (21ms)
+	Part 2: 4667 (96ms)
 ==========================
 </pre>
 </details>
