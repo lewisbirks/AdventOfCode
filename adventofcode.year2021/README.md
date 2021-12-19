@@ -102,6 +102,11 @@
             <td>4008</td>
             <td>4667</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day19.java">Day 19</a></td>
+            <td>425</td>
+            <td>13354</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -172,6 +177,9 @@ Day 17: Trick Shot
 Day 18: Snailfish
 	Part 1: 4008 (21ms)
 	Part 2: 4667 (96ms)
+Day 19: Beacon Scanner
+	Part 1: 425 (1843ms)
+	Part 2: 13354 (3ms)
 ==========================
 </pre>
 </details>
