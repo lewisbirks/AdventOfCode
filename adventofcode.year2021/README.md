@@ -178,8 +178,8 @@ Day 18: Snailfish
 	Part 1: 4008 (21ms)
 	Part 2: 4667 (96ms)
 Day 19: Beacon Scanner
-	Part 1: 425 (1843ms)
-	Part 2: 13354 (3ms)
+	Part 1: 425 (1835ms)
+	Part 2: 13354 (0ms)
 ==========================
 </pre>
 </details>

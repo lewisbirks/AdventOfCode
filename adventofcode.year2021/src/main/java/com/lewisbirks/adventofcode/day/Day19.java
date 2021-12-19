@@ -1,22 +1,20 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.model.Pair;
 import com.lewisbirks.adventofcode.model.Scanner;
 import com.lewisbirks.adventofcode.model.point.Point3D;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public final class Day19 extends Day {
 
     private static final Point3D CENTER = new Point3D(0, 0, 0);
-    private Pair<Scanner, List<Point3D>> processedScanners;
+    private static final String SCANNER = "SCANNER";
+    private static final String LOCATIONS = "LOCATIONS";
+    private Map<String, Object> processedScanners;
 
     public Day19() {
         super(19, "Beacon Scanner");
@@ -31,7 +29,7 @@ public final class Day19 extends Day {
         if (processedScanners == null) {
             processedScanners = findScanners();
         }
-        Scanner basScanner = processedScanners.left();
+        Scanner basScanner = (Scanner) processedScanners.get(SCANNER);
         return basScanner.coordinates().size();
     }
 
@@ -40,43 +38,51 @@ public final class Day19 extends Day {
         if (processedScanners == null) {
             processedScanners = findScanners();
         }
-        List<Point3D> scannerLocations = processedScanners.right();
-        return scannerLocations.stream()
-            .flatMap(s1 -> scannerLocations.stream().filter(s2 -> s1 != s2).map(s1::distance))
-            .max(Integer::compareTo).orElse(0);
+        List<?> scannerLocations = (List<?>) processedScanners.get(LOCATIONS);
+        int max = 0;
+        for (Object s1 : scannerLocations) {
+            for (Object s2 : scannerLocations) {
+                if (s1 != s2) {
+                    max = Math.max(max, ((Point3D) s1).distance((Point3D) s2));
+                }
+            }
+        }
+        return max;
     }
 
-    private Pair<Scanner, List<Point3D>> findScanners() {
-        List<Scanner> scanners = Arrays.stream(readInput().split(System.lineSeparator() + System.lineSeparator()))
-            .filter(Predicate.not(String::isBlank))
-            .map(Scanner::of)
-            .collect(Collectors.toCollection(ArrayList::new));
+    private Map<String, Object> findScanners() {
+        List<Scanner> scanners = new ArrayList<>();
+        String[] unprocessedScanners = readInput().split(System.lineSeparator() + System.lineSeparator());
+        for (String s : unprocessedScanners) {
+            if (!s.isBlank()) {
+                scanners.add(Scanner.of(s));
+            }
+        }
 
         Scanner baseScanner = scanners.remove(0);
         List<Point3D> scannerLocations = new ArrayList<>(List.of(CENTER));
 
         while (!scanners.isEmpty()) {
             Iterator<Scanner> iterator = scanners.iterator();
-            while (iterator.hasNext()) {
+            boolean found = false;
+            while (iterator.hasNext() && !found) {
                 Scanner scanner = iterator.next();
                 // search for a scanners locations
-                Optional<Pair<Scanner, Point3D>> possibleScannerLocation = scanner.getAllRotations().stream()
-                    // find translation point relative to the baseScanner
-                    .map(t -> new Pair<>(t, baseScanner.findTranslationPoint(t)))
-                    .filter(pair -> pair.right() != null)
-                    .findFirst();
-                if (possibleScannerLocation.isPresent()) {
-                    // found a location
-                    Pair<Scanner, Point3D> scannerAndLocation = possibleScannerLocation.get();
-                    scannerLocations.add(scannerAndLocation.right());
-                    baseScanner.add(scannerAndLocation.left(), scannerAndLocation.right());
-                    // no longer need to search for the scanner
-                    iterator.remove();
-                    break;
+                // find translation point relative to the baseScanner
+                for (Scanner rotatedScanner : scanner.getAllRotations()) {
+                    Point3D translationPoint = baseScanner.findTranslationPoint(rotatedScanner);
+                    if (translationPoint != null) {
+                        // found a location
+                        baseScanner.add(rotatedScanner, translationPoint);
+                        scannerLocations.add(translationPoint);
+                        // no longer need to search for the scanner
+                        iterator.remove();
+                        found = true;
+                        break;
+                    }
                 }
             }
         }
-        return new Pair<>(baseScanner, scannerLocations);
+        return Map.of(SCANNER, baseScanner, LOCATIONS, scannerLocations);
     }
-
 }
