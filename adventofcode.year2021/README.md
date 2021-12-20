@@ -107,6 +107,11 @@
             <td>425</td>
             <td>13354</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day20.java">Day 20</a></td>
+            <td>5563</td>
+            <td>19743</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -180,6 +185,9 @@ Day 18: Snailfish
 Day 19: Beacon Scanner
 	Part 1: 425 (1835ms)
 	Part 2: 13354 (0ms)
+Day 20: Trench Map
+	Part 1: 5563 (25ms)
+	Part 2: 19743 (697ms)
 ==========================
 </pre>
 </details>

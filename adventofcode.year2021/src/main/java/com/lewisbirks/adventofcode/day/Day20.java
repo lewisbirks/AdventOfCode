@@ -30,7 +30,9 @@ public final class Day20 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        parse();
+        // called it
+        return processImage(image, algorithm, 50).size();
     }
 
     private Set<Point> processImage(Set<Point> image, BitSet algorithm, int iterations) {
