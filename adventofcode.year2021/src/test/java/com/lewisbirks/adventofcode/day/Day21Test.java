@@ -15,5 +15,6 @@ class Day21Test {
 
     @Test
     void part2() {
+        assertThat(underTest.part2()).isEqualTo(444356092776315L);
     }
 }
