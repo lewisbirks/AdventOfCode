@@ -188,6 +188,9 @@ Day 19: Beacon Scanner
 Day 20: Trench Map
 	Part 1: 5563 (25ms)
 	Part 2: 19743 (697ms)
+Day 21: Dirac Dice
+	Part 1: 752745 (1ms)
+	Part 2: 309196008717909 (116ms)
 ==========================
 </pre>
 </details>

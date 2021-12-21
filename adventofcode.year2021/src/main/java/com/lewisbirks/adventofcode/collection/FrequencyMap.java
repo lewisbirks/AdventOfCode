@@ -14,6 +14,10 @@ public class FrequencyMap<K> extends HashMap<K, Long> {
     public FrequencyMap() {
     }
 
+    public FrequencyMap(Map<? extends K, Long> map) {
+        super(map);
+    }
+
     public static <K> Collector<K, ?, FrequencyMap<K>> collector() {
         return Collectors.toMap(Function.identity(), o -> 1L, Long::sum, FrequencyMap::new);
     }
