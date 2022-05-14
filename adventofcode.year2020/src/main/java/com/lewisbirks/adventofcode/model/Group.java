@@ -11,4 +11,13 @@ public record Group(List<String> answers) {
             .distinct()
             .count();
     }
+
+    public long numberOfSharedAnswers() {
+        return answers.stream()
+            .flatMap(answer -> answer.chars().boxed())
+            .collect(FrequencyMap.collector())
+            .valueStream()
+            .filter(l -> l == answers.size())
+            .count();
+    }
 }

@@ -12,4 +12,9 @@ class Day6Test {
     void part1() {
         assertThat(underTest.part1()).isEqualTo(11L);
     }
+
+    @Test
+    void part2() {
+        assertThat(underTest.part2()).isEqualTo(6L);
+    }
 }

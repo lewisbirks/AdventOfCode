@@ -30,6 +30,6 @@ public final class Day6 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        return groupsSupplier.get().stream().map(Group::numberOfSharedAnswers).reduce(0L, Long::sum);
     }
 }
