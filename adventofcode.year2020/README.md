@@ -35,6 +35,11 @@
             <td>998</td>
             <td>676</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day6.java">Day 6</a></td>
+            <td>6534</td>
+            <td>3402</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -58,6 +63,9 @@ Day 04: Passport Processing
 Day 05: Binary Boarding
 	Part 1: 998 (8ms)
 	Part 2: 676 (8ms)
+Day 06: Custom Customs
+	Part 1: 6534 (8ms)
+	Part 2: 3402 (8ms)
 ==========================
 </pre>
 </details>
