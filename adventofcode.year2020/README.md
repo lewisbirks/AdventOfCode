@@ -35,6 +35,11 @@
             <td>998</td>
             <td>676</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day6.java">Day 6</a></td>
+            <td>6534</td>
+            <td>3402</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -44,20 +49,23 @@
 Year 2020
 ==========================
 Day 01: Report Repair
-	Part 1: 987339 (14ms)
-	Part 2: 259521570 (18ms)
+	Part 1: 987339 (7ms)
+	Part 2: 259521570 (6ms)
 Day 02: Password Philosophy
-	Part 1: 603 (154ms)
-	Part 2: 404 (3ms)
+	Part 1: 603 (37ms)
+	Part 2: 404 (2ms)
 Day 03: Toboggan Trajectory
-	Part 1: 145 (3ms)
+	Part 1: 145 (2ms)
 	Part 2: 3424528800 (0ms)
 Day 04: Passport Processing
-	Part 1: 264 (15ms)
-	Part 2: 224 (10ms)
+	Part 1: 264 (5ms)
+	Part 2: 224 (3ms)
 Day 05: Binary Boarding
-	Part 1: 998 (8ms)
-	Part 2: 676 (8ms)
+	Part 1: 998 (3ms)
+	Part 2: 676 (3ms)
+Day 06: Custom Customs
+	Part 1: 6534 (8ms)
+	Part 2: 3402 (8ms)
 ==========================
 </pre>
 </details>

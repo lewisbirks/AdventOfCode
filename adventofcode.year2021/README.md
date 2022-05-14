@@ -122,43 +122,43 @@
 Year 2021
 ==========================
 Day 01: Sonar Sweep
-	Part 1: 1715 (19ms)
-	Part 2: 1739 (0ms)
+	Part 1: 1715 (11ms)
+	Part 2: 1739 (1ms)
 Day 02: Dive!
-	Part 1: 1488669 (8ms)
-	Part 2: 1176514794 (1ms)
+	Part 1: 1488669 (4ms)
+	Part 2: 1176514794 (0ms)
 Day 03: Binary Diagnostic
-	Part 1: 3813416 (8ms)
-	Part 2: 2990784 (7ms)
+	Part 1: 3813416 (5ms)
+	Part 2: 2990784 (4ms)
 Day 04: Giant Squid
-	Part 1: 21607 (21ms)
-	Part 2: 19012 (31ms)
+	Part 1: 21607 (20ms)
+	Part 2: 19012 (15ms)
 Day 05: Hydrothermal Venture
-	Part 1: 5169 (59ms)
-	Part 2: 22083 (28ms)
+	Part 1: 5169 (17ms)
+	Part 2: 22083 (11ms)
 Day 06: Lanternfish
-	Part 1: 376194 (1ms)
+	Part 1: 376194 (0ms)
 	Part 2: 1693022481538 (0ms)
 Day 07: Treachery of Whales
-	Part 1: 357353 (26ms)
-	Part 2: 104822130 (27ms)
+	Part 1: 357353 (14ms)
+	Part 2: 104822130 (16ms)
 Day 08: Seven Segment Search
-	Part 1: 355 (4ms)
-	Part 2: 983030 (34ms)
+	Part 1: 355 (2ms)
+	Part 2: 983030 (15ms)
 Day 09: Smoke Basin
-	Part 1: 475 (9ms)
-	Part 2: 1092012 (19ms)
+	Part 1: 475 (4ms)
+	Part 2: 1092012 (10ms)
 Day 10: Syntax Scoring
-	Part 1: 339477 (3ms)
-	Part 2: 3049320156 (2ms)
+	Part 1: 339477 (2ms)
+	Part 2: 3049320156 (1ms)
 Day 11: Dumbo Octopus
 	Part 1: 1665 (3ms)
 	Part 2: 235 (1ms)
 Day 12: Passage Pathing
-	Part 1: 4549 (48ms)
-	Part 2: 120535 (483ms)
+	Part 1: 4549 (18ms)
+	Part 2: 120535 (252ms)
 Day 13: Transparent Origami
-	Part 1: 735 (5ms)
+	Part 1: 735 (2ms)
 	Part 2: 
 ██    ██  ████████  ██████    ████████  ██    ██    ████    ██    ██  ████████
 ██    ██  ██        ██    ██        ██  ██  ██    ██    ██  ██    ██        ██
@@ -166,31 +166,31 @@ Day 13: Transparent Origami
 ██    ██  ██        ██████      ██      ██  ██    ████████  ██    ██    ██    
 ██    ██  ██        ██  ██    ██        ██  ██    ██    ██  ██    ██  ██      
   ████    ██        ██    ██  ████████  ██    ██  ██    ██    ████    ████████
- (9ms)
+ (3ms)
 Day 14: Extended Polymerization
-	Part 1: 2602 (16ms)
-	Part 2: 2942885922173 (9ms)
+	Part 1: 2602 (7ms)
+	Part 2: 2942885922173 (4ms)
 Day 15: Chiton
-	Part 1: 673 (18ms)
-	Part 2: 2893 (113ms)
+	Part 1: 673 (12ms)
+	Part 2: 2893 (79ms)
 Day 16: Packet Decoder
-	Part 1: 938 (12ms)
-	Part 2: 1495959086337 (9ms)
+	Part 1: 938 (5ms)
+	Part 2: 1495959086337 (1ms)
 Day 17: Trick Shot
-	Part 1: 5253 (3ms)
-	Part 2: 1770 (13ms)
+	Part 1: 5253 (1ms)
+	Part 2: 1770 (6ms)
 Day 18: Snailfish
-	Part 1: 4008 (21ms)
-	Part 2: 4667 (96ms)
+	Part 1: 4008 (10ms)
+	Part 2: 4667 (50ms)
 Day 19: Beacon Scanner
-	Part 1: 425 (1835ms)
+	Part 1: 425 (1427ms)
 	Part 2: 13354 (0ms)
 Day 20: Trench Map
-	Part 1: 5563 (25ms)
-	Part 2: 19743 (697ms)
+	Part 1: 5563 (14ms)
+	Part 2: 19743 (377ms)
 Day 21: Dirac Dice
 	Part 1: 752745 (1ms)
-	Part 2: 309196008717909 (116ms)
+	Part 2: 309196008717909 (57ms)
 ==========================
 </pre>
 </details>
