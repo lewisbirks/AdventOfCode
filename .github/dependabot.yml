@@ -13,11 +13,11 @@ updates:
     directory: "/adventofcode.year2021"
     schedule:
       interval: "monthly"
-- package-ecosystem: "gradle"
+  - package-ecosystem: "gradle"
     directory: "/adventofcode.year2020"
     schedule:
       interval: "monthly"
-- package-ecosystem: "gradle"
+  - package-ecosystem: "gradle"
     directory: "/adventofcode.common"
     schedule:
       interval: "monthly"
