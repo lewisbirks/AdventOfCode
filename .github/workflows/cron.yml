@@ -1,0 +1,22 @@
+name: "Running tests every 15mins"
+on:
+    schedule:
+        - cron: "*/15 * * * *"
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Set up JDK 17
+                uses: actions/setup-java@v2
+                with:
+                    java-version: '17'
+                    distribution: 'temurin'
+            -   name: Test with Gradle
+                uses: gradle/gradle-build-action@v2
+                with:
+                    arguments: |
+                        clean
+                        :adventofcode.common:test
+                        :adventofcode.year2020:test
+                        :adventofcode.year2021:test
