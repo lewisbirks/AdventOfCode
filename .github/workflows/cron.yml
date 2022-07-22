@@ -1,7 +1,7 @@
 name: "Running tests every 15mins"
 on:
     schedule:
-        - cron: "*/15 * * * *"
+        - cron: "* */6 * * *"
 jobs:
     test:
         runs-on: ubuntu-latest
