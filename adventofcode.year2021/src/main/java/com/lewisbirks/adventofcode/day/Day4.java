@@ -19,6 +19,11 @@ public final class Day4 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        readBoards();
+    }
+
+    @Override
     protected Object part1() {
         readBoards();
         for (Integer number : values) {

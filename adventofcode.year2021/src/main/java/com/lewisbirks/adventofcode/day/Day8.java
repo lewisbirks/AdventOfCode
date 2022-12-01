@@ -37,6 +37,11 @@ public final class Day8 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        displays.get();
+    }
+
+    @Override
     protected Object part1() {
         return displays.get().stream()
             .map(input -> input[1].trim())

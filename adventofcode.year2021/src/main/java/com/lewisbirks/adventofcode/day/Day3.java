@@ -18,6 +18,11 @@ public final class Day3 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        readDiagnostics();
+    }
+
+    @Override
     protected Object part1() {
         readDiagnostics();
         long gamma = 0;

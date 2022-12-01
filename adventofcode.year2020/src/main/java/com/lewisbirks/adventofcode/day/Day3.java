@@ -20,6 +20,11 @@ public final class Day3 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        mapSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return navigateMap(3, 1);
     }

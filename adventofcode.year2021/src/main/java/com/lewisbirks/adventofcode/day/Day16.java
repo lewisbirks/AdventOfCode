@@ -28,6 +28,11 @@ public final class Day16 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        packetsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return sumPacketVersions(packetsSupplier.get());
     }

@@ -29,6 +29,11 @@ public final class Day12 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        routesSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return getRoutesCount(START, routesSupplier.get(), Map.of(START, 1), 1);
     }

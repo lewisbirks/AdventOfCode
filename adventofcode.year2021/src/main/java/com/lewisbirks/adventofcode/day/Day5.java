@@ -24,6 +24,11 @@ public final class Day5 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        coordinateGroupsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return getOverlapCount((start, end) -> !start.isDiagonalLine(end));
     }

@@ -16,6 +16,11 @@ public final class Day1 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        expensesSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         List<Long> expenses = expensesSupplier.get();
         for (int i = 0; i < expenses.size() - 1; i++) {

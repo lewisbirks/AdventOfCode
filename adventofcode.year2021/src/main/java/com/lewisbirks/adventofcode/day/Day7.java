@@ -23,6 +23,11 @@ public final class Day7 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        crabPositions.get();
+    }
+
+    @Override
     protected Object part1() {
         return range().map(target -> costForTarget(target).sum()).min().orElse(MAX_VALUE);
     }

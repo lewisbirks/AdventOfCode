@@ -26,6 +26,11 @@ public final class Day9 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        heightMapSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         int[][] heightMap = heightMapSupplier.get();
         int sum = 0;

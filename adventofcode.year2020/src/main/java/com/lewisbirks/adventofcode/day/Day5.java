@@ -16,6 +16,11 @@ public final class Day5 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        seatsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return seatsSupplier.get().stream().mapToInt(this::seatId).max().orElse(0);
     }

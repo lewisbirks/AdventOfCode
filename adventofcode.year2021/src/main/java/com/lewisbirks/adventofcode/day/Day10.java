@@ -43,6 +43,11 @@ public final class Day10 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        chunks.get();
+    }
+
+    @Override
     protected Object part1() {
         long score = 0;
         for (String chunk : chunks.get()) {

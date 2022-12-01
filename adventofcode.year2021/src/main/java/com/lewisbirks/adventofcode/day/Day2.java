@@ -17,6 +17,11 @@ public final class Day2 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        vectorsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         int depth = 0;
         int horizontal = 0;

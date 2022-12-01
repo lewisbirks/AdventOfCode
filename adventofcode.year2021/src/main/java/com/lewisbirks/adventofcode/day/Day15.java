@@ -26,6 +26,11 @@ public final class Day15 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        riskLevelsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         int[][] riskLevels = riskLevelsSupplier.get();
         return shortestPath(riskLevels);

@@ -24,6 +24,11 @@ public final class Day6 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        groupsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return groupsSupplier.get().stream().map(Group::numberOfUniqueAnswers).reduce(0L, Long::sum);
     }

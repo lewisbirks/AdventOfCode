@@ -23,6 +23,11 @@ public final class Day2 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        policySupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return numValidPasswords(policySupplier.get(), PasswordPolicy::validPasswordByOccurrence);
     }

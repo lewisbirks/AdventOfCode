@@ -17,6 +17,11 @@ public final class Day14 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        formulaSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return process(10);
     }
