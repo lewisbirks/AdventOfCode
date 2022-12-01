@@ -20,8 +20,4 @@ jobs:
             -   name: Test with Gradle
                 uses: gradle/gradle-build-action@v2
                 with:
-                    arguments: |
-                        clean
-                        :adventofcode.common:test
-                        :adventofcode.year2020:test
-                        :adventofcode.year2021:test
+                    arguments: test
