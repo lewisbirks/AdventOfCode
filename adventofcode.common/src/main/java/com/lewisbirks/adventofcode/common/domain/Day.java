@@ -21,6 +21,7 @@ public abstract class Day implements Comparable<Day> {
     public void process() {
         System.out.printf("Day %02d: %s%n", num, name);
         try {
+            preLoad();
             long start, end;
             System.out.print("\tPart 1: ");
             start = System.currentTimeMillis();
@@ -38,6 +39,8 @@ public abstract class Day implements Comparable<Day> {
             e.printStackTrace();
         }
     }
+
+    protected abstract void preLoad();
 
     protected abstract Object part1();
 

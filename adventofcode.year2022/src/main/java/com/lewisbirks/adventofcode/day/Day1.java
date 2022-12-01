@@ -23,6 +23,11 @@ public final class Day1 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        calorieGroups.get();
+    }
+
+    @Override
     protected Object part1() {
         return getTotals().reduce(Math::max).orElseThrow();
     }

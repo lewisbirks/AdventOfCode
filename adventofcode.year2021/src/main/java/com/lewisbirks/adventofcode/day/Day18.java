@@ -19,6 +19,11 @@ public final class Day18 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        numbersSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         List<SnailNumber> numbers = numbersSupplier.get();
 

@@ -23,6 +23,11 @@ public final class Day20 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        parse();
+    }
+
+    @Override
     protected Object part1() {
         parse();
         return processImage(image, algorithm, 2).size();

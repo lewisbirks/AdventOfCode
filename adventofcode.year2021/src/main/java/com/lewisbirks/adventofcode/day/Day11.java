@@ -20,6 +20,11 @@ public final class Day11 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        energyLevelsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         int[][] energyLevels = getEnergyLevels();
         int sum = 0;

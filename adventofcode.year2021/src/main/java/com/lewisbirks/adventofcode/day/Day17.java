@@ -24,6 +24,11 @@ public final class Day17 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        targetSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         Target target = targetSupplier.get();
         // Tracking the horizontal velocity is redundant here, the probe can be modelled only in the vertical axis.

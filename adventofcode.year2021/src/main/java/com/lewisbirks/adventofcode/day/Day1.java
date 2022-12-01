@@ -17,6 +17,11 @@ public final class Day1 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        depthsSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return calculate(depthsSupplier.get(), 1);
     }

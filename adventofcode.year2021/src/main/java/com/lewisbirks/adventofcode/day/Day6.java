@@ -25,6 +25,11 @@ public final class Day6 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        fishSupplier.get();
+    }
+
+    @Override
     protected Object part1() {
         return processLifeForDays(80);
     }

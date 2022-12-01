@@ -18,6 +18,11 @@ public final class Day13 extends Day {
     }
 
     @Override
+    protected void preLoad() {
+        read();
+    }
+
+    @Override
     protected Object part1() {
         read();
         return fold(folds.get(0), this.marks).size();

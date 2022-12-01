@@ -20,13 +20,12 @@
 </details>
 <details>
     <summary>Console output</summary>
-    <p>Note that for part 1 timings that it would include parsing the input.</p>
     <pre>
 ==========================
 Year 2022
 ==========================
 Day 01: Calorie Counting
-	Part 1: 69501 (12ms)
+	Part 1: 69501 (2ms)
 	Part 2: 202346 (1ms)
 ==========================
 </pre>

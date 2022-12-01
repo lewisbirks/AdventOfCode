@@ -20,8 +20,9 @@ public final class Day19 extends Day {
         super(19, "Beacon Scanner");
     }
 
-    public static void main(String[] args) {
-        new Day19().process();
+    @Override
+    protected void preLoad() {
+        findScanners();
     }
 
     @Override
