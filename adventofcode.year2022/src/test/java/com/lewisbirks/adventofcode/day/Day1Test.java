@@ -15,6 +15,6 @@ class Day1Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(45000);
     }
 }

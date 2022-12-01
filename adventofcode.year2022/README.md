@@ -14,7 +14,7 @@
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day1.java">Day 1</a></td>
             <td>69501</td>
-            <td>...</td>
+            <td>202346</td>
         </tr>
     </table>
 </details>
@@ -27,7 +27,7 @@ Year 2022
 ==========================
 Day 01: Calorie Counting
 	Part 1: 69501 (12ms)
-	Part 2: null (0ms)
+	Part 2: 202346 (1ms)
 ==========================
 </pre>
 </details>

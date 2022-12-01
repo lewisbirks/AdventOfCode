@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.lewisbirks.adventofcode.common.cache.CachedSupplier.memoize;
+import static java.util.Comparator.reverseOrder;
 
 public final class Day1 extends Day {
 
@@ -28,7 +29,7 @@ public final class Day1 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        return getTotals().sorted(reverseOrder()).limit(3).reduce(0, Integer::sum);
     }
 
     private Stream<Integer> getTotals() {
