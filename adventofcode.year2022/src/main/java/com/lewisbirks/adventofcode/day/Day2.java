@@ -21,7 +21,7 @@ public final class Day2 extends Day {
     // rock
     // paper
     // scissors
-    static int[][] moveStrategy = {
+    private static final int[][] MOVE_STRATEGY = {
         {DRAW, WIN, LOSE},
         {LOSE, DRAW, WIN},
         {WIN, LOSE, DRAW}
@@ -31,7 +31,7 @@ public final class Day2 extends Day {
     // rock
     // paper
     // scissors
-    static int[][] outcomeStrategy = {
+    private static final int[][] OUTCOME_STRATEGY = {
         {SCISSORS_SCORE, ROCK_SCORE, PAPER_SCORE},
         {ROCK_SCORE, PAPER_SCORE, SCISSORS_SCORE},
         {PAPER_SCORE, SCISSORS_SCORE, ROCK_SCORE}
@@ -66,10 +66,10 @@ public final class Day2 extends Day {
     }
 
     public int playWithMove(int opponent, int mine) {
-        return moveStrategy[opponent][mine] + mine + 1;
+        return MOVE_STRATEGY[opponent][mine] + mine + 1;
     }
 
     public int playWithOutcome(int opponent, int mine) {
-        return outcomeStrategy[opponent][mine] + (mine * 3);
+        return OUTCOME_STRATEGY[opponent][mine] + (mine * 3);
     }
 }
