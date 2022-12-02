@@ -57,19 +57,12 @@ public final class Day2 extends Day {
 
     @Override
     protected Object part1() {
-        return strategyGuide.get().stream().mapToInt(move -> playWithMove(move[0], move[1])).sum();
+        return strategyGuide.get().stream().mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1).sum();
     }
 
     @Override
     protected Object part2() {
-        return strategyGuide.get().stream().mapToInt(move -> playWithOutcome(move[0], move[1])).sum();
+        return strategyGuide.get().stream().mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3)).sum();
     }
 
-    public int playWithMove(int opponent, int mine) {
-        return MOVE_STRATEGY[opponent][mine] + mine + 1;
-    }
-
-    public int playWithOutcome(int opponent, int mine) {
-        return OUTCOME_STRATEGY[opponent][mine] + (mine * 3);
-    }
 }

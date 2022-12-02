@@ -34,7 +34,7 @@ Day 01: Calorie Counting
 	Part 2: 202346 (1ms)
 Day 02: Rock Paper Scissors
 	Part 1: 10994 (1ms)
-	Part 2: 12526 (1ms)
+	Part 2: 12526 (0ms)
 ==========================
 </pre>
 </details>
