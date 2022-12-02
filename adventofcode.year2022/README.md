@@ -16,6 +16,11 @@
             <td>69501</td>
             <td>202346</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day2.java">Day 2</a></td>
+            <td>10994</td>
+            <td>12526</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -27,6 +32,9 @@ Year 2022
 Day 01: Calorie Counting
 	Part 1: 69501 (2ms)
 	Part 2: 202346 (1ms)
+Day 02: Rock Paper Scissors
+	Part 1: 10994 (1ms)
+	Part 2: 12526 (1ms)
 ==========================
 </pre>
 </details>

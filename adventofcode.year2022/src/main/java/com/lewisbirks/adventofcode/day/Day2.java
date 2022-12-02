@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -13,15 +12,42 @@ public final class Day2 extends Day {
     private static final int PAPER_SCORE = 2;
     private static final int SCISSORS_SCORE = 3;
 
+    private static final int LOSE = 0;
     private static final int DRAW = 3;
     private static final int WIN = 6;
-    private static final int LOSE = 0;
 
-    private final Supplier<List<Strategy>> strategyGuide;
+    // They play row and I play column
+    //         rock paper scissor
+    // rock
+    // paper
+    // scissors
+    static int[][] moveStrategy = {
+        {DRAW, WIN, LOSE},
+        {LOSE, DRAW, WIN},
+        {WIN, LOSE, DRAW}
+    };
+
+    //         lose draw win
+    // rock
+    // paper
+    // scissors
+    static int[][] outcomeStrategy = {
+        {SCISSORS_SCORE, ROCK_SCORE, PAPER_SCORE},
+        {ROCK_SCORE, PAPER_SCORE, SCISSORS_SCORE},
+        {PAPER_SCORE, SCISSORS_SCORE, ROCK_SCORE}
+    };
+
+
+    private final Supplier<List<int[]>> strategyGuide;
 
     public Day2() {
         super(2, "Rock Paper Scissors");
-        strategyGuide = CachedSupplier.memoize(() -> getInput(Strategy::from));
+        strategyGuide = CachedSupplier.memoize(() -> getInput(move -> {
+            String[] split = move.split(" ");
+            return new int[] {
+                split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'
+            };
+        }));
     }
 
     @Override
@@ -31,53 +57,19 @@ public final class Day2 extends Day {
 
     @Override
     protected Object part1() {
-        return strategyGuide.get().stream().mapToInt(Strategy::getScore).sum();
+        return strategyGuide.get().stream().mapToInt(move -> playWithMove(move[0], move[1])).sum();
     }
 
     @Override
     protected Object part2() {
-        return null;
+        return strategyGuide.get().stream().mapToInt(move -> playWithOutcome(move[0], move[1])).sum();
     }
 
-    record Strategy(Move opponent, Move mine) {
-        public static Strategy from(String strategy) {
-            String[] split = strategy.split(" ");
-            return new Strategy(
-                Move.from(split[0]),
-                Move.from(split[1])
-            );
-        }
-
-        public int getScore() {
-            return result() + mine.getScore();
-        }
-
-        private int result() {
-            return switch (opponent) {
-                case ROCK -> mine == Move.ROCK ? DRAW : mine == Move.PAPER ? WIN : LOSE;
-                case PAPER -> mine == Move.PAPER ? DRAW : mine == Move.SCISSORS ? WIN : LOSE;
-                case SCISSORS -> mine == Move.SCISSORS ? DRAW : mine == Move.ROCK ? WIN : LOSE;
-            };
-        }
-
-        private enum Move {
-            ROCK(ROCK_SCORE, "A", "X"), PAPER(PAPER_SCORE, "B", "Y"), SCISSORS(SCISSORS_SCORE, "C", "Z");
-
-            private final List<String> options;
-            private final int score;
-            Move(int score, String... options) {
-                this.options = List.of(options);
-                this.score = score;
-            }
-
-            public static Move from(String move) {
-                return Arrays.stream(Move.values()).filter(m -> m.options.contains(move)).findFirst().orElseThrow();
-            }
-
-            public int getScore() {
-                return score;
-            }
-        }
+    public int playWithMove(int opponent, int mine) {
+        return moveStrategy[opponent][mine] + mine + 1;
     }
 
+    public int playWithOutcome(int opponent, int mine) {
+        return outcomeStrategy[opponent][mine] + (mine * 3);
+    }
 }

@@ -1,9 +1,8 @@
 package com.lewisbirks.adventofcode.day;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Day2Test {
 
@@ -16,6 +15,6 @@ class Day2Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(12);
     }
 }
