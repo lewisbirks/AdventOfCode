@@ -15,6 +15,6 @@ class Day5Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isNull();
+        assertThat(underTest.part2()).isEqualTo("MCD");
     }
 }

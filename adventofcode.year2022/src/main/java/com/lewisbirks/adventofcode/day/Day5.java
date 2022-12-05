@@ -1,8 +1,9 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
+import com.lewisbirks.adventofcode.domain.crates.Command;
+import com.lewisbirks.adventofcode.domain.crates.CrateStack;
 
-import java.util.ArrayDeque;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +16,6 @@ public final class Day5 extends Day {
 
     private final List<CrateStack> stacks;
     private final List<Command> commands;
-
 
     public Day5() {
         super(5, "Supply Stacks");
@@ -55,9 +55,10 @@ public final class Day5 extends Day {
 
     private List<Command> parseCommands(String commands) {
         return commands.lines().map(command -> {
-            System.out.println(command);
             Matcher commandMatcher = COMMAND_PATTERN.matcher(command);
-            commandMatcher.matches();
+            if (!commandMatcher.matches()) {
+                throw new IllegalArgumentException(command);
+            }
             int amount = Integer.parseInt(commandMatcher.group(1));
             int source = Integer.parseInt(commandMatcher.group(2)) - 1;
             int receiver = Integer.parseInt(commandMatcher.group(3)) - 1;
@@ -75,73 +76,27 @@ public final class Day5 extends Day {
     @Override
     protected Object part1() {
         commands.forEach(command -> {
-            CrateStack source = stacks.get(command.source);
-            CrateStack destination = stacks.get(command.destination);
-            for (int i = 0; i < command.amount; i++) {
-                Character crate = source.pop();
-                destination.add(crate);
+            CrateStack source = stacks.get(command.source());
+            CrateStack destination = stacks.get(command.destination());
+            for (int i = 0; i < command.amount(); i++) {
+                destination.add(source.pop());
             }
         });
-        return stacks.stream().map(crateStack -> crateStack.pop().toString()).collect(Collectors.joining());
+        return getOutput();
     }
 
     @Override
     protected Object part2() {
         reset();
-        return null;
+        commands.forEach(command -> {
+            CrateStack source = stacks.get(command.source());
+            CrateStack destination = stacks.get(command.destination());
+            destination.addAll(source.popBulk(command.amount()));
+        });
+        return getOutput();
     }
 
-
-    static class CrateStack {
-        private ArrayDeque<Character> crates;
-        private final ArrayDeque<Character> source;
-
-
-        CrateStack(ArrayDeque<Character> crates) {
-            this.crates = crates;
-            this.source = crates;
-        }
-
-        void reset() {
-            crates = source.clone();
-        }
-
-        public Character pop() {
-            return crates.pollLast();
-        }
-
-        public void add(Character c) {
-            crates.add(c);
-        }
-
-        @Override
-        public String toString() {
-            return "CrateStack{" +
-                   "crates=" + crates +
-                   '}';
-        }
-
-        public static CrateStackBuilder builder() {
-            return new CrateStackBuilder();
-        }
-
-        public static class CrateStackBuilder {
-            private final ArrayDeque<Character> crates = new ArrayDeque<>();
-
-            private CrateStackBuilder() {
-            }
-
-            public CrateStackBuilder add(Character c) {
-                crates.addFirst(c);
-                return this;
-            }
-
-            public CrateStack build() {
-                return new CrateStack(crates);
-            }
-        }
-    }
-
-    record Command(int amount, int source, int destination) {
+    private String getOutput() {
+        return stacks.stream().map(crateStack -> crateStack.pop().toString()).collect(Collectors.joining());
     }
 }
