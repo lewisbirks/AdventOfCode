@@ -52,10 +52,8 @@ public final class Day4 extends Day {
         }
 
         public boolean overlaps(Range other) {
-            if (this.start <= other.start && other.start <= this.end) {
-                return true;
-            }
-            return this.end >= other.end && this.start <= other.end;
+            return this.start <= other.start && other.start <= this.end
+                   || this.end >= other.end && this.start <= other.end;
         }
     }
 }
