@@ -29,7 +29,8 @@ public final class Day3 extends Day {
     @Override
     protected Object part2() {
         List<String> rucksacks = this.rucksacks.get();
-        return IntStream.iterate(0, i -> i < rucksacks.size() - 2, i -> i + 3)
+        int size = rucksacks.size();
+        return IntStream.iterate(0, i -> i < size - 2, i -> i + 3)
             .map(i -> calculatePriorityOfBadges(rucksacks.get(i), rucksacks.get(i + 1), rucksacks.get(i + 2)))
             .sum();
     }
@@ -39,7 +40,8 @@ public final class Day3 extends Day {
         String right = rucksack.substring(rucksack.length() / 2);
         return left.chars().filter(i -> right.indexOf(i) != -1)
             .distinct()
-            .map(Day3::calculatePriority).sum();
+            .map(Day3::calculatePriority)
+            .sum();
     }
 
     public static int calculatePriorityOfBadges(String rucksack1, String rucksack2, String rucksack3) {

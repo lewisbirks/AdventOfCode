@@ -21,6 +21,11 @@
             <td>10994</td>
             <td>12526</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day3.java">Day 3</a></td>
+            <td>8202</td>
+            <td>2864</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -35,6 +40,9 @@ Day 01: Calorie Counting
 Day 02: Rock Paper Scissors
 	Part 1: 10994 (1ms)
 	Part 2: 12526 (0ms)
+Day 03: Rucksack Reorganization
+	Part 1: 8202 (3ms)
+	Part 2: 2864 (1ms)
 ==========================
 </pre>
 </details>
