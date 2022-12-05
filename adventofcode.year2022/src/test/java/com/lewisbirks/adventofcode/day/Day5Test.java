@@ -1,8 +1,8 @@
 package com.lewisbirks.adventofcode.day;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Day5Test {
 
@@ -10,11 +10,11 @@ class Day5Test {
 
     @Test
     void part1() {
-        assertThat(underTest.part1()).isNull();
+        assertThat(underTest.part1()).isEqualTo("CMZ");
     }
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isNull();
+        assertThat(underTest.part2()).isEqualTo("MCD");
     }
 }
