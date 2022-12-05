@@ -26,6 +26,11 @@
             <td>8202</td>
             <td>2864</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day4.java">Day 4</a></td>
+            <td>462</td>
+            <td>835</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -43,6 +48,9 @@ Day 02: Rock Paper Scissors
 Day 03: Rucksack Reorganization
 	Part 1: 8202 (3ms)
 	Part 2: 2864 (1ms)
+Day 04: Camp Cleanup
+	Part 1: 462 (0ms)
+	Part 2: 835 (0ms)
 ==========================
 </pre>
 </details>
