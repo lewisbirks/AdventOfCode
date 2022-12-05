@@ -8,7 +8,6 @@ public class CrateStack {
     private ArrayDeque<Character> crates;
     private final ArrayDeque<Character> source;
 
-
     CrateStack(ArrayDeque<Character> crates) {
         this.crates = crates;
         this.source = crates.clone();

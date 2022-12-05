@@ -31,6 +31,11 @@
             <td>462</td>
             <td>835</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day5.java">Day 5</a></td>
+            <td>BWNCQRMDB</td>
+            <td>NHWZCBNBF</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -51,6 +56,9 @@ Day 03: Rucksack Reorganization
 Day 04: Camp Cleanup
 	Part 1: 462 (0ms)
 	Part 2: 835 (0ms)
+Day 05: Supply Stacks
+	Part 1: BWNCQRMDB (2ms)
+	Part 2: NHWZCBNBF (2ms)
 ==========================
 </pre>
 </details>
