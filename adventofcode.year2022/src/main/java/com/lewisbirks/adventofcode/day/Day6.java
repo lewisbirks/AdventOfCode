@@ -17,17 +17,21 @@ public final class Day6 extends Day {
 
     @Override
     protected Object part1() {
-        for (int i = 0; i < input.length() - 3; i++) {
-            String subsection = input.substring(i, i + 4);
-            if (subsection.chars().distinct().count() == 4) {
-                return i + 4;
-            }
-        }
-        throw new IllegalArgumentException("No marker found");
+        return findMarker(4);
     }
 
     @Override
     protected Object part2() {
-        return null;
+        return findMarker(14);
+    }
+
+    private int findMarker(int markerSize) {
+        for (int i = 0; i < input.length() - markerSize - 1; i++) {
+            String subsection = input.substring(i, i + markerSize);
+            if (subsection.chars().distinct().count() == markerSize) {
+                return i + markerSize;
+            }
+        }
+        throw new IllegalArgumentException("No marker found");
     }
 }

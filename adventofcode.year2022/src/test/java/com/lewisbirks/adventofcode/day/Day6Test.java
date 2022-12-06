@@ -21,6 +21,6 @@ class Day6Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isNull();
+        assertThat(underTest.part2()).isEqualTo(19);
     }
 }
