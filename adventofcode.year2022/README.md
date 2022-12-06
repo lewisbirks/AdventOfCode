@@ -65,8 +65,8 @@ Day 05: Supply Stacks
 	Part 1: BWNCQRMDB (2ms)
 	Part 2: NHWZCBNBF (2ms)
 Day 06: Tuning Trouble
-	Part 1: 1647 (3ms)
-	Part 2: 2447 (2ms)
+	Part 1: 1647 (1ms)
+	Part 2: 2447 (0ms)
 ==========================
 </pre>
 </details>
