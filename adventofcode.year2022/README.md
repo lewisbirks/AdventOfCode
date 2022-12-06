@@ -36,6 +36,11 @@
             <td>BWNCQRMDB</td>
             <td>NHWZCBNBF</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day6.java">Day 6</a></td>
+            <td>1647</td>
+            <td>2447</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -59,6 +64,9 @@ Day 04: Camp Cleanup
 Day 05: Supply Stacks
 	Part 1: BWNCQRMDB (2ms)
 	Part 2: NHWZCBNBF (2ms)
+Day 06: Tuning Trouble
+	Part 1: 1647 (3ms)
+	Part 2: 2447 (2ms)
 ==========================
 </pre>
 </details>
