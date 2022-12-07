@@ -41,6 +41,11 @@
             <td>1647</td>
             <td>2447</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day7.java">Day 7</a></td>
+            <td>1513699</td>
+            <td>7991939</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -67,6 +72,9 @@ Day 05: Supply Stacks
 Day 06: Tuning Trouble
 	Part 1: 1647 (1ms)
 	Part 2: 2447 (0ms)
+Day 07: No Space Left On Device
+	Part 1: 1513699 (2ms)
+	Part 2: 7991939 (2ms)
 ==========================
 </pre>
 </details>
