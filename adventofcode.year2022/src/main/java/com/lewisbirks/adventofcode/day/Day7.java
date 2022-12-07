@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public final class Day7 extends Day {
 
-    private List<String> consoleOutput;
+    private static final int SYSTEM_SIZE = 70000000;
+    private static final int UPDATE_SIZE = 30000000;
+    private static final int MAX_DIR_SIZE = 100000;
+
+    private DiskNode root = null;
 
     public Day7() {
         super(7, "No Space Left On Device");
@@ -17,71 +21,60 @@ public final class Day7 extends Day {
 
     @Override
     protected void preLoad() {
-        consoleOutput = getInput();
-    }
-
-    @Override
-    protected Object part1() {
-        Node current = null;
-        Node root = null;
+        List<String> consoleOutput = getInput();
+        DiskNode current = null;
         for (String s : consoleOutput) {
-            System.out.println(s);
             if (isCommand(s)) {
-                System.out.print("Is command | ");
                 if (changingDirectory(s)) {
                     String name = getDirectory(s);
-                    System.out.printf("Changing dir to \"%s\" | ", name);
                     if (isNavigatingOut(name)) {
-                        System.out.print("Navigating up one level");
                         current = Objects.requireNonNull(current).getParent();
                     } else {
                         if (current == null) {
-                            System.out.println("Creating root node");
-                            current = new Node(null, name);
+                            current = new DiskNode(null, name);
                             root = current;
                         } else {
-                            Optional<Node> child = current.getChild(name);
-                            if (child.isPresent()) {
-                                System.out.println("Found child");
-                            } else {
-                                System.out.println("Creating child");
-                            }
-                            current = child.orElse(new Node(current, name));
+                            current = current.getChild(name).orElseThrow();
                         }
                     }
-                } else {
-                    System.out.println("Not changing dir");
                 }
                 continue;
             }
             // we are listing
-            System.out.print("Is not command | ");
+            String name = getFileName(s);
             if (isDirectory(s)) {
-                System.out.println("Is a dir ignoring");
+                DiskNode dir = new DiskNode(current, name);
+                Objects.requireNonNull(current).addChild(dir);
                 continue;
             }
             // we are a file
             long fileSize = getFileSize(s);
-            String fileName = getFileName(s);
-            System.out.printf("Is a file with name %s and a size of %d%n", fileName, fileSize);
-            Node file = new Node(current, fileName);
+            DiskNode file = new DiskNode(current, name);
             Objects.requireNonNull(current).addChild(file);
             file.addSize(fileSize);
         }
-
-        return Objects.requireNonNull(root).getDirectoryNodes().stream()
-            .mapToLong(Node::getSize)
-            .filter(size -> size <= 100000)
-            .sum();
     }
 
-    private String getFileName(String line) {
-        return line.substring(line.indexOf(' ') + 1);
+    @Override
+    protected Object part1() {
+        return root.getDirectoryNodes().stream()
+            .mapToLong(DiskNode::getSize)
+            .filter(size -> size <= MAX_DIR_SIZE)
+            .sum();
     }
 
     @Override
     protected Object part2() {
-        return null;
+        long required = UPDATE_SIZE - (SYSTEM_SIZE - root.getSize());
+        return root.getDirectoryNodes().stream()
+            .mapToLong(DiskNode::getSize)
+            .filter(size -> size >= required)
+            .min()
+            .orElseThrow();
+    }
+
+    private String getFileName(String line) {
+        return line.substring(line.indexOf(' ') + 1);
     }
 
     private boolean isCommand(String line) {
@@ -112,23 +105,24 @@ public final class Day7 extends Day {
         return Long.parseLong(line.substring(0, line.indexOf(' ')));
     }
 
-    static final class Node {
-        private final List<Node> children;
-        private final Node parent;
+    static final class DiskNode {
+        private final List<DiskNode> children;
+        private final DiskNode parent;
         private final String name;
         private long size;
 
-        Node(Node parent, String name) {
+        DiskNode(DiskNode parent, String name) {
             this.parent = parent;
             this.name = name;
             this.children = new ArrayList<>();
             this.size = 0;
-            if (parent != null) {
-                parent.addChild(this);
-            }
         }
 
-        public void addChild(Node child) {
+        public DiskNode getParent() {
+            return parent;
+        }
+
+        public void addChild(DiskNode child) {
             children.add(child);
         }
 
@@ -136,11 +130,9 @@ public final class Day7 extends Day {
             return !children.isEmpty();
         }
 
-        public Optional<Node> getChild(String name) {
+        public Optional<DiskNode> getChild(String name) {
             return children.stream().filter(node -> node.name.equals(name)).findFirst();
         }
-
-        public List<Node> getChildren() {return children;}
 
         public long getSize() {return size;}
 
@@ -151,20 +143,16 @@ public final class Day7 extends Day {
             }
         }
 
-        public List<Node> getDirectoryNodes() {
+        public List<DiskNode> getDirectoryNodes() {
             if (!isDir()) {
                 return List.of();
             }
-            List<Node> dirs = new ArrayList<>();
+            List<DiskNode> dirs = new ArrayList<>();
             dirs.add(this);
             dirs.addAll(
-                children.stream().filter(Node::isDir).flatMap(node -> node.getDirectoryNodes().stream()).toList()
+                children.stream().filter(DiskNode::isDir).flatMap(node -> node.getDirectoryNodes().stream()).toList()
             );
             return dirs;
-        }
-
-        public Node getParent() {
-            return parent;
         }
     }
 }
