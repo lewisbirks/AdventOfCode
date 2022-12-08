@@ -20,28 +20,15 @@ public final class Day8 extends Day {
 
     @Override
     protected Object part1() {
-        int visibleTrees = 0;
+        int visibleTrees = (heightMap.length * 2) + ((heightMap[0].length - 2) * 2);
 
-        for (int y = 0; y < heightMap.length; y++) {
-            for (int x = 0; x < heightMap[y].length; x++) {
+        for (int y = 1; y < heightMap.length - 1; y++) {
+            for (int x = 1; x < heightMap[y].length - 1; x++) {
                 int currentHeight = heightMap[y][x];
-                if (isEdge(y, x)) {
-                    visibleTrees++;
-                    continue;
-                }
-                if (checkUp(x, y - 1, currentHeight)) {
-                    visibleTrees++;
-                    continue;
-                }
-                if (checkDown(x, y + 1, currentHeight)) {
-                    visibleTrees++;
-                    continue;
-                }
-                if (checkRight(y, x - 1, currentHeight)) {
-                    visibleTrees++;
-                    continue;
-                }
-                if (checkLeft(y, x + 1, currentHeight)) {
+                if (checkY(0, y, x, currentHeight)
+                    || checkX(0, x, y, currentHeight)
+                    || checkY(y + 1, heightMap.length, x, currentHeight)
+                    || checkX(x + 1, heightMap[y].length, y, currentHeight)) {
                     visibleTrees++;
                 }
             }
@@ -49,48 +36,26 @@ public final class Day8 extends Day {
         return visibleTrees;
     }
 
+    private boolean checkX(int from, int to, int y, int currentHeight) {
+        for (int i = from; i < to; i++) {
+            if (this.heightMap[y][i] >= currentHeight) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkY(int from, int to, int x, int currentHeight) {
+        for (int i = from; i < to; i++) {
+            if (this.heightMap[i][x] >= currentHeight) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     protected Object part2() {
         return null;
-    }
-
-    private boolean checkUp(int x, int upperBound, int currentHeight) {
-        for (int y = upperBound; y >= 0; y--) {
-            if (currentHeight <= heightMap[y][x]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkDown(int x, int lowerBound, int currentHeight) {
-        for (int y = lowerBound; y < heightMap.length; y++) {
-            if (currentHeight <= heightMap[y][x]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkRight(int y, int upperBound, int currentHeight) {
-        for (int x = upperBound; x >= 0; x--) {
-            if (currentHeight <= heightMap[y][x]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkLeft(int y, int lowerBound, int currentHeight) {
-        for (int x = lowerBound; x < heightMap[y].length; x++) {
-            if (currentHeight <= heightMap[y][x]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isEdge(int y, int x) {
-        return x == 0 || x == heightMap[0].length - 1 || y == 0 || y == heightMap.length - 1;
     }
 }
