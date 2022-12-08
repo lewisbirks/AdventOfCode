@@ -46,6 +46,11 @@
             <td>1513699</td>
             <td>7991939</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 8</a></td>
+            <td>1812</td>
+            <td>315495</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -75,6 +80,9 @@ Day 06: Tuning Trouble
 Day 07: No Space Left On Device
 	Part 1: 1513699 (2ms)
 	Part 2: 7991939 (2ms)
+Day 08: Treetop Tree House
+	Part 1: 1812 (1ms)
+	Part 2: 315495 (1ms)
 ==========================
 </pre>
 </details>
