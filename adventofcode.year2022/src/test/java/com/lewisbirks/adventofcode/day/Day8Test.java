@@ -1,10 +1,9 @@
 package com.lewisbirks.adventofcode.day;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Day8Test {
 
@@ -21,8 +20,7 @@ class Day8Test {
     }
 
     @Test
-    @Disabled
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(8);
     }
 }

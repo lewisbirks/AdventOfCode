@@ -38,7 +38,7 @@ public final class Day8 extends Day {
 
     private boolean checkX(int from, int to, int y, int currentHeight) {
         for (int i = from; i < to; i++) {
-            if (this.heightMap[y][i] >= currentHeight) {
+            if (heightMap[y][i] >= currentHeight) {
                 return false;
             }
         }
@@ -47,7 +47,7 @@ public final class Day8 extends Day {
 
     private boolean checkY(int from, int to, int x, int currentHeight) {
         for (int i = from; i < to; i++) {
-            if (this.heightMap[i][x] >= currentHeight) {
+            if (heightMap[i][x] >= currentHeight) {
                 return false;
             }
         }
@@ -56,6 +56,61 @@ public final class Day8 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        int count = 0;
+        for (int y = 0; y < heightMap.length; y++) {
+            for (int x = 0; x < heightMap[y].length; x++) {
+                count = Math.max(count, scenicScore(y, x));
+            }
+        }
+        return count;
+    }
+
+    private int scenicScore(int y, int x) {
+        int n = heightMap[y][x];
+        return countDown(y, x, n) * countUp(y, x, n) * countLeft(y, x, n) * countRight(y, x, n);
+    }
+
+    private int countUp(int y, int x, int n) {
+        int count = 0;
+        for (int i = y - 1; i >= 0; i--) {
+            count++;
+            if (heightMap[i][x] >= n) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    private int countDown(int y, int x, int n) {
+        int c = 0;
+        for (int i = y + 1; i < heightMap.length; i++) {
+            c++;
+            if (heightMap[i][x] >= n) {
+                break;
+            }
+        }
+        return c;
+    }
+
+    private int countLeft(int y, int x, int n) {
+        int count = 0;
+        for (int i = x - 1; i >= 0; i--) {
+            count++;
+            if (heightMap[y][i] >= n) {
+                break;
+            }
+        }
+        return count;
+    }
+
+    private int countRight(int y, int x, int n) {
+        int count = 0;
+        for (int i = x + 1; i < heightMap[y].length; i++) {
+            count++;
+            if (heightMap[y][i] >= n) {
+                break;
+            }
+        }
+        return count;
     }
 }
