@@ -2,13 +2,18 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toCollection;
 
 public final class Day9 extends Day {
 
 
+    private static final Day9.Point START = new Point(0, 0);
     private List<Command> commands;
 
     public Day9() {
@@ -33,26 +38,38 @@ public final class Day9 extends Day {
 
     @Override
     protected Object part1() {
-        Point head = new Point(0,0);
-        Point tail = new Point(0,0);
-        Set<Point> tailPositions = new HashSet<>();
-        tailPositions.add(tail);
-        for (Command command : commands) {
-            for (int i = 0; i < command.amount; i++) {
-                head = head.move(command.direction);
-                if (!head.nextTo(tail)) {
-                    Direction d = tail.directionTo(head);
-                    tail = tail.move(d);
-                    tailPositions.add(tail);
-                }
-            }
-        }
-        return tailPositions.size();
+        return simulateRope(2);
     }
 
     @Override
     protected Object part2() {
-        return null;
+        return simulateRope(10);
+    }
+
+    private int simulateRope(int numKnots) {
+        Point head = START;
+        List<Point> knots = IntStream.range(1, numKnots).mapToObj(i -> START).collect(toCollection(ArrayList::new));
+        Set<Point> tailPositions = new HashSet<>();
+        tailPositions.add(START);
+        for (Command command : commands) {
+            for (int i = 0; i < command.amount; i++) {
+                head = head.move(command.direction);
+                Point previous = head;
+                for (int j = 0; j < knots.size(); j++) {
+                    Point knot = knots.get(j);
+                    if (!knot.nextTo(previous)) {
+                        Direction d = knot.directionTo(previous);
+                        knot = knot.move(d);
+                        knots.set(j, knot);
+                        if (j == knots.size() - 1) {
+                            tailPositions.add(knot);
+                        }
+                    }
+                    previous = knot;
+                }
+            }
+        }
+        return tailPositions.size();
     }
 
     public record Point(int x, int y) {
