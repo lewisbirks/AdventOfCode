@@ -51,6 +51,11 @@
             <td>1812</td>
             <td>315495</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 9</a></td>
+            <td>6023</td>
+            <td>2533</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -83,6 +88,9 @@ Day 07: No Space Left On Device
 Day 08: Treetop Tree House
 	Part 1: 1812 (1ms)
 	Part 2: 315495 (1ms)
+Day 09: Rope Bridge
+	Part 1: 6023 (17ms)
+	Part 2: 2533 (5ms)
 ==========================
 </pre>
 </details>
