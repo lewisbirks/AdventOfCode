@@ -51,6 +51,33 @@ public final class Day10 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        StringBuilder output = new StringBuilder("\n");
+        int addition = 0;
+        int processing = -1;
+        int x = 1;
+        for (int i = 0, j = 0; i < 240; i++) {
+            if (processing == -1) {
+                String instruction = instructions.get(j++);
+                if (instruction.startsWith("add")) {
+                    addition = Integer.parseInt(instruction.substring(5));
+                    processing = PROCESSING_TIME;
+                }
+            }
+
+            int pixel = i % 40;
+            output.append(x >= pixel - 1 && x <= pixel + 1 ? "#" : ".");
+
+            if (processing != -1) {
+                if (--processing == 0) {
+                    x += addition;
+                    processing = -1;
+                }
+            }
+            if ((i + 1) % 40 == 0) {
+                output.append("\n");
+            }
+        }
+
+        return output.toString();
     }
 }
