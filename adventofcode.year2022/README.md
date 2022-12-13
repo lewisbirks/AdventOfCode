@@ -52,9 +52,14 @@
             <td>315495</td>
         </tr>
         <tr>
-            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 9</a></td>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day9.java">Day 9</a></td>
             <td>6023</td>
             <td>2533</td>
+        </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day10.java">Day 10</a></td>
+            <td>10760</td>
+            <td>FPGPHFGH</td>
         </tr>
     </table>
 </details>
@@ -91,6 +96,17 @@ Day 08: Treetop Tree House
 Day 09: Rope Bridge
 	Part 1: 6023 (17ms)
 	Part 2: 2533 (5ms)
+Day 10: Cathode-Ray Tube
+	Part 1: 10760 (0ms)
+	Part 2: 
+####.###...##..###..#..#.####..##..#..#.
+#....#..#.#..#.#..#.#..#.#....#..#.#..#.
+###..#..#.#....#..#.####.###..#....####.
+#....###..#.##.###..#..#.#....#.##.#..#.
+#....#....#..#.#....#..#.#....#..#.#..#.
+#....#.....###.#....#..#.#.....###.#..#.
+ (0ms)
+
 ==========================
 </pre>
 </details>
