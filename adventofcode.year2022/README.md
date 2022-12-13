@@ -61,6 +61,11 @@
             <td>10760</td>
             <td>FPGPHFGH</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day11.java">Day 11</a></td>
+            <td>90882</td>
+            <td>30893109657</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -106,7 +111,9 @@ Day 10: Cathode-Ray Tube
 #....#....#..#.#....#..#.#....#..#.#..#.
 #....#.....###.#....#..#.#.....###.#..#.
  (0ms)
-
+Day 11: Monkey in the Middle
+	Part 1: 90882 (1ms)
+	Part 2: 30893109657 (41ms)
 ==========================
 </pre>
 </details>
