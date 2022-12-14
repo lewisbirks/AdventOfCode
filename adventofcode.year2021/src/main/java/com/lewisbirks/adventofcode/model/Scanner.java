@@ -2,7 +2,7 @@ package com.lewisbirks.adventofcode.model;
 
 import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
 import com.lewisbirks.adventofcode.model.point.Point3D;
-import com.lewisbirks.adventofcode.utils.ReferenceInt;
+import com.lewisbirks.adventofcode.common.ReferenceInt;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -71,6 +71,11 @@
             <td>420</td>
             <td>414</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day13.java">Day 13</a></td>
+            <td>5659</td>
+            <td>22110</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -122,6 +127,9 @@ Day 11: Monkey in the Middle
 Day 12: Hill Climbing Algorithm
 	Part 1: 420 (9ms)
 	Part 2: 414 (4ms)
+Day 13: Distress Signal
+	Part 1: 5659 (0ms)
+	Part 2: 22110 (3ms)
 ==========================
 </pre>
 </details>
