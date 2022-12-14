@@ -3,7 +3,7 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.tree.SnailNumber;
-import com.lewisbirks.adventofcode.utils.ReferenceInt;
+import com.lewisbirks.adventofcode.common.ReferenceInt;
 import com.lewisbirks.adventofcode.utils.TreeUtils;
 
 import java.util.List;

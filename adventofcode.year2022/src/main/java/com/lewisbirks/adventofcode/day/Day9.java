@@ -29,7 +29,7 @@ public final class Day9 extends Day {
                 case "R" -> Direction.RIGHT;
                 case "U" -> Direction.UP;
                 case "D" -> Direction.DOWN;
-                default -> throw new IllegalStateException("Unexpected value: " + split[0]);
+                default -> throw new IllegalStateException("Unexpected values: " + split[0]);
             };
             int amount = Integer.parseInt(split[1]);
             return new Command(direction, amount);
