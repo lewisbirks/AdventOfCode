@@ -1,4 +1,4 @@
-package com.lewisbirks.adventofcode.model.point;
+package com.lewisbirks.adventofcode.common.coor;
 
 public record Point(int x, int y) {
     public static Point of(String pair) {
@@ -32,5 +32,9 @@ public record Point(int x, int y) {
             yDirection = -1;
         }
         return new int[]{xDirection, yDirection};
+    }
+
+    public Point add(Point other) {
+        return new Point(this.x + other.x, this.y + other.y);
     }
 }

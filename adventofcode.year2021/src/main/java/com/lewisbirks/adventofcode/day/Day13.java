@@ -1,7 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-import com.lewisbirks.adventofcode.model.point.Point;
+import com.lewisbirks.adventofcode.common.coor.Point;
 
 import java.util.Collection;
 import java.util.Comparator;

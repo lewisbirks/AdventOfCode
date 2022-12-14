@@ -1,6 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.collection.MultiValueMap;
+import com.lewisbirks.adventofcode.common.collection.MultiValueMap;
 import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
