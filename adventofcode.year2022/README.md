@@ -66,6 +66,11 @@
             <td>90882</td>
             <td>30893109657</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day12.java">Day 12</a></td>
+            <td>420</td>
+            <td>414</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -114,6 +119,9 @@ Day 10: Cathode-Ray Tube
 Day 11: Monkey in the Middle
 	Part 1: 90882 (1ms)
 	Part 2: 30893109657 (41ms)
+Day 12: Hill Climbing Algorithm
+	Part 1: 420 (9ms)
+	Part 2: 414 (4ms)
 ==========================
 </pre>
 </details>
