@@ -1,6 +1,6 @@
 package com.lewisbirks.adventofcode.model;
 
-import com.lewisbirks.adventofcode.collection.FrequencyMap;
+import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
 
 import java.util.List;
 
