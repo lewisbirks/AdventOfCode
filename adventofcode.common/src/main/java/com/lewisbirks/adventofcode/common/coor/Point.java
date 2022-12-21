@@ -1,6 +1,13 @@
 package com.lewisbirks.adventofcode.common.coor;
 
 public record Point(int x, int y) {
+    public static final Point RIGHT = new Point(1, 0);
+    public static final Point LEFT = new Point(-1, 0);
+    public static final Point UP = new Point(0, -1);
+    public static final Point DOWN = new Point(0, 1);
+    public static final Point LEFT_DOWN = LEFT.add(DOWN);
+    public static final Point RIGHT_DOWN = RIGHT.add(DOWN);
+
     public static Point of(String pair) {
         String[] points = pair.split(",");
         return new Point(Integer.parseInt(points[0]), Integer.parseInt(points[1]));
