@@ -13,7 +13,7 @@ import java.util.Set;
 public final class Day12 extends Day {
 
     private static final List<Point> DIRECTIONS = List.of(
-        new Point(1, 0), new Point(-1, 0), new Point(0, -1), new Point(0, 1)
+        Point.RIGHT, Point.LEFT, Point.UP, Point.DOWN
     );
 
     char[][] map;

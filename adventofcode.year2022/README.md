@@ -76,6 +76,11 @@
             <td>5659</td>
             <td>22110</td>
         </tr>
+        <tr>
+            <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day14.java">Day 14</a></td>
+            <td>655</td>
+            <td>26484</td>
+        </tr>
     </table>
 </details>
 <details>
@@ -130,6 +135,9 @@ Day 12: Hill Climbing Algorithm
 Day 13: Distress Signal
 	Part 1: 5659 (0ms)
 	Part 2: 22110 (3ms)
+Day 14: Regolith Reservoir
+	Part 1: 655 (7ms)
+	Part 2: 26484 (160ms)
 ==========================
 </pre>
 </details>

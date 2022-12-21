@@ -13,9 +13,12 @@ public abstract class Day implements Comparable<Day> {
     private final int num;
     private final String name;
 
+    protected final boolean debug;
+
     public Day(int num, String name) {
         this.num = num;
         this.name = name;
+        this.debug = Boolean.getBoolean("debug");
     }
 
     public void process() {
