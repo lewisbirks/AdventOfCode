@@ -1,31 +1,28 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public final class Day1 extends Day {
 
-    private final Supplier<List<Long>> expensesSupplier;
+    private List<Long> expenses;
 
     public Day1() {
         super(1, "Report Repair");
-        expensesSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
     }
 
     @Override
     protected void preLoad() {
-        expensesSupplier.get();
+        expenses = getInput(Long::parseLong);
     }
 
     @Override
     protected Object part1() {
-        List<Long> expenses = expensesSupplier.get();
-        for (int i = 0; i < expenses.size() - 1; i++) {
+        int numExpenses = expenses.size();
+        for (int i = 0; i < numExpenses - 1; i++) {
             Long first = expenses.get(i);
-            for (int j = i + 1; j < expenses.size(); j++) {
+            for (int j = i + 1; j < numExpenses; j++) {
                 Long second = expenses.get(j);
                 if (first + second == 2020) {
                     return first * second;
@@ -37,12 +34,12 @@ public final class Day1 extends Day {
 
     @Override
     protected Object part2() {
-        List<Long> expenses = expensesSupplier.get();
-        for (int i = 0; i < expenses.size() - 2; i++) {
+        int numExpenses = expenses.size();
+        for (int i = 0; i < numExpenses - 2; i++) {
             Long first = expenses.get(i);
-            for (int j = i + 1; j < expenses.size() - 1; j++) {
+            for (int j = i + 1; j < numExpenses - 1; j++) {
                 Long second = expenses.get(j);
-                for (int k = j + 1; k < expenses.size(); k++) {
+                for (int k = j + 1; k < numExpenses; k++) {
                     Long third = expenses.get(k);
                     if (first + second + third == 2020) {
                         return first * second * third;

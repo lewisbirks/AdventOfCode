@@ -1,27 +1,19 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 public final class Day3 extends Day {
 
     private static final char TREE = '#';
-    private final Supplier<char[][]> mapSupplier;
+    private char[][] map;
 
     public Day3() {
         super(3, "Toboggan Trajectory");
-        mapSupplier = CachedSupplier.memoize(() -> {
-            List<char[]> example = getInput(String::toCharArray);
-            return example.toArray(char[][]::new);
-        });
     }
 
     @Override
     protected void preLoad() {
-        mapSupplier.get();
+        map = getInput(String::toCharArray).toArray(char[][]::new);
     }
 
     @Override
@@ -40,7 +32,6 @@ public final class Day3 extends Day {
     }
 
     private long navigateMap(int right, int down) {
-        char[][] map = mapSupplier.get();
         int x = 0;
         int width = map[0].length;
         long treesHit = 0;
