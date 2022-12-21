@@ -96,7 +96,41 @@ public final class Day14 extends Day {
 
     @Override
     protected Object part2() {
-        return null;
+        int sandCount = 0;
+        Set<Point> surfaces = new HashSet<>(walls);
+        Set<Point> sands = new HashSet<>();
+        while (true) {
+            Point sand = SOURCE;
+            while (true) {
+                // generate floor as needed
+                Point floor = new Point(sand.x(), maxY + 2);
+                surfaces.add(floor);
+                surfaces.add(floor.add(Point.LEFT));
+                surfaces.add(floor.add(Point.RIGHT));
+
+                Point moved = moveSand(surfaces, sand);
+                if (!moved.equals(sand)) {
+                    sand = moved;
+                    continue;
+                }
+
+                // can't move, am I the source block?
+                if (sand.equals(SOURCE)) {
+                    return ++sandCount;
+                }
+
+                surfaces.add(sand);
+                sandCount++;
+                if (debug) {
+                    sands.add(sand);
+                }
+                break;
+            }
+            if (debug) {
+                System.out.printf("%nAfter %d unit(s) of sand%n", sandCount);
+                print(surfaces, sands);
+            }
+        }
     }
 
     private static Point moveSand(Set<Point> surfaces, Point sand) {
