@@ -1,31 +1,28 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.function.BiPredicate;
-import java.util.function.Supplier;
 
 public final class Day5 extends Day {
 
-    private final Supplier<List<List<Point>>> coordinateGroupsSupplier;
+    private List<List<Point>> coordinateGroups;
 
     public Day5() {
         super(5, "Hydrothermal Venture");
-        coordinateGroupsSupplier = CachedSupplier.memoize(() -> getInput(line -> {
-            String[] points = line.split(" -> ");
-            return Arrays.stream(points).map(Point::of).toList();
-        }));
     }
 
     @Override
     protected void preLoad() {
-        coordinateGroupsSupplier.get();
+        coordinateGroups = getInput(line -> {
+            String[] points = line.split(" -> ");
+            return Arrays.stream(points).map(Point::of).toList();
+        });
     }
 
     @Override
@@ -39,7 +36,6 @@ public final class Day5 extends Day {
     }
 
     private long getOverlapCount(BiPredicate<Point, Point> linesToConsider) {
-        List<List<Point>> coordinateGroups = coordinateGroupsSupplier.get();
         int[] dimensions = getDimensions(coordinateGroups);
         int[][] board = new int[dimensions[0]][dimensions[1]];
         for (List<Point> coordinateGroup : coordinateGroups) {

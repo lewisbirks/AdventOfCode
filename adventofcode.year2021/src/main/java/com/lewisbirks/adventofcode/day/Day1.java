@@ -1,34 +1,31 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public final class Day1 extends Day {
 
-    private final Supplier<List<Long>> depthsSupplier;
+    private List<Long> depths;
 
     public Day1() {
         super(1, "Sonar Sweep");
-        depthsSupplier = CachedSupplier.memoize(() -> getInput(Long::parseLong));
     }
 
     @Override
     protected void preLoad() {
-        depthsSupplier.get();
+        depths =  getInput(Long::parseLong);
     }
 
     @Override
     protected Object part1() {
-        return calculate(depthsSupplier.get(), 1);
+        return calculate(depths, 1);
     }
 
     @Override
     protected Object part2() {
-        return calculate(depthsSupplier.get(), 3);
+        return calculate(depths, 3);
     }
 
     private Long calculate(List<Long> input, int windowSize) {

@@ -1,30 +1,25 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.LongSummaryStatistics;
-import java.util.function.Supplier;
 import java.util.stream.LongStream;
 
 import static java.lang.Long.MAX_VALUE;
 
 public final class Day7 extends Day {
 
-    private final Supplier<List<Long>> crabPositions;
+    private List<Long> crabPositions;
 
     public Day7() {
         super(7, "Treachery of Whales");
-        crabPositions = CachedSupplier.memoize(
-            () -> Arrays.stream(readInput().split(",")).map(Long::parseLong).toList()
-        );
     }
 
     @Override
     protected void preLoad() {
-        crabPositions.get();
+        crabPositions = Arrays.stream(readInput().split(",")).map(Long::parseLong).toList();
     }
 
     @Override
@@ -33,12 +28,12 @@ public final class Day7 extends Day {
     }
 
     private LongStream range() {
-        LongSummaryStatistics summary = crabPositions.get().stream().mapToLong(i -> i).summaryStatistics();
+        LongSummaryStatistics summary = crabPositions.stream().mapToLong(i -> i).summaryStatistics();
         return LongStream.rangeClosed(summary.getMin(), summary.getMax());
     }
 
     private LongStream costForTarget(long target) {
-        return crabPositions.get().stream().mapToLong(v -> Math.abs(v - target));
+        return crabPositions.stream().mapToLong(v -> Math.abs(v - target));
     }
 
     @Override

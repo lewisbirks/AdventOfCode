@@ -1,6 +1,5 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.ArrayDeque;
@@ -9,7 +8,6 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Supplier;
 
 public final class Day10 extends Day {
 
@@ -35,22 +33,21 @@ public final class Day10 extends Day {
     private static final Set<Character> OPENING = Set.of('(', '[', '{', '<');
     private static final Set<Character> CLOSING = Set.of(')', ']', '}', '>');
 
-    private final Supplier<List<String>> chunks;
+    private List<String> chunks;
 
     public Day10() {
         super(10, "Syntax Scoring");
-        chunks = CachedSupplier.memoize(this::getInput);
     }
 
     @Override
     protected void preLoad() {
-        chunks.get();
+        chunks = getInput();
     }
 
     @Override
     protected Object part1() {
         long score = 0;
-        for (String chunk : chunks.get()) {
+        for (String chunk : chunks) {
             Deque<Character> stack = new ArrayDeque<>();
             for (char character : chunk.toCharArray()) {
                 if (OPENING.contains(character)) {
@@ -68,7 +65,7 @@ public final class Day10 extends Day {
     @Override
     protected Object part2() {
         List<Long> scores = new ArrayList<>();
-        for (String chunk : chunks.get()) {
+        for (String chunk : chunks) {
             Deque<Character> stack = new ArrayDeque<>();
             boolean corrupt = false;
             for (char character : chunk.toCharArray()) {

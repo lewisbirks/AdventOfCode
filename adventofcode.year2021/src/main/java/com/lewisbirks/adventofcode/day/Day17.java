@@ -1,36 +1,29 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
-
-import java.util.function.Supplier;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 public final class Day17 extends Day {
 
-    private final Supplier<Target> targetSupplier;
+    private Target target;
 
     public Day17() {
         super(17, "Trick Shot");
-
-        targetSupplier = CachedSupplier.memoize(() -> {
-            String[] bounds = readInput().replaceAll("[^-|\\d]", " ").trim().split("\\s+");
-            int x1 = Integer.parseInt(bounds[0]), x2 = Integer.parseInt(bounds[1]);
-            int y1 = Integer.parseInt(bounds[2]), y2 = Integer.parseInt(bounds[3]);
-            return new Target(
-                new Point(Math.min(x1, x2), Math.max(y1, y2)), new Point(Math.max(x1, x2), Math.min(y1, y2))
-            );
-        });
     }
 
     @Override
     protected void preLoad() {
-        targetSupplier.get();
+        String[] bounds = readInput().replaceAll("[^-|\\d]", " ").trim().split("\\s+");
+        int x1 = Integer.parseInt(bounds[0]), x2 = Integer.parseInt(bounds[1]);
+        int y1 = Integer.parseInt(bounds[2]), y2 = Integer.parseInt(bounds[3]);
+        target = new Target(
+            new Point(Math.min(x1, x2), Math.max(y1, y2)), new Point(Math.max(x1, x2), Math.min(y1, y2))
+        );
+
     }
 
     @Override
     protected Object part1() {
-        Target target = targetSupplier.get();
         // Tracking the horizontal velocity is redundant here, the probe can be modelled only in the vertical axis.
         // The max height will be when the velocity at height = 0 is equal to the lowest y position of the target + 1,
         // any faster than this it will skip over the target on the next step.
@@ -43,7 +36,6 @@ public final class Day17 extends Day {
     @Override
     protected Object part2() {
         // brute force
-        Target target = targetSupplier.get();
         // no point starting at a y velocity lower than the y lower bound of the target as it will just immediately
         // skip once it reaches the next step
         int yUpperBound = Math.abs(target.bottomRight().y());

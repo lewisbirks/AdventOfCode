@@ -1,44 +1,38 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.function.Supplier;
 
 public final class Day15 extends Day {
 
 
-    private final Supplier<int[][]> riskLevelsSupplier;
+    private int[][] riskLevels;
 
     public Day15() {
         super(15, "Chiton");
-        riskLevelsSupplier = CachedSupplier.memoize(
-            () -> getInput(
-                line -> Arrays.stream(line.split("")).mapToInt(Integer::parseInt).toArray()
-            ).toArray(int[][]::new)
-        );
     }
 
     @Override
     protected void preLoad() {
-        riskLevelsSupplier.get();
+        riskLevels = getInput(
+            line -> Arrays.stream(line.split("")).mapToInt(Integer::parseInt).toArray()
+        ).toArray(int[][]::new);
     }
 
     @Override
     protected Object part1() {
-        int[][] riskLevels = riskLevelsSupplier.get();
         return shortestPath(riskLevels);
     }
 
     @Override
     protected Object part2() {
-        int[][] riskLevels = expand(riskLevelsSupplier.get(), 5);
+        int[][] riskLevels = expand(this.riskLevels, 5);
         return shortestPath(riskLevels);
     }
 

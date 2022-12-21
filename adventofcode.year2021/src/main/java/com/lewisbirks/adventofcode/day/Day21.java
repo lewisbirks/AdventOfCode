@@ -1,13 +1,11 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,27 +23,24 @@ public final class Day21 extends Day {
         8, 3L,
         9, 1L
     ));
-    private final Supplier<int[]> positions;
+    private int[] positions;
 
     public Day21() {
         super(21, "Dirac Dice");
-        positions = CachedSupplier.memoize(() -> getInput(this::parse).stream().mapToInt(i -> i).toArray());
     }
 
     @Override
     protected void preLoad() {
-        positions.get();
+        positions = getInput(this::parse).stream().mapToInt(i -> i).toArray();
     }
 
     @Override
     protected Object part1() {
-        int[] positions = this.positions.get();
         return deterministicPlay(Arrays.copyOf(positions, positions.length));
     }
 
     @Override
     protected Object part2() {
-        int[] positions = this.positions.get();
         return Arrays.stream(quantumPlay(Arrays.copyOf(positions, positions.length))).reduce(0, Math::max);
     }
 

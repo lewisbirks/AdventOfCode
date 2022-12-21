@@ -22,23 +22,17 @@ public final class Day19 extends Day {
 
     @Override
     protected void preLoad() {
-        findScanners();
+        processedScanners = findScanners();
     }
 
     @Override
     protected Object part1() {
-        if (processedScanners == null) {
-            processedScanners = findScanners();
-        }
         Scanner basScanner = (Scanner) processedScanners.get(SCANNER);
         return basScanner.coordinates().size();
     }
 
     @Override
     protected Object part2() {
-        if (processedScanners == null) {
-            processedScanners = findScanners();
-        }
         List<?> scannerLocations = (List<?>) processedScanners.get(LOCATIONS);
         int max = 0;
         for (Object s1 : scannerLocations) {

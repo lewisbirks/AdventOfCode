@@ -1,7 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -18,10 +18,6 @@ public final class Day20 extends Day {
         super(20, "Trench Map");
     }
 
-    public static void main(String[] args) {
-        new Day20().process();
-    }
-
     @Override
     protected void preLoad() {
         parse();
@@ -29,13 +25,11 @@ public final class Day20 extends Day {
 
     @Override
     protected Object part1() {
-        parse();
         return processImage(image, algorithm, 2).size();
     }
 
     @Override
     protected Object part2() {
-        parse();
         // called it
         return processImage(image, algorithm, 50).size();
     }
@@ -46,7 +40,9 @@ public final class Day20 extends Day {
         for (int i = 0; i < iterations; i++) {
             processedImage = processImage(processedImage, algorithm, voidFlip);
             voidFlip = algorithm.get(voidFlip ? 511 : 0);
-            //            print(processedImage);
+            if (debug) {
+                print(processedImage);
+            }
         }
         return processedImage;
     }

@@ -1,5 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,6 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Day7Test {
 
     private final Day7 underTest = new Day7();
+
+    @BeforeEach
+    void setUp() {
+        underTest.preLoad();
+    }
 
     @Test
     void part1() {

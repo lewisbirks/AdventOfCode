@@ -1,27 +1,24 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
-import java.util.function.Supplier;
 
 public final class Day11 extends Day {
 
     public static final int THRESHOLD = 9;
-    private final Supplier<int[][]> energyLevelsSupplier;
+    private int[][] energyLevels;
 
     public Day11() {
         super(11, "Dumbo Octopus");
-        energyLevelsSupplier = CachedSupplier.memoize(() -> getInput(line -> Arrays.stream(line.split(""))
-            .mapToInt(Integer::parseInt)
-            .toArray()
-        ).toArray(int[][]::new));
     }
 
     @Override
     protected void preLoad() {
-        energyLevelsSupplier.get();
+        energyLevels = getInput(line -> Arrays.stream(line.split(""))
+            .mapToInt(Integer::parseInt)
+            .toArray()
+        ).toArray(int[][]::new);
     }
 
     @Override
@@ -50,7 +47,11 @@ public final class Day11 extends Day {
 
     private int[][] getEnergyLevels() {
         // need to make a clone, the cached version is mutated otherwise
-        return Arrays.stream(energyLevelsSupplier.get()).map(int[]::clone).toArray(int[][]::new);
+        int[][] copy = new int[energyLevels.length][];
+        for (int i = 0; i < energyLevels.length; i++) {
+            copy[i] = Arrays.copyOf(energyLevels[i], energyLevels[i].length);
+        }
+        return copy;
     }
 
     private int flashGrid(int[][] energyLevels) {
