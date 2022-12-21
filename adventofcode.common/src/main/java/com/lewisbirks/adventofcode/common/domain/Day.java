@@ -32,6 +32,7 @@ public abstract class Day implements Comparable<Day> {
             end = System.currentTimeMillis();
             System.out.printf("%s (%dms)%n", result, end - start);
 
+            preLoad();
             System.out.print("\tPart 2: ");
             start = System.currentTimeMillis();
             result = part2();

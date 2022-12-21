@@ -35,8 +35,6 @@ public final class Day4 extends Day {
             .count();
     }
 
-
-
     record Range(int start, int end) {
 
         public static Range of(String range) {

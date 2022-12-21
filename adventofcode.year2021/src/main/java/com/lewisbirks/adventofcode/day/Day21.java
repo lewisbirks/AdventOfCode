@@ -36,12 +36,12 @@ public final class Day21 extends Day {
 
     @Override
     protected Object part1() {
-        return deterministicPlay(Arrays.copyOf(positions, positions.length));
+        return deterministicPlay(positions);
     }
 
     @Override
     protected Object part2() {
-        return Arrays.stream(quantumPlay(Arrays.copyOf(positions, positions.length))).reduce(0, Math::max);
+        return Arrays.stream(quantumPlay(positions)).reduce(0, Math::max);
     }
 
     private int deterministicPlay(int[] positions) {

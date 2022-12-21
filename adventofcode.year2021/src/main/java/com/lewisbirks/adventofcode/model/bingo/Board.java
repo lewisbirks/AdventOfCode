@@ -69,8 +69,4 @@ public record Board(BingoNumber[][] board) {
             .sum();
         return finalValue * unmarkedSum;
     }
-
-    public void reset() {
-        Arrays.stream(board).forEach(row -> Arrays.stream(row).forEach(value -> value.setMarked(false)));
-    }
 }

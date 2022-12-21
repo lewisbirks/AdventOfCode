@@ -25,7 +25,6 @@ public final class Day4 extends Day {
 
     @Override
     protected Object part1() {
-        readBoards();
         for (Integer number : values) {
             for (Board board : boards) {
                 board.mark(number);
@@ -39,7 +38,6 @@ public final class Day4 extends Day {
 
     @Override
     protected Object part2() {
-        readBoards();
         List<Board> boards = new ArrayList<>(this.boards);
         Board lastWinner = Board.empty();
         int lastNumber = 0;
@@ -62,10 +60,6 @@ public final class Day4 extends Day {
     }
 
     private void readBoards() {
-        if (values != null) {
-            boards.forEach(Board::reset);
-        }
-
         List<String> lines = getInput(Collectors.toCollection(ArrayList::new));
 
         String values = lines.remove(0);

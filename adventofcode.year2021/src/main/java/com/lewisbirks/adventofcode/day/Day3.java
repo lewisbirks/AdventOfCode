@@ -19,7 +19,8 @@ public final class Day3 extends Day {
 
     @Override
     protected void preLoad() {
-        readDiagnostics();
+        diagnostics = getInput();
+        transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(diagnostics));
     }
 
     @Override
@@ -70,11 +71,6 @@ public final class Day3 extends Day {
         }
 
         return Long.parseLong(lifeSupportSubsystemDiagnostics.get(0), 2);
-    }
-
-    private void readDiagnostics() {
-        diagnostics = getInput();
-        transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(diagnostics));
     }
 
     private List<List<Character>> transformDiagnostics(List<String> inputs) {

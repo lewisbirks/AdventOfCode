@@ -23,7 +23,6 @@ public final class Day11 extends Day {
 
     @Override
     protected Object part1() {
-        int[][] energyLevels = getEnergyLevels();
         int sum = 0;
         for (int i = 0; i < 100; i++) {
             sum += flashGrid(energyLevels);
@@ -34,7 +33,6 @@ public final class Day11 extends Day {
 
     @Override
     protected Object part2() {
-        int[][] energyLevels = getEnergyLevels();
         int step = 0;
         while (true) {
             step++;
@@ -43,15 +41,6 @@ public final class Day11 extends Day {
                 return step;
             }
         }
-    }
-
-    private int[][] getEnergyLevels() {
-        // need to make a clone, the cached version is mutated otherwise
-        int[][] copy = new int[energyLevels.length][];
-        for (int i = 0; i < energyLevels.length; i++) {
-            copy[i] = Arrays.copyOf(energyLevels[i], energyLevels[i].length);
-        }
-        return copy;
     }
 
     private int flashGrid(int[][] energyLevels) {

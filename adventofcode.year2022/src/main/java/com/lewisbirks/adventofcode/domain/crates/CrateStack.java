@@ -4,18 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrateStack {
-    private ArrayDeque<Character> crates;
-    private final ArrayDeque<Character> source;
-
-    CrateStack(ArrayDeque<Character> crates) {
-        this.crates = crates;
-        this.source = crates.clone();
-    }
-
-    public void reset() {
-        crates = source.clone();
-    }
+public record CrateStack(ArrayDeque<Character> crates) {
 
     public Character pop() {
         return crates.pollLast();
@@ -34,13 +23,6 @@ public class CrateStack {
 
     public void addAll(List<Character> crates) {
         this.crates.addAll(crates);
-    }
-
-    @Override
-    public String toString() {
-        return "CrateStack{" +
-               "crates=" + crates +
-               '}';
     }
 
     public static CrateStackBuilder builder() {

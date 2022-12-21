@@ -23,11 +23,10 @@ public final class Day18 extends Day {
     @Override
     protected Object part1() {
         SnailNumber answer = numbers.stream()
-            .map(SnailNumber::copy)
             .reduce(null, (result, element) -> reduce(result == null ? element : new SnailNumber(result, element)));
 
         if (answer == null) {
-            throw new NullPointerException();
+            throw new IllegalStateException();
         }
 
         reduce(answer);

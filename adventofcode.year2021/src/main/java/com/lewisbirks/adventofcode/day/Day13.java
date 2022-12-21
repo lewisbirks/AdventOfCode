@@ -45,10 +45,6 @@ public final class Day13 extends Day {
     }
 
     private void read() {
-        if (folds != null) {
-            return;
-        }
-
         List<String> inputs = getInput();
         List<String> markInputs = inputs.subList(0, inputs.indexOf(""));
         List<String> foldInputs = inputs.subList(inputs.indexOf("") + 1, inputs.size());

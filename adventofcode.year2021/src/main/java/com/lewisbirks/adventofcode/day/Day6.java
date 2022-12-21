@@ -31,7 +31,7 @@ public final class Day6 extends Day {
     }
 
     private long processLifeForDays(final int numOfDays) {
-        long[] numFishPerAge = Arrays.copyOf(fish, fish.length);
+        long[] numFishPerAge = fish;
         for (int day = 0; day < numOfDays; day++) {
             long[] tmp = new long[NEW_LIFE_TIMER_START + 1];
             System.arraycopy(numFishPerAge, 1, tmp, 0, NEW_LIFE_TIMER_START);

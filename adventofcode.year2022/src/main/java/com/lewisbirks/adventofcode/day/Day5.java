@@ -68,10 +68,6 @@ public final class Day5 extends Day {
         }).toList();
     }
 
-    void reset() {
-        stacks.forEach(CrateStack::reset);
-    }
-
     @Override
     protected Object part1() {
         commands.forEach(command -> {
@@ -86,7 +82,6 @@ public final class Day5 extends Day {
 
     @Override
     protected Object part2() {
-        reset();
         commands.forEach(command -> {
             CrateStack source = stacks.get(command.source());
             CrateStack destination = stacks.get(command.destination());
