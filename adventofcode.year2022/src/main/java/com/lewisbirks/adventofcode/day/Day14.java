@@ -74,7 +74,7 @@ public final class Day14 extends Day {
                     return sandCount;
                 }
 
-                Point moved = moveSand(surfaces, sand);
+                Point moved = moveSand(surfaces, sand, maxY);
                 if (!moved.equals(sand)) {
                     sand = moved;
                     continue;
@@ -99,16 +99,17 @@ public final class Day14 extends Day {
         int sandCount = 0;
         Set<Point> surfaces = new HashSet<>(walls);
         Set<Point> sands = new HashSet<>();
+        int floorLevel = maxY + 2;
         while (true) {
             Point sand = SOURCE;
             while (true) {
                 // generate floor as needed
-                Point floor = new Point(sand.x(), maxY + 2);
+                Point floor = new Point(sand.x(), floorLevel);
                 surfaces.add(floor);
                 surfaces.add(floor.add(Point.LEFT));
                 surfaces.add(floor.add(Point.RIGHT));
 
-                Point moved = moveSand(surfaces, sand);
+                Point moved = moveSand(surfaces, sand, floorLevel);
                 if (!moved.equals(sand)) {
                     sand = moved;
                     continue;
@@ -133,10 +134,19 @@ public final class Day14 extends Day {
         }
     }
 
-    private static Point moveSand(Set<Point> surfaces, Point sand) {
+    private Point moveSand(Set<Point> surfaces, Point sand, int yBound) {
         // can I drop?
         Point moved = sand.add(Point.DOWN);
         if (!surfaces.contains(moved)) {
+            // drop as far as possible
+            Point down;
+            while(moved.y() + 1 < yBound) {
+                down = moved.add(Point.DOWN);
+                if (surfaces.contains(down)) {
+                    break;
+                }
+                moved = down;
+            }
             return moved;
         }
         // can't drop but what about go left?
@@ -152,7 +162,7 @@ public final class Day14 extends Day {
         return sand;
     }
 
-    private static void print(Set<Point> surfaces, Set<Point> sand) {
+    private void print(Set<Point> surfaces, Set<Point> sand) {
         int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
         Set<Point> points = new HashSet<>(surfaces);
         points.add(SOURCE);
@@ -162,8 +172,8 @@ public final class Day14 extends Day {
             maxX = Math.max(maxX, wall.x());
             maxY = Math.max(maxY, wall.y());
         }
-        for (int y = minY - 2; y <= maxY + 2; y++) {
-            for (int x = minX - 2; x <= maxX + 2; x++) {
+        for (int y = minY; y <= maxY; y++) {
+            for (int x = minX; x <= maxX; x++) {
                 Point p = new Point(x, y);
                 if (p.equals(SOURCE)) {
                     System.out.print('+');
