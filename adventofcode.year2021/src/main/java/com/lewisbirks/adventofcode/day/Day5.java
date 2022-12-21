@@ -43,8 +43,8 @@ public final class Day5 extends Day {
             Point start = coordinateGroup.get(0);
             Point end = coordinateGroup.get(1);
             if (linesToConsider.test(start, end)) {
-                int[] direction = start.getDirection(end);
-                int xIncrement = direction[0], yIncrement = direction[1];
+                Point direction = start.getDirection(end);
+                int xIncrement = direction.x(), yIncrement = direction.y();
                 int x = start.x(), y = start.y();
                 int endX = end.x() + xIncrement, endY = end.y() + yIncrement;
                 while (x != endX || y != endY) {

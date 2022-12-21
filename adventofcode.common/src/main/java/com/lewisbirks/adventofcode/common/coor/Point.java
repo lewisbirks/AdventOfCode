@@ -25,7 +25,7 @@ public record Point(int x, int y) {
         return this.y == other.y;
     }
 
-    public int[] getDirection(Point other) {
+    public Point getDirection(Point other) {
         int xDirection = 0;
         if (other.x > x) {
             xDirection = 1;
@@ -38,7 +38,7 @@ public record Point(int x, int y) {
         } else if (other.y < y) {
             yDirection = -1;
         }
-        return new int[]{xDirection, yDirection};
+        return new Point(xDirection, yDirection);
     }
 
     public Point add(Point other) {

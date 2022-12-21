@@ -1,5 +1,7 @@
 package com.lewisbirks.adventofcode.common.domain;
 
+import static com.lewisbirks.adventofcode.common.utils.Time.nanoRoundToString;
+
 import com.lewisbirks.adventofcode.common.resource.ResourceUtil;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
@@ -41,17 +43,16 @@ public abstract class Day implements Comparable<Day> {
                 if (performance) {
                     System.out.printf("\r\tIteration: %d", i + 1);
                 }
-                start = System.currentTimeMillis();
+                start = System.nanoTime();
                 result = part1();
-                end = System.currentTimeMillis();
+                end = System.nanoTime();
                 if (result == null) {
                     System.out.println("\r\tNot implemented... skipping");
                     return;
                 }
                 timings.add(end - start);
             }
-            LongSummaryStatistics stats = timings.stream().mapToLong(l -> l).summaryStatistics();
-            printResults(1, result, timings, stats);
+            printResults(1, result, timings);
 
             timings = new ArrayList<>();
             for (int i = 0; i < iterations; i++) {
@@ -59,28 +60,29 @@ public abstract class Day implements Comparable<Day> {
                 if (performance){
                     System.out.printf("\r\tIteration: %d", i + 1);
                 }
-                start = System.currentTimeMillis();
+                start = System.nanoTime();
                 result = part2();
-                end = System.currentTimeMillis();
+                end = System.nanoTime();
                 if (result == null) {
                     System.out.println("\r\tNot implemented... skipping");
                     return;
                 }
                 timings.add(end - start);
             }
-            stats = timings.stream().mapToLong(l -> l).summaryStatistics();
-            printResults(2, result, timings, stats);
+            printResults(2, result, timings);
         } catch (Exception e) {
             System.err.printf("Failed to process day %02d%n", num);
             e.printStackTrace();
         }
     }
 
-    private void printResults(int part, Object result, List<Long> timings, LongSummaryStatistics stats) {
+    private void printResults(int part, Object result, List<Long> timings) {
         if (performance) {
-            String extra = "runs: %d, avg: %dms, min: %dms, max: %dms, total: %s".formatted(
-                stats.getCount(), (long) stats.getAverage(), stats.getMin(), stats.getMax(),
-                DurationFormatUtils.formatDurationHMS(stats.getSum())
+            LongSummaryStatistics stats = timings.stream().mapToLong(l -> l).summaryStatistics();
+            long totalMilli = stats.getSum() / 1000_000;
+            String extra = "runs: %d, avg: %s, min: %s, max: %s, total: %s".formatted(
+                stats.getCount(), nanoRoundToString((long) stats.getAverage()), nanoRoundToString(stats.getMin()),
+                nanoRoundToString(stats.getMax()), DurationFormatUtils.formatDuration(totalMilli, "mm:ss.SSS")
             );
             System.out.printf("\r\tPart %d: %s (%s)%n", part, result, extra);
         } else {
