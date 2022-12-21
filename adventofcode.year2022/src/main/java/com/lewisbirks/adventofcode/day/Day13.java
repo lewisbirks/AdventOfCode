@@ -1,6 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.ReferenceInt;
+import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.tuple.Pair;
 import com.lewisbirks.adventofcode.domain.signal.Component;
