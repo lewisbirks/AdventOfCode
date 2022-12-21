@@ -1,34 +1,30 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public final class Day3 extends Day {
 
-    private final Supplier<List<String>> rucksacks;
+    private List<String> rucksacks;
 
     public Day3() {
         super(3, "Rucksack Reorganization");
-        rucksacks = CachedSupplier.memoize(this::getInput);
     }
 
     @Override
     protected void preLoad() {
-        rucksacks.get();
+        rucksacks = getInput();
     }
 
     @Override
     protected Object part1() {
-        return rucksacks.get().stream().mapToInt(Day3::calculatePriorityOfDuplicates).sum();
+        return rucksacks.stream().mapToInt(Day3::calculatePriorityOfDuplicates).sum();
     }
 
     @Override
     protected Object part2() {
-        List<String> rucksacks = this.rucksacks.get();
         int size = rucksacks.size();
         return IntStream.iterate(0, i -> i < size - 2, i -> i + 3)
             .map(i -> calculatePriorityOfBadges(rucksacks.get(i), rucksacks.get(i + 1), rucksacks.get(i + 2)))

@@ -1,10 +1,8 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public final class Day2 extends Day {
 
@@ -38,31 +36,30 @@ public final class Day2 extends Day {
     };
 
 
-    private final Supplier<List<int[]>> strategyGuide;
+    private List<int[]> strategyGuide;
 
     public Day2() {
         super(2, "Rock Paper Scissors");
-        strategyGuide = CachedSupplier.memoize(() -> getInput(move -> {
-            String[] split = move.split(" ");
-            return new int[] {
-                split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'
-            };
-        }));
     }
 
     @Override
     protected void preLoad() {
-        strategyGuide.get();
+        strategyGuide = getInput(move -> {
+            String[] split = move.split(" ");
+            return new int[] {
+                split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'
+            };
+        });
     }
 
     @Override
     protected Object part1() {
-        return strategyGuide.get().stream().mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1).sum();
+        return strategyGuide.stream().mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1).sum();
     }
 
     @Override
     protected Object part2() {
-        return strategyGuide.get().stream().mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3)).sum();
+        return strategyGuide.stream().mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3)).sum();
     }
 
 }
