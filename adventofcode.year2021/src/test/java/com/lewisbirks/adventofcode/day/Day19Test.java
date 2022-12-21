@@ -1,6 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,11 +16,13 @@ class Day19Test {
     }
 
     @Test
+    @Order(1)
     void part1() {
         assertThat(underTest.part1()).isEqualTo(79);
     }
 
     @Test
+    @Order(2)
     void part2() {
         assertThat(underTest.part2()).isEqualTo(3621);
     }

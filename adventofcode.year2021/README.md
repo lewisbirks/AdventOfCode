@@ -115,7 +115,7 @@
     </table>
 </details>
 <details>
-    <summary>Console output</summary>
+    <summary>Console performance output</summary>
     <pre>
 ==========================
 Year 2021
