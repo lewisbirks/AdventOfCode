@@ -19,12 +19,12 @@ public final class Day3 extends Day {
 
     @Override
     protected void preLoad() {
-        readDiagnostics();
+        diagnostics = getInput();
+        transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(diagnostics));
     }
 
     @Override
     protected Object part1() {
-        readDiagnostics();
         long gamma = 0;
         long epsilon = 0;
         for (List<Character> characters : transformedDiagnostics) {
@@ -44,7 +44,6 @@ public final class Day3 extends Day {
 
     @Override
     protected Object part2() {
-        readDiagnostics();
         BiPredicate<Integer, Integer> moreZeros = (num0, num1) -> num0 > num1;
         long oxygen = processLifeSupportSubsystem(moreZeros);
         long co2 = processLifeSupportSubsystem(moreZeros.negate());
@@ -72,14 +71,6 @@ public final class Day3 extends Day {
         }
 
         return Long.parseLong(lifeSupportSubsystemDiagnostics.get(0), 2);
-    }
-
-    private void readDiagnostics() {
-        if (diagnostics != null) {
-            return;
-        }
-        diagnostics = getInput();
-        transformedDiagnostics = Collections.unmodifiableList(transformDiagnostics(diagnostics));
     }
 
     private List<List<Character>> transformDiagnostics(List<String> inputs) {

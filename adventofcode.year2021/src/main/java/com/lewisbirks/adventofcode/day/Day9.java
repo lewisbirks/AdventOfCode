@@ -1,38 +1,32 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public final class Day9 extends Day {
 
     private static final int LARGE_VALUE = 10;
 
-    private final Supplier<int[][]> heightMapSupplier;
+    private int[][] heightMap;
 
     public Day9() {
         super(9, "Smoke Basin");
-        heightMapSupplier = CachedSupplier.memoize(
-            () -> getInput(line -> IntStream.range(0, line.length())
-                .map(i -> Integer.parseInt(line.substring(i, i + 1)))
-                .toArray()
-            ).toArray(int[][]::new)
-        );
     }
 
     @Override
     protected void preLoad() {
-        heightMapSupplier.get();
+        heightMap = getInput(line -> IntStream.range(0, line.length())
+            .map(i -> Integer.parseInt(line.substring(i, i + 1)))
+            .toArray()
+        ).toArray(int[][]::new);
     }
 
     @Override
     protected Object part1() {
-        int[][] heightMap = heightMapSupplier.get();
         int sum = 0;
         for (int i = 0; i < heightMap.length; i++) {
             int[] line = heightMap[i];
@@ -60,7 +54,6 @@ public final class Day9 extends Day {
 
     @Override
     protected Object part2() {
-        int[][] heightMap = heightMapSupplier.get();
         long[] largest3 = new long[3];
         for (int i = 0; i < heightMap.length; i++) {
             int[] line = heightMap[i];

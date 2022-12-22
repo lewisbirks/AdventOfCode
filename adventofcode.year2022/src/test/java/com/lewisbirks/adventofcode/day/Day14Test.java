@@ -7,12 +7,10 @@ import org.junit.jupiter.api.Test;
 
 class Day14Test {
 
-    private Day14 underTest;
+    private final Day14 underTest = new Day14();
 
     @BeforeEach
     void setUp() {
-        System.setProperty("debug", "true");
-        underTest = new Day14();
         underTest.preLoad();
     }
 

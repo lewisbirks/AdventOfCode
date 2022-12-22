@@ -1,36 +1,33 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public final class Day5 extends Day {
 
-    private final Supplier<List<String>> seatsSupplier;
+    private List<String> seats;
 
     public Day5() {
         super(5, "Binary Boarding");
-        seatsSupplier = CachedSupplier.memoize(this::getInput);
     }
 
     @Override
     protected void preLoad() {
-        seatsSupplier.get();
+        seats = getInput();
     }
 
     @Override
     protected Object part1() {
-        return seatsSupplier.get().stream().mapToInt(this::seatId).max().orElse(0);
+        return seats.stream().mapToInt(this::seatId).max().orElse(0);
     }
 
     @Override
     protected Object part2() {
-        List<Integer> seats = seatsSupplier.get().stream().map(this::seatId).toList();
-        return seats.stream()
+        List<Integer> ids = seats.stream().map(this::seatId).toList();
+        return ids.stream()
             // the next seat doesn't exist but the seat after that does
-            .filter(seat -> !seats.contains(seat + 1) && seats.contains(seat + 2))
+            .filter(seat -> !ids.contains(seat + 1) && ids.contains(seat + 2))
             .map(i -> ++i)
             .findFirst()
             .orElse(0);

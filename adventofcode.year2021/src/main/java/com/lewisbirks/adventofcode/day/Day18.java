@@ -1,38 +1,32 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
+import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.tree.SnailNumber;
-import com.lewisbirks.adventofcode.common.ReferenceInt;
 import com.lewisbirks.adventofcode.utils.TreeUtils;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public final class Day18 extends Day {
 
-    private final Supplier<List<SnailNumber>> numbersSupplier;
+    private List<SnailNumber> numbers;
 
     public Day18() {
         super(18, "Snailfish");
-        numbersSupplier = CachedSupplier.memoize(() -> getInput(line -> this.parse(line, new ReferenceInt())));
     }
 
     @Override
     protected void preLoad() {
-        numbersSupplier.get();
+        numbers = getInput(line -> this.parse(line, new ReferenceInt()));
     }
 
     @Override
     protected Object part1() {
-        List<SnailNumber> numbers = numbersSupplier.get();
-
         SnailNumber answer = numbers.stream()
-            .map(SnailNumber::copy)
             .reduce(null, (result, element) -> reduce(result == null ? element : new SnailNumber(result, element)));
 
         if (answer == null) {
-            throw new NullPointerException();
+            throw new IllegalStateException();
         }
 
         reduce(answer);
@@ -42,7 +36,6 @@ public final class Day18 extends Day {
 
     @Override
     protected Object part2() {
-        List<SnailNumber> numbers = numbersSupplier.get();
         long max = 0;
         for (SnailNumber number1 : numbers) {
             for (SnailNumber number2 : numbers) {

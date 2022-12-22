@@ -1,12 +1,10 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 import static com.lewisbirks.adventofcode.utils.StringUtils.binaryToInt;
 import static com.lewisbirks.adventofcode.utils.StringUtils.binaryToLong;
@@ -19,29 +17,28 @@ public final class Day16 extends Day {
     private static final int LENGTH_TYPE_ID_NUM_PACKETS_BITS = 11;
     private static final int LENGTH_TYPE_ID_TOTAL_LENGTH_BITS = 15;
 
-    private final Supplier<String> packetsSupplier;
+    private String packets;
     private int subPacketIndex;
 
     public Day16() {
         super(16, "Packet Decoder");
-        packetsSupplier = CachedSupplier.memoize(() -> hexToBinary(readInput().trim()));
     }
 
     @Override
     protected void preLoad() {
-        packetsSupplier.get();
+        packets = hexToBinary(readInput().trim());
     }
 
     @Override
     protected Object part1() {
-        return sumPacketVersions(packetsSupplier.get());
+        return sumPacketVersions(packets);
     }
 
     @Override
     protected Object part2() {
         subPacketIndex = 0;
         // top packet should be an operator so should only have one value
-        return evaluatePacket(packetsSupplier.get(), Integer.MAX_VALUE).get(0);
+        return evaluatePacket(packets, Integer.MAX_VALUE).get(0);
     }
 
     private int sumPacketVersions(final String packets) {

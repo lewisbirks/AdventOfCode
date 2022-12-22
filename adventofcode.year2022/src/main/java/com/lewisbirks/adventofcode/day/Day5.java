@@ -14,18 +14,20 @@ public final class Day5 extends Day {
 
     private static final Pattern COMMAND_PATTERN = Pattern.compile("move (\\d+) from (\\d+) to (\\d+)");
 
-    private final List<CrateStack> stacks;
-    private final List<Command> commands;
+    private List<CrateStack> stacks;
+    private List<Command> commands;
 
     public Day5() {
         super(5, "Supply Stacks");
+    }
+
+    @Override
+    protected void preLoad() {
         String all = readInput();
         String[] sections = all.split("\n\n");
 
-        String stacks = sections[0];
-        String commands = sections[1];
-        this.stacks = parseStacks(stacks);
-        this.commands = parseCommands(commands);
+        this.stacks = parseStacks(sections[0]);
+        this.commands = parseCommands(sections[1]);
     }
 
     private List<CrateStack> parseStacks(String stacks) {
@@ -67,13 +69,6 @@ public final class Day5 extends Day {
     }
 
     @Override
-    protected void preLoad() {}
-
-    void reset() {
-        this.stacks.forEach(CrateStack::reset);
-    }
-
-    @Override
     protected Object part1() {
         commands.forEach(command -> {
             CrateStack source = stacks.get(command.source());
@@ -87,7 +82,6 @@ public final class Day5 extends Day {
 
     @Override
     protected Object part2() {
-        reset();
         commands.forEach(command -> {
             CrateStack source = stacks.get(command.source());
             CrateStack destination = stacks.get(command.destination());

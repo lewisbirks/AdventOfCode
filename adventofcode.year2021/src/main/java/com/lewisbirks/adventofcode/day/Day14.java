@@ -1,24 +1,21 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.polymer.PolymerFormula;
 
 import java.util.LongSummaryStatistics;
-import java.util.function.Supplier;
 
 public final class Day14 extends Day {
 
-    private final Supplier<PolymerFormula> formulaSupplier;
+    private PolymerFormula formula;
 
     public Day14() {
         super(14, "Extended Polymerization");
-        formulaSupplier = CachedSupplier.memoize(() -> PolymerFormula.of(getInput()));
     }
 
     @Override
     protected void preLoad() {
-        formulaSupplier.get();
+        formula = PolymerFormula.of(getInput());
     }
 
     @Override
@@ -32,7 +29,7 @@ public final class Day14 extends Day {
     }
 
     private long process(final int times) {
-        LongSummaryStatistics stats = formulaSupplier.get().process(times).summaryStats();
+        LongSummaryStatistics stats = formula.process(times).summaryStats();
         return stats.getMax() - stats.getMin();
     }
 }

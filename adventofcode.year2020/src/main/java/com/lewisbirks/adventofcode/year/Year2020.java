@@ -7,7 +7,6 @@ import com.lewisbirks.adventofcode.day.Day2;
 import com.lewisbirks.adventofcode.day.Day3;
 import com.lewisbirks.adventofcode.day.Day4;
 import com.lewisbirks.adventofcode.day.Day5;
-
 import com.lewisbirks.adventofcode.day.Day6;
 
 import java.util.List;

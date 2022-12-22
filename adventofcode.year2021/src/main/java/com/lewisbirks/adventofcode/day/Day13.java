@@ -1,7 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.coor.Point;
+import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -24,19 +24,16 @@ public final class Day13 extends Day {
 
     @Override
     protected Object part1() {
-        read();
         return fold(folds.get(0), this.marks).size();
     }
 
     @Override
     protected Object part2() {
-        read();
         Collection<Point> marks = this.marks;
         for (Point fold : folds) {
             marks = fold(fold, marks);
         }
-        printPaper(marks);
-        return "";
+        return printPaper(marks);
     }
 
     private Collection<Point> fold(final Point fold, Collection<Point> marks) {
@@ -48,10 +45,6 @@ public final class Day13 extends Day {
     }
 
     private void read() {
-        if (folds != null) {
-            return;
-        }
-
         List<String> inputs = getInput();
         List<String> markInputs = inputs.subList(0, inputs.indexOf(""));
         List<String> foldInputs = inputs.subList(inputs.indexOf("") + 1, inputs.size());
@@ -66,15 +59,16 @@ public final class Day13 extends Day {
             .toList();
     }
 
-    private void printPaper(Collection<Point> points) {
+    private String printPaper(Collection<Point> points) {
         int maxX = points.stream().max(Comparator.comparingInt(Point::x)).map(Point::x).orElse(0) + 1;
         int maxY = points.stream().max(Comparator.comparingInt(Point::y)).map(Point::y).orElse(0) + 1;
-        System.out.println();
+        StringBuilder paper = new StringBuilder("\n");
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {
-                System.out.print(points.contains(new Point(x, y)) ? "██" : "  ");
+                paper.append(points.contains(new Point(x, y)) ? "██" : "  ");
             }
-            System.out.println();
+            paper.append("\n");
         }
+        return paper.toString();
     }
 }

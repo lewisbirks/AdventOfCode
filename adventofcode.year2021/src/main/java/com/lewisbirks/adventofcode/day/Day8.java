@@ -1,6 +1,5 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.Arrays;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,22 +26,21 @@ public final class Day8 extends Day {
         Set.of("a", "b", "c", "d", "f", "g"), 9,
         Set.of("a", "b", "c", "e", "f", "g"), 0
     );
-    private final Supplier<List<String[]>> displays;
+    private List<String[]> displays;
 
 
     public Day8() {
         super(8, "Seven Segment Search");
-        displays = CachedSupplier.memoize(() -> getInput(input -> input.split("\\|")));
     }
 
     @Override
     protected void preLoad() {
-        displays.get();
+        displays = getInput(input -> input.split("\\|"));
     }
 
     @Override
     protected Object part1() {
-        return displays.get().stream()
+        return displays.stream()
             .map(input -> input[1].trim())
             .flatMap(parts -> Arrays.stream(parts.split(" ")))
             .mapToInt(String::length)
@@ -53,7 +50,7 @@ public final class Day8 extends Day {
 
     @Override
     protected Object part2() {
-        return displays.get().stream()
+        return displays.stream()
             .map(input -> List.of(input[0].trim().split(" "), input[1].trim().split(" ")))
             .mapToLong(line -> parse(line.get(1), decode(line.get(0))))
             .sum();

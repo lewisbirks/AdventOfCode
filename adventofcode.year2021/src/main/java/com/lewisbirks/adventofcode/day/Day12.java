@@ -1,46 +1,40 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.collection.MultiValueMap;
-import com.lewisbirks.adventofcode.common.cache.CachedSupplier;
 import com.lewisbirks.adventofcode.common.domain.Day;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public final class Day12 extends Day {
 
     private static final String START = "start";
     private static final String END = "end";
 
-    private final Supplier<MultiValueMap<String, String>> routesSupplier;
+    private MultiValueMap<String, String> routes;
 
     public Day12() {
         super(12, "Passage Pathing");
-        routesSupplier = CachedSupplier.memoize(() -> {
-            MultiValueMap<String, String> map = new MultiValueMap<>();
-            getInput().stream().map(e -> e.split("-")).forEach(a -> {
-                map.put(a[0], a[1]);
-                map.put(a[1], a[0]);
-            });
-            return map;
-        });
     }
 
     @Override
     protected void preLoad() {
-        routesSupplier.get();
+        routes = new MultiValueMap<>();
+        getInput().stream().map(e -> e.split("-")).forEach(a -> {
+            routes.put(a[0], a[1]);
+            routes.put(a[1], a[0]);
+        });
     }
 
     @Override
     protected Object part1() {
-        return getRoutesCount(START, routesSupplier.get(), Map.of(START, 1), 1);
+        return getRoutesCount(START, routes, Map.of(START, 1), 1);
     }
 
     @Override
     protected Object part2() {
-        return getRoutesCount(START, routesSupplier.get(), Map.of(START, 2), 2);
+        return getRoutesCount(START, routes, Map.of(START, 2), 2);
     }
 
     private int getRoutesCount(final String current, final MultiValueMap<String, String> routesMap,
