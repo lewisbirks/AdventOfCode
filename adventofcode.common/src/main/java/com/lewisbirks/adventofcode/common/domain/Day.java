@@ -86,7 +86,7 @@ public abstract class Day implements Comparable<Day> {
             );
             System.out.printf("\r\tPart %d: %s (%s)%n", part, result, extra);
         } else {
-            System.out.printf("\r\tPart %d: %s (%dms)%n", part, result, timings.get(timings.size() - 1));
+            System.out.printf("\r\tPart %d: %s (%s)%n", part, result, nanoRoundToString(timings.get(timings.size() - 1)));
         }
     }
 
