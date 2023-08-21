@@ -1,5 +1,5 @@
 [versions]
-junit = "5.9.3"
+junit = "5.10.0"
 assertj = "3.24.2"
 apache-commons = "3.12.0"
 
