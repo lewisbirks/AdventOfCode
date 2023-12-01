@@ -17,9 +17,44 @@ Java implementation of the [advent of code](https://adventofcode.com/)
 
 Also being used as a test bed for learning things such as new java features and workflows
 
-### TODO 📝
+## 🚀 Running
 
-- OCR for [2021 - 13 - part 2](/adventofcode.year2021/src/main/java/com/lewisbirks/adventofcode/day/Day13.java#L27)
+#### IDE
+
+Each module has a `Driver` class which can be used as the main class when running via the IDE
+
+#### Maven
+
+The main code can be run by first installing them
+
+```shell
+mvn install -DskipTests
+```
+
+and then running the appropriate jar located in each of the `target` directories generated
+
+```shell
+java -jar advent-of-code.2021/target/2021.jar
+```
+
+### 🧪 Tests
+
+Unit tests can be run via
+
+```shell
+mvn test
+```
+
+Performance tests are found in the `src/performance` directory and can be run via
+
+```shell
+mvn verify -P performance
+```
+
+### 📝 TODO
+
+- OCR
+  for [2021 - 13 - part 2](/advent-of-code.2021/src/main/java/com/lewisbirks/adventofcode/day/Day13.java#L27)
     - optional printing to console
     - add flag for running with OCR and without
 - Do proper performance analysis with jmh
