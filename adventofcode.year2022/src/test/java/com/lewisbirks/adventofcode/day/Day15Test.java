@@ -1,23 +1,28 @@
 package com.lewisbirks.adventofcode.day;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Day15Test {
 
     private final Day15 underTest = new Day15();
 
-    @Test
-    @Disabled
-    void part1() {
-        assertThat(underTest.part1()).isNotNull();
+    @BeforeEach
+    void setUp() {
+        underTest.preLoad();
     }
 
     @Test
-    @Disabled
+    void part1() {
+        underTest.yToCheck = 10;
+        assertThat(underTest.part1()).isEqualTo(26);
+    }
+
+    @Test
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        underTest.max = 20;
+        assertThat(underTest.part2()).isEqualTo(56000011);
     }
 }

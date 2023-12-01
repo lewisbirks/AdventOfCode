@@ -44,4 +44,8 @@ public record Point(int x, int y) {
     public Point add(Point other) {
         return new Point(this.x + other.x, this.y + other.y);
     }
+
+    public int distance(Point other) {
+        return Math.abs(x - other.x) + Math.abs(y - other.y);
+    }
 }
