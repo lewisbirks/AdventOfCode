@@ -5,10 +5,8 @@
 <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.lewisbirks</groupId>
-    <artifactId>advent-of-code</artifactId>
+    <artifactId>advent-of-code-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
-
-    <name>Advent of code</name>
 
     <packaging>pom</packaging>
     <modules>
