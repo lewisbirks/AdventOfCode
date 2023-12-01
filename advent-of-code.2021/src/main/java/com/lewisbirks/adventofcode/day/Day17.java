@@ -12,7 +12,7 @@ public final class Day17 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         String[] bounds = readInput().replaceAll("[^-|\\d]", " ").trim().split("\\s+");
         int x1 = Integer.parseInt(bounds[0]), x2 = Integer.parseInt(bounds[1]);
         int y1 = Integer.parseInt(bounds[2]), y2 = Integer.parseInt(bounds[3]);
@@ -21,7 +21,7 @@ public final class Day17 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         // Tracking the horizontal velocity is redundant here, the probe can be modelled only in the vertical axis.
         // The max height will be when the velocity at height = 0 is equal to the lowest y position of the target + 1,
         // any faster than this it will skip over the target on the next step.
@@ -32,7 +32,7 @@ public final class Day17 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         // brute force
         // no point starting at a y velocity lower than the y lower bound of the target as it will just immediately
         // skip once it reaches the next step

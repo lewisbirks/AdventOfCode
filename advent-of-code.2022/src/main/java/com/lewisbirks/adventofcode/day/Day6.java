@@ -16,17 +16,17 @@ public final class Day6 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         input = readInput();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return findMarker(4);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return findMarker(14);
     }
 

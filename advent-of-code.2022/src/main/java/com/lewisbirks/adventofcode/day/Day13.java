@@ -26,7 +26,7 @@ public final class Day13 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         List<String> lines = getInput().stream()
                 .filter(Predicate.not(String::isBlank))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -44,7 +44,7 @@ public final class Day13 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int sum = 0;
         for (int i = 0; i < pairs.size(); i++) {
             Pair<Component, Component> p = pairs.get(i);
@@ -56,7 +56,7 @@ public final class Day13 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         List<Component> collect = pairs.stream()
                 .flatMap(p -> Stream.of(p.left(), p.right()))
                 .collect(Collectors.toCollection(ArrayList::new));

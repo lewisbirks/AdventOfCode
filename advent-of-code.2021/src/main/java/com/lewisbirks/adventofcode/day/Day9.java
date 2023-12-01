@@ -17,7 +17,7 @@ public final class Day9 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         heightMap = getInput(line -> IntStream.range(0, line.length())
                         .map(i -> Integer.parseInt(line.substring(i, i + 1)))
                         .toArray())
@@ -25,7 +25,7 @@ public final class Day9 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int sum = 0;
         for (int i = 0; i < heightMap.length; i++) {
             int[] line = heightMap[i];
@@ -52,7 +52,7 @@ public final class Day9 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         long[] largest3 = new long[3];
         for (int i = 0; i < heightMap.length; i++) {
             int[] line = heightMap[i];

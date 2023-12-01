@@ -15,7 +15,7 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         passports = Arrays.stream(readInput().split("\n\n"))
                 .map(line -> line.lines().collect(Collectors.joining(" ")).trim())
                 .map(Passport::of)
@@ -23,12 +23,12 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return passports.stream().filter(Passport::isValid).count();
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return passports.stream().filter(Passport::isStrictValid).count();
     }
 }

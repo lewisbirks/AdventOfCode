@@ -13,17 +13,17 @@ public final class Day14 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         formula = PolymerFormula.of(getInput());
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return process(10);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return process(40);
     }
 

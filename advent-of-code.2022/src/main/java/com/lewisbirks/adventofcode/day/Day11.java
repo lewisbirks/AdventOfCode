@@ -22,7 +22,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         List<String> lines = getInput(String::trim).stream()
                 .filter(Predicate.not(String::isBlank))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -47,7 +47,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         Function<Long, Long> div = l -> l / 3;
         for (int i = 0; i < 20; i++) {
             round(div);
@@ -56,7 +56,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         reset();
         int multiple = monkeys.stream().mapToInt(Monkey::testDivisor).reduce(1, (i, j) -> i * j);
         Function<Long, Long> mod = l -> l % multiple;

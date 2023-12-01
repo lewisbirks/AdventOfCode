@@ -14,12 +14,12 @@ public final class Day10 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         instructions = getInput();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int[] cycleChecks = {20, 60, 100, 140, 180, 220};
         int addition = 0;
         int processing = -1;
@@ -49,7 +49,7 @@ public final class Day10 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         StringBuilder output = new StringBuilder("\n");
         int addition = 0;
         int processing = -1;

@@ -14,7 +14,7 @@ public final class Day6 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         groups = Arrays.stream(readInput().split("\n\n"))
                 .map(answerGroup -> Arrays.asList(answerGroup.split("\n")))
                 .map(Group::new)
@@ -22,12 +22,12 @@ public final class Day6 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return groups.stream().map(Group::numberOfUniqueAnswers).reduce(0L, Long::sum);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return groups.stream().map(Group::numberOfSharedAnswers).reduce(0L, Long::sum);
     }
 }

@@ -9,15 +9,15 @@ public final class Day15 extends Day {
     }
 
     @Override
-    protected void preLoad() {}
+    public void preload() {}
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return null;
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return null;
     }
 }

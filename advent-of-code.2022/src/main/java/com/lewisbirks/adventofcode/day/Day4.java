@@ -13,7 +13,7 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         assignments = getInput(s -> {
             String[] assignments = s.split(",");
             return new Pair<>(Range.of(assignments[0]), Range.of(assignments[1]));
@@ -21,7 +21,7 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return assignments.stream()
                 .filter(pair ->
                         pair.left().contains(pair.right()) || pair.right().contains(pair.left()))
@@ -29,7 +29,7 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return assignments.stream()
                 .filter(pair ->
                         pair.left().overlaps(pair.right()) || pair.right().overlaps(pair.left()))

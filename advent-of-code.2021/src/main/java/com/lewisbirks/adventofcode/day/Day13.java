@@ -17,17 +17,17 @@ public final class Day13 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         read();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return fold(folds.get(0), this.marks).size();
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         Collection<Point> marks = this.marks;
         for (Point fold : folds) {
             marks = fold(fold, marks);

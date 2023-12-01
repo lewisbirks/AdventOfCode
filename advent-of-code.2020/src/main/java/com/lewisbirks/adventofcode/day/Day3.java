@@ -12,17 +12,17 @@ public final class Day3 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         map = getInput(String::toCharArray).toArray(char[][]::new);
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return navigateMap(3, 1);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         long attempt1 = navigateMap(1, 1);
         long attempt2 = (long) part1();
         long attempt3 = navigateMap(5, 1);

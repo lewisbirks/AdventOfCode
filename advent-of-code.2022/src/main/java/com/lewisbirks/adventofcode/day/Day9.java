@@ -19,7 +19,7 @@ public final class Day9 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         commands = getInput(line -> {
             String[] split = line.split(" ");
             Direction direction =
@@ -36,12 +36,12 @@ public final class Day9 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return simulateRope(2);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return simulateRope(10);
     }
 

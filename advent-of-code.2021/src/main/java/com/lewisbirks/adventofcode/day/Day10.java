@@ -36,12 +36,12 @@ public final class Day10 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         chunks = getInput();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         long score = 0;
         for (String chunk : chunks) {
             Deque<Character> stack = new ArrayDeque<>();
@@ -59,7 +59,7 @@ public final class Day10 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         List<Long> scores = new ArrayList<>();
         for (String chunk : chunks) {
             Deque<Character> stack = new ArrayDeque<>();

@@ -16,19 +16,19 @@ public final class Day2 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         policies = getInput(Collectors.groupingBy(
                 s -> PasswordPolicy.of(s.split(": ")[0].trim()),
                 Collectors.mapping(s -> s.split(": ")[1].trim(), Collectors.toList())));
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return numValidPasswords(policies, PasswordPolicy::validPasswordByOccurrence);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return numValidPasswords(policies, PasswordPolicy::validPasswordByPosition);
     }
 

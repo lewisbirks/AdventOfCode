@@ -18,7 +18,7 @@ public final class Day12 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         routes = new MultiValueMap<>();
         getInput().stream().map(e -> e.split("-")).forEach(a -> {
             routes.put(a[0], a[1]);
@@ -27,12 +27,12 @@ public final class Day12 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return getRoutesCount(START, routes, Map.of(START, 1), 1);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return getRoutesCount(START, routes, Map.of(START, 2), 2);
     }
 
