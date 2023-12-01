@@ -5,9 +5,8 @@ import java.util.List;
 
 public final class Day1 extends Day {
 
-    private static final List<String> NUMBERS = List.of(
-            "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
-    );
+    private static final List<String> NUMBERS =
+            List.of("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
     private List<String> calibrations;
 
