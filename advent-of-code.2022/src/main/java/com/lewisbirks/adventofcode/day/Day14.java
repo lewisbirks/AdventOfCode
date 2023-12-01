@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -140,7 +139,7 @@ public final class Day14 extends Day {
         if (!surfaces.contains(moved)) {
             // drop as far as possible
             Point down;
-            while(moved.y() + 1 < yBound) {
+            while (moved.y() + 1 < yBound) {
                 down = moved.add(Point.DOWN);
                 if (surfaces.contains(down)) {
                     break;

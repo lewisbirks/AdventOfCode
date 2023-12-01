@@ -1,13 +1,12 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
+import static java.lang.Long.MAX_VALUE;
 
+import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.Arrays;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.stream.LongStream;
-
-import static java.lang.Long.MAX_VALUE;
 
 public final class Day7 extends Day {
 
@@ -19,7 +18,8 @@ public final class Day7 extends Day {
 
     @Override
     protected void preLoad() {
-        crabPositions = Arrays.stream(readInput().split(",")).map(Long::parseLong).toList();
+        crabPositions =
+                Arrays.stream(readInput().split(",")).map(Long::parseLong).toList();
     }
 
     @Override
@@ -38,6 +38,9 @@ public final class Day7 extends Day {
 
     @Override
     protected Object part2() {
-        return range().map(target -> costForTarget(target).map(v -> v * (v + 1) / 2).sum()).min().orElse(MAX_VALUE);
+        return range().map(target ->
+                        costForTarget(target).map(v -> v * (v + 1) / 2).sum())
+                .min()
+                .orElse(MAX_VALUE);
     }
 }

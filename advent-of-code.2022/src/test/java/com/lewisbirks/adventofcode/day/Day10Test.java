@@ -1,9 +1,9 @@
 package com.lewisbirks.adventofcode.day;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class Day10Test {
 
@@ -21,15 +21,16 @@ class Day10Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).asString().isEqualToIgnoringNewLines(
-            """
+        assertThat(underTest.part2())
+                .asString()
+                .isEqualToIgnoringNewLines(
+                        """
             ##..##..##..##..##..##..##..##..##..##..
             ###...###...###...###...###...###...###.
             ####....####....####....####....####....
             #####.....#####.....#####.....#####.....
             ######......######......######......####
             #######.......#######.......#######.....
-            """
-        );
+            """);
     }
 }

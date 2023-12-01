@@ -1,12 +1,11 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.common.domain.Day;
+import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.common.tuple.Pair;
 import com.lewisbirks.adventofcode.domain.signal.Component;
 import com.lewisbirks.adventofcode.domain.signal.ListComponent;
 import com.lewisbirks.adventofcode.domain.signal.ValueComponent;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,12 +15,10 @@ import java.util.stream.Stream;
 
 public final class Day13 extends Day {
 
-    private static final ListComponent DIVIDER_2 = new ListComponent(List.of(
-        new ListComponent(List.of(new ValueComponent(2)))
-    ));
-    private static final ListComponent DIVIDER_6 = new ListComponent(List.of(
-        new ListComponent(List.of(new ValueComponent(6)))
-    ));
+    private static final ListComponent DIVIDER_2 =
+            new ListComponent(List.of(new ListComponent(List.of(new ValueComponent(2)))));
+    private static final ListComponent DIVIDER_6 =
+            new ListComponent(List.of(new ListComponent(List.of(new ValueComponent(6)))));
     private List<Pair<Component, Component>> pairs;
 
     public Day13() {
@@ -31,8 +28,8 @@ public final class Day13 extends Day {
     @Override
     protected void preLoad() {
         List<String> lines = getInput().stream()
-            .filter(Predicate.not(String::isBlank))
-            .collect(Collectors.toCollection(ArrayList::new));
+                .filter(Predicate.not(String::isBlank))
+                .collect(Collectors.toCollection(ArrayList::new));
 
         pairs = new ArrayList<>();
 
@@ -61,8 +58,8 @@ public final class Day13 extends Day {
     @Override
     protected Object part2() {
         List<Component> collect = pairs.stream()
-            .flatMap(p -> Stream.of(p.left(), p.right()))
-            .collect(Collectors.toCollection(ArrayList::new));
+                .flatMap(p -> Stream.of(p.left(), p.right()))
+                .collect(Collectors.toCollection(ArrayList::new));
         collect.add(DIVIDER_2);
         collect.add(DIVIDER_6);
         collect.sort(Comparator.naturalOrder());

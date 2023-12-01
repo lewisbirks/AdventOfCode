@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.collection.MultiValueMap;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,8 +36,11 @@ public final class Day12 extends Day {
         return getRoutesCount(START, routes, Map.of(START, 2), 2);
     }
 
-    private int getRoutesCount(final String current, final MultiValueMap<String, String> routesMap,
-                               final Map<String, Integer> visited, final int maxVisits) {
+    private int getRoutesCount(
+            final String current,
+            final MultiValueMap<String, String> routesMap,
+            final Map<String, Integer> visited,
+            final int maxVisits) {
         if (END.equals(current)) {
             return 1;
         }
@@ -58,7 +60,8 @@ public final class Day12 extends Day {
     }
 
     private boolean canVisit(String route, Map<String, Integer> visited, int maxVisits) {
-        long maxVisitsCount = visited.values().stream().filter(visits -> visits == maxVisits).count();
+        long maxVisitsCount =
+                visited.values().stream().filter(visits -> visits == maxVisits).count();
         return !visited.containsKey(route) || (visited.getOrDefault(route, 0) < maxVisits && maxVisitsCount <= 1);
     }
 

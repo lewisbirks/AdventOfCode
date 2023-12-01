@@ -1,12 +1,11 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
+import static java.util.Comparator.reverseOrder;
 
+import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static java.util.Comparator.reverseOrder;
 
 public final class Day1 extends Day {
 
@@ -19,7 +18,9 @@ public final class Day1 extends Day {
     @Override
     protected void preLoad() {
         String[] sections = readInput().split("\n\n");
-        calorieGroups = Arrays.stream(sections).map(section -> section.lines().map(Integer::valueOf).toList()).toList();
+        calorieGroups = Arrays.stream(sections)
+                .map(section -> section.lines().map(Integer::valueOf).toList())
+                .toList();
     }
 
     @Override
@@ -33,7 +34,6 @@ public final class Day1 extends Day {
     }
 
     private Stream<Integer> getTotals() {
-        return calorieGroups.stream()
-            .map(group -> group.stream().reduce(0, Integer::sum));
+        return calorieGroups.stream().map(group -> group.stream().reduce(0, Integer::sum));
     }
 }

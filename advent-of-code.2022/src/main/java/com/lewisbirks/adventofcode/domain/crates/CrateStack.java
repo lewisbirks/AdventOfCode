@@ -17,6 +17,7 @@ public record CrateStack(ArrayDeque<Character> crates) {
         }
         return popped;
     }
+
     public void add(Character crate) {
         crates.add(crate);
     }
@@ -32,8 +33,7 @@ public record CrateStack(ArrayDeque<Character> crates) {
     public static class CrateStackBuilder {
         private final ArrayDeque<Character> crates = new ArrayDeque<>();
 
-        private CrateStackBuilder() {
-        }
+        private CrateStackBuilder() {}
 
         public CrateStackBuilder add(Character c) {
             crates.addFirst(c);

@@ -1,14 +1,13 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import static com.lewisbirks.adventofcode.utils.StringUtils.binaryToInt;
 import static com.lewisbirks.adventofcode.utils.StringUtils.binaryToLong;
 import static com.lewisbirks.adventofcode.utils.StringUtils.hexToBinary;
+
+import com.lewisbirks.adventofcode.common.domain.Day;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public final class Day16 extends Day {
 
@@ -59,11 +58,10 @@ public final class Day16 extends Day {
             } else {
                 // operator
                 char lengthTypeId = packets.charAt(index);
-                int subPacketsLengthNumBits = lengthTypeId == '0' ? LENGTH_TYPE_ID_TOTAL_LENGTH_BITS
-                                                                  : LENGTH_TYPE_ID_NUM_PACKETS_BITS;
+                int subPacketsLengthNumBits =
+                        lengthTypeId == '0' ? LENGTH_TYPE_ID_TOTAL_LENGTH_BITS : LENGTH_TYPE_ID_NUM_PACKETS_BITS;
                 index++;
-                int subPacketsLength =
-                    binaryToInt(packets.substring(index, index + subPacketsLengthNumBits));
+                int subPacketsLength = binaryToInt(packets.substring(index, index + subPacketsLengthNumBits));
                 index += subPacketsLengthNumBits;
                 // need to check the substring if only the length is specified
                 // otherwise the loop will then check the next sub packet
@@ -96,8 +94,8 @@ public final class Day16 extends Day {
                 // operator
                 char lengthTypeId = packets.charAt(index);
                 boolean definesLength = lengthTypeId == '0';
-                int subPacketsLengthNumBits = definesLength ? LENGTH_TYPE_ID_TOTAL_LENGTH_BITS
-                                                            : LENGTH_TYPE_ID_NUM_PACKETS_BITS;
+                int subPacketsLengthNumBits =
+                        definesLength ? LENGTH_TYPE_ID_TOTAL_LENGTH_BITS : LENGTH_TYPE_ID_NUM_PACKETS_BITS;
                 index++;
                 int subPacketsData = binaryToInt(packets.substring(index, index + subPacketsLengthNumBits));
                 index += subPacketsLengthNumBits;
@@ -105,8 +103,7 @@ public final class Day16 extends Day {
                 int subStringEndIndex = definesLength ? index + subPacketsData : packets.length();
                 int packetsToParse = definesLength ? Integer.MAX_VALUE : subPacketsData;
                 values.add(performOperation(
-                    evaluatePacket(packets.substring(index, subStringEndIndex), packetsToParse), typeID
-                ));
+                        evaluatePacket(packets.substring(index, subStringEndIndex), packetsToParse), typeID));
                 index += definesLength ? subPacketsData : subPacketIndex;
             }
             subPacketIndex = index;
@@ -121,7 +118,10 @@ public final class Day16 extends Day {
         }
         return switch (operationCode) {
             case 0 -> values.stream().mapToLong(Long::longValue).sum();
-            case 1 -> values.stream().mapToLong(Long::longValue).reduce((i, j) -> i * j).getAsLong();
+            case 1 -> values.stream()
+                    .mapToLong(Long::longValue)
+                    .reduce((i, j) -> i * j)
+                    .getAsLong();
             case 2 -> values.stream().mapToLong(Long::longValue).min().getAsLong();
             case 3 -> values.stream().mapToLong(Long::longValue).max().getAsLong();
             case 5 -> values.get(0) > values.get(1) ? 1 : 0;

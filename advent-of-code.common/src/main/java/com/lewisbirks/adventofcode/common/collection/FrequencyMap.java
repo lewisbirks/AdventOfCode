@@ -11,8 +11,7 @@ import java.util.stream.LongStream;
 
 public class FrequencyMap<K> extends HashMap<K, Long> {
 
-    public FrequencyMap() {
-    }
+    public FrequencyMap() {}
 
     public FrequencyMap(Map<? extends K, Long> map) {
         super(map);

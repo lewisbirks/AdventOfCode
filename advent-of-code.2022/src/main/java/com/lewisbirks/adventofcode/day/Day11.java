@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.domain.Monkey;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -25,17 +24,20 @@ public final class Day11 extends Day {
     @Override
     protected void preLoad() {
         List<String> lines = getInput(String::trim).stream()
-            .filter(Predicate.not(String::isBlank))
-            .collect(Collectors.toCollection(ArrayList::new));
+                .filter(Predicate.not(String::isBlank))
+                .collect(Collectors.toCollection(ArrayList::new));
 
         monkeys = new ArrayList<>();
 
         while (!lines.isEmpty()) {
             List<String> monkeyDetails = lines.subList(0, 6);
             monkeys.add(Monkey.from(
-                monkeyDetails.get(0), monkeyDetails.get(1), monkeyDetails.get(2), monkeyDetails.get(3),
-                monkeyDetails.get(4), monkeyDetails.get(5)
-            ));
+                    monkeyDetails.get(0),
+                    monkeyDetails.get(1),
+                    monkeyDetails.get(2),
+                    monkeyDetails.get(3),
+                    monkeyDetails.get(4),
+                    monkeyDetails.get(5)));
             monkeyDetails.clear();
         }
 
@@ -70,11 +72,11 @@ public final class Day11 extends Day {
 
     private Long calculateMonkeyBusiness() {
         return monkeys.stream()
-            .map(Monkey::getNumberOfItemsInspected)
-            .map(Integer::longValue)
-            .sorted(Comparator.reverseOrder())
-            .limit(2)
-            .reduce(1L, (i, k) -> i * k);
+                .map(Monkey::getNumberOfItemsInspected)
+                .map(Integer::longValue)
+                .sorted(Comparator.reverseOrder())
+                .limit(2)
+                .reduce(1L, (i, k) -> i * k);
     }
 
     private void round(Function<Long, Long> reliefManagement) {

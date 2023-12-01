@@ -4,15 +4,12 @@ import com.lewisbirks.adventofcode.common.domain.Day;
 
 public final class Day23 extends Day {
 
-
     public Day23() {
         super(23, "");
     }
 
     @Override
-    protected void preLoad() {
-
-    }
+    protected void preLoad() {}
 
     @Override
     protected Object part1() {

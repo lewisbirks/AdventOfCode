@@ -1,11 +1,11 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public final class Day6 extends Day {
 
@@ -46,12 +46,7 @@ public final class Day6 extends Day {
     private static boolean hasDistinctCharacters(String subsection) {
         Set<Character> found = new HashSet<>();
         char[] chars = subsection.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (!found.add(chars[i])) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.range(0, chars.length).allMatch(i -> found.add(chars[i]));
     }
 
     private static int indexOfLastRepeatingChar(String subsection) {

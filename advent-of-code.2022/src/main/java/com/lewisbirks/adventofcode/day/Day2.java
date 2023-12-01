@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.List;
 
 public final class Day2 extends Day {
@@ -35,7 +34,6 @@ public final class Day2 extends Day {
         {PAPER_SCORE, SCISSORS_SCORE, ROCK_SCORE}
     };
 
-
     private List<int[]> strategyGuide;
 
     public Day2() {
@@ -46,20 +44,21 @@ public final class Day2 extends Day {
     protected void preLoad() {
         strategyGuide = getInput(move -> {
             String[] split = move.split(" ");
-            return new int[] {
-                split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'
-            };
+            return new int[] {split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'};
         });
     }
 
     @Override
     protected Object part1() {
-        return strategyGuide.stream().mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1).sum();
+        return strategyGuide.stream()
+                .mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1)
+                .sum();
     }
 
     @Override
     protected Object part2() {
-        return strategyGuide.stream().mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3)).sum();
+        return strategyGuide.stream()
+                .mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3))
+                .sum();
     }
-
 }

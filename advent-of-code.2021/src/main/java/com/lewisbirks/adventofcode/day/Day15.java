@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public final class Day15 extends Day {
-
 
     private int[][] riskLevels;
 
@@ -20,9 +18,10 @@ public final class Day15 extends Day {
 
     @Override
     protected void preLoad() {
-        riskLevels = getInput(
-            line -> Arrays.stream(line.split("")).mapToInt(Integer::parseInt).toArray()
-        ).toArray(int[][]::new);
+        riskLevels = getInput(line -> Arrays.stream(line.split(""))
+                        .mapToInt(Integer::parseInt)
+                        .toArray())
+                .toArray(int[][]::new);
     }
 
     @Override

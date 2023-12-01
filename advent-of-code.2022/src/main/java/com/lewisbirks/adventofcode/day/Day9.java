@@ -1,17 +1,15 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.domain.Day;
+import static java.util.stream.Collectors.toCollection;
 
+import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toCollection;
-
 public final class Day9 extends Day {
-
 
     private static final Day9.Point START = new Point(0, 0);
     private List<Command> commands;
@@ -24,13 +22,14 @@ public final class Day9 extends Day {
     protected void preLoad() {
         commands = getInput(line -> {
             String[] split = line.split(" ");
-            Direction direction = switch(split[0]) {
-                case "L" -> Direction.LEFT;
-                case "R" -> Direction.RIGHT;
-                case "U" -> Direction.UP;
-                case "D" -> Direction.DOWN;
-                default -> throw new IllegalStateException("Unexpected values: " + split[0]);
-            };
+            Direction direction =
+                    switch (split[0]) {
+                        case "L" -> Direction.LEFT;
+                        case "R" -> Direction.RIGHT;
+                        case "U" -> Direction.UP;
+                        case "D" -> Direction.DOWN;
+                        default -> throw new IllegalStateException("Unexpected values: " + split[0]);
+                    };
             int amount = Integer.parseInt(split[1]);
             return new Command(direction, amount);
         });
@@ -86,6 +85,7 @@ public final class Day9 extends Day {
                 case RIGHT_DOWN -> new Point(x + 1, y - 1);
             };
         }
+
         public boolean nextTo(Point other) {
             return other.x >= x - 1 && other.x <= x + 1 && other.y >= y - 1 && other.y <= y + 1;
         }
@@ -107,9 +107,17 @@ public final class Day9 extends Day {
             return this.y < other.y ? Direction.LEFT_UP : Direction.LEFT_DOWN;
         }
     }
+
     record Command(Direction direction, int amount) {}
 
-    enum Direction{
-        LEFT, RIGHT, UP, DOWN, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN
+    public enum Direction {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN,
+        LEFT_UP,
+        RIGHT_UP,
+        LEFT_DOWN,
+        RIGHT_DOWN
     }
 }

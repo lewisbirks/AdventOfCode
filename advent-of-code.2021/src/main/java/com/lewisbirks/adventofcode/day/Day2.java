@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.vectors.Vector;
-
 import java.util.List;
 
 public final class Day2 extends Day {

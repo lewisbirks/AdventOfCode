@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.utils;
 
 import com.lewisbirks.adventofcode.tree.Node;
-
 import java.util.ArrayList;
 import java.util.List;
 

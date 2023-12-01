@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Arrays;
 
 public final class Day11 extends Day {
@@ -16,9 +15,9 @@ public final class Day11 extends Day {
     @Override
     protected void preLoad() {
         energyLevels = getInput(line -> Arrays.stream(line.split(""))
-            .mapToInt(Integer::parseInt)
-            .toArray()
-        ).toArray(int[][]::new);
+                        .mapToInt(Integer::parseInt)
+                        .toArray())
+                .toArray(int[][]::new);
     }
 
     @Override

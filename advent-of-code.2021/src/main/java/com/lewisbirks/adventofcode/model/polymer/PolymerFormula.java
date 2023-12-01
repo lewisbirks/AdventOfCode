@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.model.polymer;
 
 import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LongSummaryStatistics;
@@ -23,9 +22,9 @@ public final class PolymerFormula {
         components = new ArrayList<>(components);
         String template = components.remove(0);
         Map<String, String> insertionPairs = components.stream()
-            .filter(s -> !s.isBlank())
-            .map(s -> s.split(" -> "))
-            .collect(Collectors.toUnmodifiableMap(split -> split[0], split -> split[1], (a, b) -> b));
+                .filter(s -> !s.isBlank())
+                .map(s -> s.split(" -> "))
+                .collect(Collectors.toUnmodifiableMap(split -> split[0], split -> split[1], (a, b) -> b));
         return new PolymerFormula(template, insertionPairs);
     }
 
@@ -33,8 +32,8 @@ public final class PolymerFormula {
         characterCounts = template.chars().mapToObj(c -> (char) c).collect(FrequencyMap.collector());
 
         FrequencyMap<String> pairs = IntStream.range(0, template.length() - 1)
-            .mapToObj(i -> template.substring(i, i + 2))
-            .collect(FrequencyMap.collector());
+                .mapToObj(i -> template.substring(i, i + 2))
+                .collect(FrequencyMap.collector());
 
         for (int i = 0; i < times; i++) {
             FrequencyMap<String> updatedPairs = new FrequencyMap<>();
@@ -58,5 +57,4 @@ public final class PolymerFormula {
     public LongSummaryStatistics summaryStats() {
         return characterCounts.valueStream().summaryStatistics();
     }
-
 }

@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.passport.Passport;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,9 +17,9 @@ public final class Day4 extends Day {
     @Override
     protected void preLoad() {
         passports = Arrays.stream(readInput().split("\n\n"))
-            .map(line -> line.lines().collect(Collectors.joining(" ")).trim())
-            .map(Passport::of)
-            .toList();
+                .map(line -> line.lines().collect(Collectors.joining(" ")).trim())
+                .map(Passport::of)
+                .toList();
     }
 
     @Override

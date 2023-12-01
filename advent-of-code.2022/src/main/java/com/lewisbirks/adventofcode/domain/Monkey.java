@@ -17,8 +17,7 @@ public final class Monkey {
     private final int falseId;
     private int itemsInspected;
 
-    public Monkey(int id, List<Long> worryLevels, Function<Long, Long> op, int test,
-                  int trueId, int falseId) {
+    public Monkey(int id, List<Long> worryLevels, Function<Long, Long> op, int test, int trueId, int falseId) {
         this.id = id;
         this.worryLevels = new ArrayList<>(worryLevels);
         this.operation = op;
@@ -29,7 +28,9 @@ public final class Monkey {
         this.itemsInspected = 0;
     }
 
-    public int id() {return id;}
+    public int id() {
+        return id;
+    }
 
     public int numberOfWorries() {
         return worryLevels.size();
@@ -44,13 +45,21 @@ public final class Monkey {
         return itemsInspected;
     }
 
-    public Function<Long, Long> operation() {return operation;}
+    public Function<Long, Long> operation() {
+        return operation;
+    }
 
-    public int testDivisor() {return test;}
+    public int testDivisor() {
+        return test;
+    }
 
-    public int trueId() {return trueId;}
+    public int trueId() {
+        return trueId;
+    }
 
-    public int falseId() {return falseId;}
+    public int falseId() {
+        return falseId;
+    }
 
     public void addWorry(long worry) {
         worryLevels.add(worry);
@@ -61,13 +70,15 @@ public final class Monkey {
         this.itemsInspected = 0;
     }
 
-    public static Monkey from(String idLine, String itemsLine, String operationLine, String testLine, String trueLine, String falseLine) {
+    public static Monkey from(
+            String idLine, String itemsLine, String operationLine, String testLine, String trueLine, String falseLine) {
         int id = Integer.parseInt(idLine.substring(idLine.indexOf(" ") + 1, idLine.indexOf(":")));
 
-        List<Long> items = Arrays.stream(itemsLine.substring(itemsLine.indexOf(":") + 1).split(","))
-            .map(String::trim)
-            .map(Long::parseLong)
-            .toList();
+        List<Long> items = Arrays.stream(
+                        itemsLine.substring(itemsLine.indexOf(":") + 1).split(","))
+                .map(String::trim)
+                .map(Long::parseLong)
+                .toList();
 
         int space = operationLine.lastIndexOf(" ");
         String s = operationLine.substring(space + 1);
@@ -79,8 +90,7 @@ public final class Monkey {
             operation = switch (operationLine.charAt(space - 1)) {
                 case '*' -> i -> i * operationAmount;
                 case '+' -> i -> i + operationAmount;
-                default -> throw new IllegalArgumentException("Unexpected " + operationLine.charAt(space - 1));
-            };
+                default -> throw new IllegalArgumentException("Unexpected " + operationLine.charAt(space - 1));};
         }
 
         int testDivisor = Integer.parseInt(testLine.substring(testLine.lastIndexOf(" ") + 1));

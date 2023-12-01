@@ -17,9 +17,7 @@ public final class Day17 extends Day {
         int x1 = Integer.parseInt(bounds[0]), x2 = Integer.parseInt(bounds[1]);
         int y1 = Integer.parseInt(bounds[2]), y2 = Integer.parseInt(bounds[3]);
         target = new Target(
-            new Point(Math.min(x1, x2), Math.max(y1, y2)), new Point(Math.max(x1, x2), Math.min(y1, y2))
-        );
-
+                new Point(Math.min(x1, x2), Math.max(y1, y2)), new Point(Math.max(x1, x2), Math.min(y1, y2)));
     }
 
     @Override
@@ -79,9 +77,9 @@ public final class Day17 extends Day {
     private record Target(Point topLeft, Point bottomRight) {
         public boolean intersects(Point point) {
             return point.x() >= topLeft.x()
-                   && point.x() <= bottomRight.x()
-                   && point.y() <= topLeft.y()
-                   && point.y() >= bottomRight.y();
+                    && point.x() <= bottomRight.x()
+                    && point.y() <= topLeft.y()
+                    && point.y() >= bottomRight.y();
         }
 
         public boolean isPassedBy(Point point) {

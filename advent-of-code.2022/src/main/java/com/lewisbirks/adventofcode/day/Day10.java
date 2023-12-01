@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.List;
 
 public final class Day10 extends Day {

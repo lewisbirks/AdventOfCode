@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,14 +14,13 @@ public final class Day21 extends Day {
     private static final int DETERMINISTIC_MAX = 1000;
     private static final int QUANTUM_MAX = 21;
     private static final FrequencyMap<Integer> ROLL_FREQUENCIES = new FrequencyMap<>(Map.of(
-        3, 1L,
-        4, 3L,
-        5, 6L,
-        6, 7L,
-        7, 6L,
-        8, 3L,
-        9, 1L
-    ));
+            3, 1L,
+            4, 3L,
+            5, 6L,
+            6, 7L,
+            7, 6L,
+            8, 3L,
+            9, 1L));
     private int[] positions;
 
     public Day21() {
@@ -93,9 +91,8 @@ public final class Day21 extends Day {
                 nextS2 += nextP2 + 1;
             }
 
-            long[] subsequentWins = internalQuantumPlay(
-                new GameState(nextS1, nextS2, nextP1, nextP2, !state.player()), cache
-            );
+            long[] subsequentWins =
+                    internalQuantumPlay(new GameState(nextS1, nextS2, nextP1, nextP2, !state.player()), cache);
             wins[0] += frequency * subsequentWins[0];
             wins[1] += frequency * subsequentWins[1];
         });

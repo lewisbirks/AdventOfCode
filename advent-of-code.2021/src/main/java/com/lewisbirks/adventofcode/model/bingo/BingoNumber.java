@@ -14,9 +14,13 @@ public final class BingoNumber {
         this(value, false);
     }
 
-    public int value() {return value;}
+    public int value() {
+        return value;
+    }
 
-    public boolean marked() {return marked;}
+    public boolean marked() {
+        return marked;
+    }
 
     public void setMarked(boolean marked) {
         this.marked = marked;

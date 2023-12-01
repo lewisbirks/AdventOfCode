@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.password.PasswordPolicy;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
@@ -19,9 +18,8 @@ public final class Day2 extends Day {
     @Override
     protected void preLoad() {
         policies = getInput(Collectors.groupingBy(
-            s -> PasswordPolicy.of(s.split(": ")[0].trim()),
-            Collectors.mapping(s -> s.split(": ")[1].trim(), Collectors.toList())
-        ));
+                s -> PasswordPolicy.of(s.split(": ")[0].trim()),
+                Collectors.mapping(s -> s.split(": ")[1].trim(), Collectors.toList())));
     }
 
     @Override
@@ -34,13 +32,12 @@ public final class Day2 extends Day {
         return numValidPasswords(policies, PasswordPolicy::validPasswordByPosition);
     }
 
-    private long numValidPasswords(Map<PasswordPolicy, List<String>> policyWithPasswords,
-                                   BiPredicate<PasswordPolicy, String> validator) {
-        return policyWithPasswords.entrySet()
-            .stream()
-            .mapToLong(entry -> entry.getValue().stream()
-                .filter(password -> validator.test(entry.getKey(), password))
-                .count())
-            .sum();
+    private long numValidPasswords(
+            Map<PasswordPolicy, List<String>> policyWithPasswords, BiPredicate<PasswordPolicy, String> validator) {
+        return policyWithPasswords.entrySet().stream()
+                .mapToLong(entry -> entry.getValue().stream()
+                        .filter(password -> validator.test(entry.getKey(), password))
+                        .count())
+                .sum();
     }
 }

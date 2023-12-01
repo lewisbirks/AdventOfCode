@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.model.passport;
 
 import com.lewisbirks.adventofcode.utils.ObjectUtils;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,28 +29,29 @@ public final class Passport {
                 case "hcl" -> passport.hairColour = data[1];
                 case "ecl" -> passport.eyeColour = data[1];
                 case "pid" -> passport.passportId = data[1];
-                default -> {
-                }
+                default -> {}
             }
         }
         return passport;
     }
 
     public boolean isValid() {
-        return ObjectUtils.allNonNull(
-            birthYear, issueYear, expirationYear, height, hairColour, eyeColour, passportId
-        );
+        return ObjectUtils.allNonNull(birthYear, issueYear, expirationYear, height, hairColour, eyeColour, passportId);
     }
 
     public boolean isStrictValid() {
-        return isValid() && validNumber(birthYear, 1920, 2002) && validNumber(issueYear, 2010, 2020)
-               && validNumber(expirationYear, 2020, 2030) && validHeight() && validHairColour()
-               && validEyeColour() && validPassportId();
+        return isValid()
+                && validNumber(birthYear, 1920, 2002)
+                && validNumber(issueYear, 2010, 2020)
+                && validNumber(expirationYear, 2020, 2030)
+                && validHeight()
+                && validHairColour()
+                && validEyeColour()
+                && validPassportId();
     }
 
     private boolean validPassportId() {
         return passportId.length() == 9 && passportId.chars().allMatch(c -> Character.digit(c, 10) != -1);
-
     }
 
     private boolean validEyeColour() {
@@ -59,9 +59,7 @@ public final class Passport {
     }
 
     private boolean validHairColour() {
-        return hairColour.length() == 7 && hairColour.substring(1)
-            .chars()
-            .allMatch(c -> Character.digit(c, 16) != -1);
+        return hairColour.length() == 7 && hairColour.substring(1).chars().allMatch(c -> Character.digit(c, 16) != -1);
     }
 
     private boolean validHeight() {

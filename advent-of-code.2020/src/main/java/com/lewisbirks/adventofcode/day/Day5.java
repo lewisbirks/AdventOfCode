@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.List;
 
 public final class Day5 extends Day {
@@ -26,11 +25,11 @@ public final class Day5 extends Day {
     protected Object part2() {
         List<Integer> ids = seats.stream().map(this::seatId).toList();
         return ids.stream()
-            // the next seat doesn't exist but the seat after that does
-            .filter(seat -> !ids.contains(seat + 1) && ids.contains(seat + 2))
-            .map(i -> ++i)
-            .findFirst()
-            .orElse(0);
+                // the next seat doesn't exist but the seat after that does
+                .filter(seat -> !ids.contains(seat + 1) && ids.contains(seat + 2))
+                .map(i -> ++i)
+                .findFirst()
+                .orElse(0);
     }
 
     private int seatId(String seat) {
@@ -46,5 +45,4 @@ public final class Day5 extends Day {
         }
         return row * 8 + column;
     }
-
 }

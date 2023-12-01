@@ -33,7 +33,9 @@ public final class DiskNode {
         return children.stream().filter(node -> node.name.equals(name)).findFirst();
     }
 
-    public long getSize() {return size;}
+    public long getSize() {
+        return size;
+    }
 
     public void addSize(long amount) {
         size += amount;
@@ -47,9 +49,9 @@ public final class DiskNode {
             return List.of();
         }
         List<DiskNode> childDirs = children.stream()
-//            .filter(DiskNode::isDir)
-            .flatMap(node -> node.getDirectoryNodes().stream())
-            .toList();
+                //            .filter(DiskNode::isDir)
+                .flatMap(node -> node.getDirectoryNodes().stream())
+                .toList();
         List<DiskNode> dirs = new ArrayList<>(childDirs);
         dirs.add(this);
         return dirs;

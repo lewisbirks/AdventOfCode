@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.Scanner;
 import com.lewisbirks.adventofcode.model.point.Point3D;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -55,7 +54,6 @@ public final class Day19 extends Day {
                         break;
                     }
                 }
-
             }
         }
         return baseScanner.coordinates().size();

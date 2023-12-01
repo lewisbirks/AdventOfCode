@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.domain.disk.DiskNode;
 import com.lewisbirks.adventofcode.utils.TerminalCommands;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -58,18 +57,18 @@ public final class Day7 extends Day {
     @Override
     protected Object part1() {
         return root.getDirectoryNodes().stream()
-            .mapToLong(DiskNode::getSize)
-            .filter(size -> size <= MAX_DIR_SIZE)
-            .sum();
+                .mapToLong(DiskNode::getSize)
+                .filter(size -> size <= MAX_DIR_SIZE)
+                .sum();
     }
 
     @Override
     protected Object part2() {
         long required = UPDATE_SIZE - (SYSTEM_SIZE - root.getSize());
         return root.getDirectoryNodes().stream()
-            .mapToLong(DiskNode::getSize)
-            .filter(size -> size >= required)
-            .min()
-            .orElseThrow();
+                .mapToLong(DiskNode::getSize)
+                .filter(size -> size >= required)
+                .min()
+                .orElseThrow();
     }
 }

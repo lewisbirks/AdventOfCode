@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.polymer.PolymerFormula;
-
 import java.util.LongSummaryStatistics;
 
 public final class Day14 extends Day {

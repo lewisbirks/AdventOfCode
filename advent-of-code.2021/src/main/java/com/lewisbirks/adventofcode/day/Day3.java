@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -64,8 +63,8 @@ public final class Day3 extends Day {
 
             int index = i++;
             lifeSupportSubsystemDiagnostics = lifeSupportSubsystemDiagnostics.stream()
-                .filter(diagnostic -> diagnostic.charAt(index) == scrubberChar)
-                .collect(Collectors.toList());
+                    .filter(diagnostic -> diagnostic.charAt(index) == scrubberChar)
+                    .collect(Collectors.toList());
 
             diagnosticsReports = transformDiagnostics(lifeSupportSubsystemDiagnostics);
         }

@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -12,9 +11,7 @@ import java.util.Set;
 
 public final class Day12 extends Day {
 
-    private static final List<Point> DIRECTIONS = List.of(
-        Point.RIGHT, Point.LEFT, Point.UP, Point.DOWN
-    );
+    private static final List<Point> DIRECTIONS = List.of(Point.RIGHT, Point.LEFT, Point.UP, Point.DOWN);
 
     char[][] map;
 

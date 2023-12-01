@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.domain.crates.Command;
 import com.lewisbirks.adventofcode.domain.crates.CrateStack;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,9 +33,8 @@ public final class Day5 extends Day {
         String[] lines = stacks.split("\n");
         String info = lines[lines.length - 1];
         int amount = Integer.parseInt(info.substring(info.lastIndexOf(" ") + 1));
-        List<CrateStack.CrateStackBuilder> builders = IntStream.range(0, amount)
-            .mapToObj(i -> CrateStack.builder())
-            .toList();
+        List<CrateStack.CrateStackBuilder> builders =
+                IntStream.range(0, amount).mapToObj(i -> CrateStack.builder()).toList();
 
         for (int i = 0; i < lines.length - 1; i++) {
             String line = lines[i];
@@ -56,16 +54,18 @@ public final class Day5 extends Day {
     }
 
     private List<Command> parseCommands(String commands) {
-        return commands.lines().map(command -> {
-            Matcher commandMatcher = COMMAND_PATTERN.matcher(command);
-            if (!commandMatcher.matches()) {
-                throw new IllegalArgumentException(command);
-            }
-            int amount = Integer.parseInt(commandMatcher.group(1));
-            int source = Integer.parseInt(commandMatcher.group(2)) - 1;
-            int receiver = Integer.parseInt(commandMatcher.group(3)) - 1;
-            return new Command(amount, source, receiver);
-        }).toList();
+        return commands.lines()
+                .map(command -> {
+                    Matcher commandMatcher = COMMAND_PATTERN.matcher(command);
+                    if (!commandMatcher.matches()) {
+                        throw new IllegalArgumentException(command);
+                    }
+                    int amount = Integer.parseInt(commandMatcher.group(1));
+                    int source = Integer.parseInt(commandMatcher.group(2)) - 1;
+                    int receiver = Integer.parseInt(commandMatcher.group(3)) - 1;
+                    return new Command(amount, source, receiver);
+                })
+                .toList();
     }
 
     @Override

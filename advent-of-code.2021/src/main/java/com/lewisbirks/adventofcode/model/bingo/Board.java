@@ -1,9 +1,9 @@
 package com.lewisbirks.adventofcode.model.bingo;
 
+import static java.util.function.Predicate.not;
+
 import java.util.Arrays;
 import java.util.List;
-
-import static java.util.function.Predicate.not;
 
 public record Board(BingoNumber[][] board) {
     public static Board empty() {
@@ -11,12 +11,13 @@ public record Board(BingoNumber[][] board) {
     }
 
     public static Board of(List<String> values) {
-        BingoNumber[][] boardValues = values.stream().map(line -> line.split(" "))
-            .map(strings -> Arrays.stream(strings)
-                .filter(not(String::isBlank))
-                .map(num -> new BingoNumber(Integer.parseInt(num)))
-                .toArray(BingoNumber[]::new))
-            .toArray(BingoNumber[][]::new);
+        BingoNumber[][] boardValues = values.stream()
+                .map(line -> line.split(" "))
+                .map(strings -> Arrays.stream(strings)
+                        .filter(not(String::isBlank))
+                        .map(num -> new BingoNumber(Integer.parseInt(num)))
+                        .toArray(BingoNumber[]::new))
+                .toArray(BingoNumber[][]::new);
         return new Board(boardValues);
     }
 
@@ -62,11 +63,10 @@ public record Board(BingoNumber[][] board) {
 
     public long score(int finalValue) {
         long unmarkedSum = Arrays.stream(board)
-            .flatMap(row -> Arrays.stream(row)
-                .filter(not(BingoNumber::marked))
-                .map(BingoNumber::value))
-            .mapToLong(Long::valueOf)
-            .sum();
+                .flatMap(row ->
+                        Arrays.stream(row).filter(not(BingoNumber::marked)).map(BingoNumber::value))
+                .mapToLong(Long::valueOf)
+                .sum();
         return finalValue * unmarkedSum;
     }
 }

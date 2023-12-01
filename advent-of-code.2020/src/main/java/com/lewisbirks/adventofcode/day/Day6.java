@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.model.Group;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,9 +16,9 @@ public final class Day6 extends Day {
     @Override
     protected void preLoad() {
         groups = Arrays.stream(readInput().split("\n\n"))
-            .map(answerGroup -> Arrays.asList(answerGroup.split("\n")))
-            .map(Group::new)
-            .toList();
+                .map(answerGroup -> Arrays.asList(answerGroup.split("\n")))
+                .map(Group::new)
+                .toList();
     }
 
     @Override

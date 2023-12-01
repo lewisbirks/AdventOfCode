@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -54,13 +53,17 @@ public final class Day5 extends Day {
                 }
             }
         }
-        return Arrays.stream(board).flatMapToInt(Arrays::stream).filter(i -> i >= 2).count();
-
+        return Arrays.stream(board)
+                .flatMapToInt(Arrays::stream)
+                .filter(i -> i >= 2)
+                .count();
     }
 
     private int[] getDimensions(List<List<Point>> points) {
-        OptionalInt width = points.stream().flatMap(Collection::stream).mapToInt(Point::x).max();
-        OptionalInt height = points.stream().flatMap(Collection::stream).mapToInt(Point::y).max();
-        return new int[]{width.orElse(0) + 1, height.orElse(0) + 1};
+        OptionalInt width =
+                points.stream().flatMap(Collection::stream).mapToInt(Point::x).max();
+        OptionalInt height =
+                points.stream().flatMap(Collection::stream).mapToInt(Point::y).max();
+        return new int[] {width.orElse(0) + 1, height.orElse(0) + 1};
     }
 }

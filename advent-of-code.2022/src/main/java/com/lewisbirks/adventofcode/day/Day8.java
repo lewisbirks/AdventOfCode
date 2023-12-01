@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.stream.IntStream;
 
 public final class Day8 extends Day {
@@ -14,8 +13,10 @@ public final class Day8 extends Day {
 
     @Override
     protected void preLoad() {
-        heightMap = getInput(row -> IntStream.range(0, row.length()).map(j -> row.charAt(j) - '0').toArray())
-            .toArray(new int[][]{});
+        heightMap = getInput(row -> IntStream.range(0, row.length())
+                        .map(j -> row.charAt(j) - '0')
+                        .toArray())
+                .toArray(new int[][] {});
     }
 
     @Override
@@ -26,9 +27,9 @@ public final class Day8 extends Day {
             for (int x = 1; x < heightMap[y].length - 1; x++) {
                 int currentHeight = heightMap[y][x];
                 if (checkY(0, y, x, currentHeight)
-                    || checkX(0, x, y, currentHeight)
-                    || checkY(y + 1, heightMap.length, x, currentHeight)
-                    || checkX(x + 1, heightMap[y].length, y, currentHeight)) {
+                        || checkX(0, x, y, currentHeight)
+                        || checkY(y + 1, heightMap.length, x, currentHeight)
+                        || checkX(x + 1, heightMap[y].length, y, currentHeight)) {
                     visibleTrees++;
                 }
             }

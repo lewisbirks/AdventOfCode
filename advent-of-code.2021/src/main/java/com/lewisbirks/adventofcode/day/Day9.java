@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.stream.IntStream;
@@ -20,9 +19,9 @@ public final class Day9 extends Day {
     @Override
     protected void preLoad() {
         heightMap = getInput(line -> IntStream.range(0, line.length())
-            .map(i -> Integer.parseInt(line.substring(i, i + 1)))
-            .toArray()
-        ).toArray(int[][]::new);
+                        .map(i -> Integer.parseInt(line.substring(i, i + 1)))
+                        .toArray())
+                .toArray(int[][]::new);
     }
 
     @Override

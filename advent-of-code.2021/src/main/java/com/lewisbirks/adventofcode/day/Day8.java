@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -15,19 +14,17 @@ public final class Day8 extends Day {
 
     private static final List<Integer> UNIQUE_LENGTHS = List.of(2, 3, 4, 7);
     private static final Map<Set<String>, Integer> CHARS_TO_NUMBERS = Map.of(
-        Set.of("c", "f"), 1,
-        Set.of("a", "c", "d", "e", "g"), 2,
-        Set.of("a", "c", "d", "f", "g"), 3,
-        Set.of("b", "c", "d", "f"), 4,
-        Set.of("a", "b", "d", "f", "g"), 5,
-        Set.of("a", "b", "d", "e", "f", "g"), 6,
-        Set.of("a", "c", "f"), 7,
-        Set.of("a", "b", "c", "d", "e", "f", "g"), 8,
-        Set.of("a", "b", "c", "d", "f", "g"), 9,
-        Set.of("a", "b", "c", "e", "f", "g"), 0
-    );
+            Set.of("c", "f"), 1,
+            Set.of("a", "c", "d", "e", "g"), 2,
+            Set.of("a", "c", "d", "f", "g"), 3,
+            Set.of("b", "c", "d", "f"), 4,
+            Set.of("a", "b", "d", "f", "g"), 5,
+            Set.of("a", "b", "d", "e", "f", "g"), 6,
+            Set.of("a", "c", "f"), 7,
+            Set.of("a", "b", "c", "d", "e", "f", "g"), 8,
+            Set.of("a", "b", "c", "d", "f", "g"), 9,
+            Set.of("a", "b", "c", "e", "f", "g"), 0);
     private List<String[]> displays;
-
 
     public Day8() {
         super(8, "Seven Segment Search");
@@ -41,19 +38,20 @@ public final class Day8 extends Day {
     @Override
     protected Object part1() {
         return displays.stream()
-            .map(input -> input[1].trim())
-            .flatMap(parts -> Arrays.stream(parts.split(" ")))
-            .mapToInt(String::length)
-            .filter(UNIQUE_LENGTHS::contains)
-            .count();
+                .map(input -> input[1].trim())
+                .flatMap(parts -> Arrays.stream(parts.split(" ")))
+                .mapToInt(String::length)
+                .filter(UNIQUE_LENGTHS::contains)
+                .count();
     }
 
     @Override
     protected Object part2() {
         return displays.stream()
-            .map(input -> List.of(input[0].trim().split(" "), input[1].trim().split(" ")))
-            .mapToLong(line -> parse(line.get(1), decode(line.get(0))))
-            .sum();
+                .map(input ->
+                        List.of(input[0].trim().split(" "), input[1].trim().split(" ")))
+                .mapToLong(line -> parse(line.get(1), decode(line.get(0))))
+                .sum();
     }
 
     private Map<String, String> decode(String[] codes) {
@@ -76,9 +74,9 @@ public final class Day8 extends Day {
         }
 
         String cde = occurrence.entrySet().stream()
-            .filter(entry -> entry.getValue() == 2)
-            .map(Map.Entry::getKey)
-            .collect(Collectors.joining());
+                .filter(entry -> entry.getValue() == 2)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.joining());
 
         String de = removeAll(cde, cf);
         String a = removeAll(acf, cf);
@@ -115,8 +113,8 @@ public final class Day8 extends Day {
 
     private int parseNumber(String number, Map<String, String> map) {
         Set<String> toMatch = IntStream.range(0, number.length())
-            .mapToObj(i -> map.get(String.valueOf(number.charAt(i))))
-            .collect(Collectors.toSet());
+                .mapToObj(i -> map.get(String.valueOf(number.charAt(i))))
+                .collect(Collectors.toSet());
 
         if (!CHARS_TO_NUMBERS.containsKey(toMatch)) {
             throw new NoSuchElementException("Could not find " + toMatch);

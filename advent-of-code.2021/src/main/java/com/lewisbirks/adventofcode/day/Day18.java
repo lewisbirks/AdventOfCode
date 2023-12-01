@@ -1,10 +1,9 @@
 package com.lewisbirks.adventofcode.day;
 
-import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.common.domain.Day;
+import com.lewisbirks.adventofcode.common.primitive.ReferenceInt;
 import com.lewisbirks.adventofcode.tree.SnailNumber;
 import com.lewisbirks.adventofcode.utils.TreeUtils;
-
 import java.util.List;
 
 public final class Day18 extends Day {
@@ -23,7 +22,7 @@ public final class Day18 extends Day {
     @Override
     protected Object part1() {
         SnailNumber answer = numbers.stream()
-            .reduce(null, (result, element) -> reduce(result == null ? element : new SnailNumber(result, element)));
+                .reduce(null, (result, element) -> reduce(result == null ? element : new SnailNumber(result, element)));
 
         if (answer == null) {
             throw new IllegalStateException();
@@ -62,7 +61,6 @@ public final class Day18 extends Day {
             break;
         }
 
-
         return number;
     }
 
@@ -78,10 +76,11 @@ public final class Day18 extends Day {
         }
 
         return number.isPair()
-               && depth >= 4
-               && number.getLeft().isRegularNumber()
-               && number.getRight().isRegularNumber()
-               ? number : findExplodingNumber(number.getRight(), depth + 1);
+                        && depth >= 4
+                        && number.getLeft().isRegularNumber()
+                        && number.getRight().isRegularNumber()
+                ? number
+                : findExplodingNumber(number.getRight(), depth + 1);
     }
 
     private void explode(SnailNumber root, SnailNumber toExplode) {
@@ -118,8 +117,9 @@ public final class Day18 extends Day {
     }
 
     private long magnitude(SnailNumber number) {
-        return number.isRegularNumber() ? number.getValue()
-                                        : 3L * magnitude(number.getLeft()) + 2L * magnitude(number.getRight());
+        return number.isRegularNumber()
+                ? number.getValue()
+                : 3L * magnitude(number.getLeft()) + 2L * magnitude(number.getRight());
     }
 
     private SnailNumber parse(String line, ReferenceInt index) {

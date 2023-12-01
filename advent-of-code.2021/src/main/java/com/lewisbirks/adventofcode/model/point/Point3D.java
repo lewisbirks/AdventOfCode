@@ -50,7 +50,7 @@ public record Point3D(int x, int y, int z) implements Comparable<Point3D> {
 
     @Override
     public int compareTo(Point3D o) {
-        return Arrays.compare(new int[]{x, y, z}, new int[]{o.x, o.y, o.z});
+        return Arrays.compare(new int[] {x, y, z}, new int[] {o.x, o.y, o.z});
     }
 
     @Override

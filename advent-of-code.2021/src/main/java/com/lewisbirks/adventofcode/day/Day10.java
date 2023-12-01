@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -12,23 +11,20 @@ import java.util.Set;
 public final class Day10 extends Day {
 
     private static final Map<Character, Integer> CORRUPT_POINTS = Map.of(
-        ')', 3,
-        ']', 57,
-        '}', 1197,
-        '>', 25137
-    );
+            ')', 3,
+            ']', 57,
+            '}', 1197,
+            '>', 25137);
     private static final Map<Character, Integer> INCOMPLETE_POINTS = Map.of(
-        '(', 1,
-        '[', 2,
-        '{', 3,
-        '<', 4
-    );
+            '(', 1,
+            '[', 2,
+            '{', 3,
+            '<', 4);
     private static final Map<Character, Character> PAIRS = Map.of(
-        '(', ')',
-        '[', ']',
-        '{', '}',
-        '<', '>'
-    );
+            '(', ')',
+            '[', ']',
+            '{', '}',
+            '<', '>');
 
     private static final Set<Character> OPENING = Set.of('(', '[', '{', '<');
     private static final Set<Character> CLOSING = Set.of(')', ']', '}', '>');

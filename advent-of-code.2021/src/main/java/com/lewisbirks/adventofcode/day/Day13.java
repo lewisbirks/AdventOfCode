@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -39,9 +38,10 @@ public final class Day13 extends Day {
     private Collection<Point> fold(final Point fold, Collection<Point> marks) {
         boolean foldX = fold.x() > fold.y();
         return marks.stream()
-            .map(mark -> foldX ? (fold.x() < mark.x() ? new Point(fold.x() - (mark.x() - fold.x()), mark.y()) : mark)
-                               : (fold.y() < mark.y() ? new Point(mark.x(), fold.y() - (mark.y() - fold.y())) : mark)
-            ).collect(Collectors.toSet());
+                .map(mark -> foldX
+                        ? (fold.x() < mark.x() ? new Point(fold.x() - (mark.x() - fold.x()), mark.y()) : mark)
+                        : (fold.y() < mark.y() ? new Point(mark.x(), fold.y() - (mark.y() - fold.y())) : mark))
+                .collect(Collectors.toSet());
     }
 
     private void read() {
@@ -51,17 +51,26 @@ public final class Day13 extends Day {
 
         this.marks = markInputs.stream().map(Point::of).toList();
         this.folds = foldInputs.stream()
-            .map(line -> {
-                String[] fold = line.substring(11).split("=");
-                return fold[0].equals("x") ? new Point(Integer.parseInt(fold[1]), -1)
-                                           : new Point(-1, Integer.parseInt(fold[1]));
-            })
-            .toList();
+                .map(line -> {
+                    String[] fold = line.substring(11).split("=");
+                    return fold[0].equals("x")
+                            ? new Point(Integer.parseInt(fold[1]), -1)
+                            : new Point(-1, Integer.parseInt(fold[1]));
+                })
+                .toList();
     }
 
     private String printPaper(Collection<Point> points) {
-        int maxX = points.stream().max(Comparator.comparingInt(Point::x)).map(Point::x).orElse(0) + 1;
-        int maxY = points.stream().max(Comparator.comparingInt(Point::y)).map(Point::y).orElse(0) + 1;
+        int maxX = points.stream()
+                        .max(Comparator.comparingInt(Point::x))
+                        .map(Point::x)
+                        .orElse(0)
+                + 1;
+        int maxY = points.stream()
+                        .max(Comparator.comparingInt(Point::y))
+                        .map(Point::y)
+                        .orElse(0)
+                + 1;
         StringBuilder paper = new StringBuilder("\n");
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {

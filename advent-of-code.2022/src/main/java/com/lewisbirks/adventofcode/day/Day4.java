@@ -2,7 +2,6 @@ package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
 import com.lewisbirks.adventofcode.common.tuple.Pair;
-
 import java.util.List;
 
 public final class Day4 extends Day {
@@ -24,15 +23,17 @@ public final class Day4 extends Day {
     @Override
     protected Object part1() {
         return assignments.stream()
-            .filter(pair -> pair.left().contains(pair.right()) || pair.right().contains(pair.left()))
-            .count();
+                .filter(pair ->
+                        pair.left().contains(pair.right()) || pair.right().contains(pair.left()))
+                .count();
     }
 
     @Override
     protected Object part2() {
         return assignments.stream()
-            .filter(pair -> pair.left().overlaps(pair.right()) || pair.right().overlaps(pair.left()))
-            .count();
+                .filter(pair ->
+                        pair.left().overlaps(pair.right()) || pair.right().overlaps(pair.left()))
+                .count();
     }
 
     record Range(int start, int end) {
@@ -48,7 +49,7 @@ public final class Day4 extends Day {
 
         public boolean overlaps(Range other) {
             return this.start <= other.start && other.start <= this.end
-                   || this.end >= other.end && this.start <= other.end;
+                    || this.end >= other.end && this.start <= other.end;
         }
     }
 }

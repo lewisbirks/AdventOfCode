@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -15,7 +14,7 @@ public final class Day1 extends Day {
 
     @Override
     protected void preLoad() {
-        depths =  getInput(Long::parseLong);
+        depths = getInput(Long::parseLong);
     }
 
     @Override
@@ -30,8 +29,8 @@ public final class Day1 extends Day {
 
     private Long calculate(List<Long> input, int windowSize) {
         return IntStream.range(windowSize, input.size())
-            .filter(i -> isWindowIncreasing(input, i, windowSize))
-            .count();
+                .filter(i -> isWindowIncreasing(input, i, windowSize))
+                .count();
     }
 
     private boolean isWindowIncreasing(List<Long> input, int index, int windowSize) {
