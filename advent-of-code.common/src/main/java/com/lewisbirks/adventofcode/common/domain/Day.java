@@ -38,7 +38,7 @@ public abstract class Day implements Comparable<Day> {
             List<Long> timings = new ArrayList<>();
 
             for (int i = 0; i < iterations; i++) {
-                preLoad();
+                preload();
                 if (performance) {
                     System.out.printf("\r\tIteration: %d", i + 1);
                 }
@@ -55,7 +55,7 @@ public abstract class Day implements Comparable<Day> {
 
             timings = new ArrayList<>();
             for (int i = 0; i < iterations; i++) {
-                preLoad();
+                preload();
                 if (performance) {
                     System.out.printf("\r\tIteration: %d", i + 1);
                 }
@@ -93,11 +93,11 @@ public abstract class Day implements Comparable<Day> {
         }
     }
 
-    protected abstract void preLoad();
+    public abstract void preload();
 
-    protected abstract Object part1();
+    public abstract Object part1();
 
-    protected abstract Object part2();
+    public abstract Object part2();
 
     protected <I> List<I> getInput(Function<String, I> transformer) {
         return getInput(transformer, Collectors.toUnmodifiableList());

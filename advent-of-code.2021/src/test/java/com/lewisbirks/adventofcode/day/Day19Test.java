@@ -15,7 +15,7 @@ class Day19Test {
 
     @BeforeEach
     void setUp() {
-        underTest.preLoad();
+        underTest.preload();
     }
 
     @Test

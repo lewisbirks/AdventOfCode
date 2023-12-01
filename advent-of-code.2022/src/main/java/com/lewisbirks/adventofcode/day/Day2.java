@@ -41,7 +41,7 @@ public final class Day2 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         strategyGuide = getInput(move -> {
             String[] split = move.split(" ");
             return new int[] {split[0].charAt(0) - 'A', split[1].charAt(0) - 'X'};
@@ -49,14 +49,14 @@ public final class Day2 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return strategyGuide.stream()
                 .mapToInt(move -> MOVE_STRATEGY[move[0]][move[1]] + move[1] + 1)
                 .sum();
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return strategyGuide.stream()
                 .mapToInt(move -> OUTCOME_STRATEGY[move[0]][move[1]] + (move[1] * 3))
                 .sum();

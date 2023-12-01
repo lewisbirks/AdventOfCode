@@ -12,17 +12,17 @@ public final class Day5 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         seats = getInput();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return seats.stream().mapToInt(this::seatId).max().orElse(0);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         List<Integer> ids = seats.stream().map(this::seatId).toList();
         return ids.stream()
                 // the next seat doesn't exist but the seat after that does

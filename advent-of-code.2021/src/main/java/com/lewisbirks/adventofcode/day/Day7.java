@@ -17,13 +17,13 @@ public final class Day7 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         crabPositions =
                 Arrays.stream(readInput().split(",")).map(Long::parseLong).toList();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return range().map(target -> costForTarget(target).sum()).min().orElse(MAX_VALUE);
     }
 
@@ -37,7 +37,7 @@ public final class Day7 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return range().map(target ->
                         costForTarget(target).map(v -> v * (v + 1) / 2).sum())
                 .min()

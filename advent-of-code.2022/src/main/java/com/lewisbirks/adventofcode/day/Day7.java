@@ -19,7 +19,7 @@ public final class Day7 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         List<String> consoleOutput = getInput();
         DiskNode current = null;
         for (String s : consoleOutput) {
@@ -55,7 +55,7 @@ public final class Day7 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return root.getDirectoryNodes().stream()
                 .mapToLong(DiskNode::getSize)
                 .filter(size -> size <= MAX_DIR_SIZE)
@@ -63,7 +63,7 @@ public final class Day7 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         long required = UPDATE_SIZE - (SYSTEM_SIZE - root.getSize());
         return root.getDirectoryNodes().stream()
                 .mapToLong(DiskNode::getSize)

@@ -20,7 +20,7 @@ public final class Day14 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         List<String> input = getInput();
         walls = new HashSet<>();
         for (String line : input) {
@@ -61,7 +61,7 @@ public final class Day14 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int sandCount = 0;
         Set<Point> surfaces = new HashSet<>(walls);
         Set<Point> sands = new HashSet<>();
@@ -94,7 +94,7 @@ public final class Day14 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int sandCount = 0;
         Set<Point> surfaces = new HashSet<>(walls);
         Set<Point> sands = new HashSet<>();

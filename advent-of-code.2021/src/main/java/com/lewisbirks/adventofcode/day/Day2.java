@@ -13,12 +13,12 @@ public final class Day2 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         vectors = getInput(Vector::of);
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int depth = 0;
         int horizontal = 0;
 
@@ -34,7 +34,7 @@ public final class Day2 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int depth = 0;
         int horizontal = 0;
         int aim = 0;

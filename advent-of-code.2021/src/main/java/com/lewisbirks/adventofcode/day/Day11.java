@@ -13,7 +13,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         energyLevels = getInput(line -> Arrays.stream(line.split(""))
                         .mapToInt(Integer::parseInt)
                         .toArray())
@@ -21,7 +21,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int sum = 0;
         for (int i = 0; i < 100; i++) {
             sum += flashGrid(energyLevels);
@@ -31,7 +31,7 @@ public final class Day11 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int step = 0;
         while (true) {
             step++;

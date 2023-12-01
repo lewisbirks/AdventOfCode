@@ -28,17 +28,17 @@ public final class Day21 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         positions = getInput(this::parse).stream().mapToInt(i -> i).toArray();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return deterministicPlay(positions);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return Arrays.stream(quantumPlay(positions)).reduce(0, Math::max);
     }
 

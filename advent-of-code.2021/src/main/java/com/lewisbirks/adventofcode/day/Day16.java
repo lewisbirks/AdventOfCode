@@ -24,17 +24,17 @@ public final class Day16 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         packets = hexToBinary(readInput().trim());
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return sumPacketVersions(packets);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         subPacketIndex = 0;
         // top packet should be an operator so should only have one value
         return evaluatePacket(packets, Integer.MAX_VALUE).get(0);

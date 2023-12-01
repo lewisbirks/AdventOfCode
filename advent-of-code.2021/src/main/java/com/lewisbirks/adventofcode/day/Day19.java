@@ -19,7 +19,7 @@ public final class Day19 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         scanners = new ArrayList<>();
         String[] unprocessedScanners = readInput().split(System.lineSeparator() + System.lineSeparator());
         for (String s : unprocessedScanners) {
@@ -30,7 +30,7 @@ public final class Day19 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         scannerLocations = new ArrayList<>(List.of(CENTER));
         List<Scanner> scanners = new ArrayList<>(this.scanners);
         Scanner baseScanner = scanners.remove(0);
@@ -60,7 +60,7 @@ public final class Day19 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int max = 0;
         for (Point3D s1 : scannerLocations) {
             for (Point3D s2 : scannerLocations) {

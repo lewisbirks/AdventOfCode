@@ -12,12 +12,12 @@ public final class Day1 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         expenses = getInput(Long::parseLong);
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int numExpenses = expenses.size();
         for (int i = 0; i < numExpenses - 1; i++) {
             Long first = expenses.get(i);
@@ -32,7 +32,7 @@ public final class Day1 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int numExpenses = expenses.size();
         for (int i = 0; i < numExpenses - 2; i++) {
             Long first = expenses.get(i);

@@ -13,17 +13,17 @@ public final class Day3 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         rucksacks = getInput();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return rucksacks.stream().mapToInt(Day3::calculatePriorityOfDuplicates).sum();
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int size = rucksacks.size();
         return IntStream.iterate(0, i -> i < size - 2, i -> i + 3)
                 .map(i -> calculatePriorityOfBadges(rucksacks.get(i), rucksacks.get(i + 1), rucksacks.get(i + 2)))

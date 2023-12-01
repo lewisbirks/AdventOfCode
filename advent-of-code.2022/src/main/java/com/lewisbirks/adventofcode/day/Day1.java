@@ -16,7 +16,7 @@ public final class Day1 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         String[] sections = readInput().split("\n\n");
         calorieGroups = Arrays.stream(sections)
                 .map(section -> section.lines().map(Integer::valueOf).toList())
@@ -24,12 +24,12 @@ public final class Day1 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return getTotals().reduce(Math::max).orElseThrow();
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return getTotals().sorted(reverseOrder()).limit(3).reduce(0, Integer::sum);
     }
 

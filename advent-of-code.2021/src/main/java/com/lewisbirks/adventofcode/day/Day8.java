@@ -31,12 +31,12 @@ public final class Day8 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         displays = getInput(input -> input.split("\\|"));
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return displays.stream()
                 .map(input -> input[1].trim())
                 .flatMap(parts -> Arrays.stream(parts.split(" ")))
@@ -46,7 +46,7 @@ public final class Day8 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return displays.stream()
                 .map(input ->
                         List.of(input[0].trim().split(" "), input[1].trim().split(" ")))

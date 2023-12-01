@@ -17,7 +17,7 @@ public final class Day5 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         coordinateGroups = getInput(line -> {
             String[] points = line.split(" -> ");
             return Arrays.stream(points).map(Point::of).toList();
@@ -25,12 +25,12 @@ public final class Day5 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return getOverlapCount((start, end) -> !start.isDiagonalLine(end));
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return getOverlapCount((start, end) -> true);
     }
 

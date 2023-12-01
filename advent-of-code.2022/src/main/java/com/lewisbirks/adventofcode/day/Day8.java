@@ -12,7 +12,7 @@ public final class Day8 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         heightMap = getInput(row -> IntStream.range(0, row.length())
                         .map(j -> row.charAt(j) - '0')
                         .toArray())
@@ -20,7 +20,7 @@ public final class Day8 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         int visibleTrees = (heightMap.length * 2) + ((heightMap[0].length - 2) * 2);
 
         for (int y = 1; y < heightMap.length - 1; y++) {
@@ -56,7 +56,7 @@ public final class Day8 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         int count = 0;
         for (int y = 0; y < heightMap.length; y++) {
             for (int x = 0; x < heightMap[y].length; x++) {

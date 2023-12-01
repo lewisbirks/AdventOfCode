@@ -15,12 +15,12 @@ public final class Day18 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         numbers = getInput(line -> this.parse(line, new ReferenceInt()));
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         SnailNumber answer = numbers.stream()
                 .reduce(null, (result, element) -> reduce(result == null ? element : new SnailNumber(result, element)));
 
@@ -34,7 +34,7 @@ public final class Day18 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         long max = 0;
         for (SnailNumber number1 : numbers) {
             for (SnailNumber number2 : numbers) {

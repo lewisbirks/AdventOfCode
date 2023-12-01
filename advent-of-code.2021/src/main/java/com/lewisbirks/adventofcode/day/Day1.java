@@ -13,17 +13,17 @@ public final class Day1 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         depths = getInput(Long::parseLong);
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return calculate(depths, 1);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return calculate(depths, 3);
     }
 

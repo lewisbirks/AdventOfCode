@@ -24,7 +24,7 @@ public final class Day12 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         List<String> input = getInput();
         map = input.stream().map(String::toCharArray).toArray(char[][]::new);
         for (int y = 0; y < map.length; y++) {
@@ -44,12 +44,12 @@ public final class Day12 extends Day {
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return calculateShortestPath(Set.of(start));
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         Set<Point> as = new HashSet<>();
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {

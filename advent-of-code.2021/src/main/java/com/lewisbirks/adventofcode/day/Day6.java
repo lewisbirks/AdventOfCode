@@ -13,19 +13,19 @@ public final class Day6 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         fish = new long[NEW_LIFE_TIMER_START + 1];
         String[] lines = readInput().split(",");
         Arrays.stream(lines).forEach(s -> fish[Integer.parseInt(s)]++);
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         return processLifeForDays(80);
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         return processLifeForDays(256);
     }
 

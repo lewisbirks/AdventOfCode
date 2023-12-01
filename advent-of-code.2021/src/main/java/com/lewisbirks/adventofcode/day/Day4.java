@@ -18,12 +18,12 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected void preLoad() {
+    public void preload() {
         readBoards();
     }
 
     @Override
-    protected Object part1() {
+    public Object part1() {
         for (Integer number : values) {
             for (Board board : boards) {
                 board.mark(number);
@@ -36,7 +36,7 @@ public final class Day4 extends Day {
     }
 
     @Override
-    protected Object part2() {
+    public Object part2() {
         List<Board> boards = new ArrayList<>(this.boards);
         Board lastWinner = Board.empty();
         int lastNumber = 0;
