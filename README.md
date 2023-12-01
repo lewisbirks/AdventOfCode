@@ -28,7 +28,7 @@ Each module has a `Driver` class which can be used as the main class when runnin
 The main code can be run by first installing them
 
 ```shell
-mvn install -DskipTests
+./mvnw install -DskipTests
 ```
 
 and then running the appropriate jar located in each of the `target` directories generated
@@ -42,13 +42,13 @@ java -jar advent-of-code.2021/target/2021.jar
 Unit tests can be run via
 
 ```shell
-mvn test
+./mvnw test
 ```
 
 Performance tests are found in the `src/performance` directory and can be run via
 
 ```shell
-mvn verify -P performance
+./mvnw verify -P performance
 ```
 
 ### 📝 TODO
