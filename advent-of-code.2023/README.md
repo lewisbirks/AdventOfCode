@@ -13,7 +13,7 @@
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day1.java">Day 1</a></td>
             <td>55538<td>
-            <td><td>
+            <td>54875<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day2.java">Day 2</a></td>
@@ -88,6 +88,9 @@
 ==========================
 Year 2023
 ==========================
+Day 01: Trebuchet?!
+	Part 1: 55538 (runs: 1000, avg: 39µs, min: 21µs, max: 2ms, total: 00:00.039)
+	Part 2: 54875 (runs: 1000, avg: 169µs, min: 147µs, max: 2ms, total: 00:00.169)
 
 ==========================
 </pre>

@@ -17,11 +17,10 @@ class Day1Test {
 
     @Test
     void part1() {
-        assertThat(underTest.part1()).isEqualTo(142L);
+        assertThat(underTest.part1()).isEqualTo(221L);
     }
 
     @Test
-    @Disabled
     void part2() {
         assertThat(underTest.part2()).isEqualTo(281L);
     }

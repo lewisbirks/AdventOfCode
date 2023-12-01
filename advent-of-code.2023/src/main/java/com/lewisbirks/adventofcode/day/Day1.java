@@ -70,7 +70,7 @@ public final class Day1 extends Day {
         }
         for (int i = 0; i < NUMBERS.size(); i++) {
             String number = NUMBERS.get(i);
-            int offset = fromStart ? index : index - number.length();
+            int offset = fromStart ? index : index + 1 - number.length();
             if (calibration.startsWith(number, offset)) {
                 return i;
             }
