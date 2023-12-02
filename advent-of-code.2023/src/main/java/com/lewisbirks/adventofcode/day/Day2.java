@@ -1,23 +1,68 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public final class Day2 extends Day {
 
+    private List<Game> games;
+
     public Day2() {
-        super(2, "");
+        super(2, "Cube Conundrum");
     }
 
     @Override
-    public void preload() {}
+    public void preload() {
+        games = getInput(s -> {
+            int separator = s.indexOf(':');
+            int id = Integer.parseInt(s.substring(s.indexOf(' ') + 1, separator));
+            String sets = s.substring(separator + 2);
+            List<CubeSet> cubeSets = new ArrayList<>(3);
+            for (String string : sets.split("; ")) {
+                String[] cubes = string.split(", ");
+                int red = 0;
+                int green = 0;
+                int blue = 0;
+
+                for (String cube : cubes) {
+                    int i = Integer.parseInt(cube.substring(0, cube.indexOf(' ')));
+                    if (cube.contains("red")) {
+                        red = i;
+                    } else if (cube.contains("green")) {
+                        green = i;
+                    } else {
+                        blue = i;
+                    }
+                }
+
+                CubeSet apply = new CubeSet(red, green, blue);
+                cubeSets.add(apply);
+            }
+            return new Game(id, Collections.unmodifiableList(cubeSets));
+        });
+    }
 
     @Override
     public Object part1() {
-        return null;
+        int maxRed = 12;
+        int maxGreen = 13;
+        int maxBlue = 14;
+        return games.stream().filter(game -> game.isPossible(maxRed, maxGreen, maxBlue)).mapToLong(Game::id).sum();
     }
 
     @Override
     public Object part2() {
         return null;
     }
+
+    record Game(int id, List<CubeSet> sets) {
+        public boolean isPossible(int r, int g, int b) {
+            return sets.stream()
+                    .noneMatch(set -> set.red() > r || set.green() > g || set.blue() > b);
+        }
+    }
+
+    record CubeSet(int red, int green, int blue) { }
 }
