@@ -49,20 +49,40 @@ public final class Day2 extends Day {
         int maxRed = 12;
         int maxGreen = 13;
         int maxBlue = 14;
-        return games.stream().filter(game -> game.isPossible(maxRed, maxGreen, maxBlue)).mapToLong(Game::id).sum();
+        return games.stream()
+                .filter(game -> game.isPossible(maxRed, maxGreen, maxBlue))
+                .mapToLong(Game::id)
+                .sum();
     }
 
     @Override
     public Object part2() {
-        return null;
+        return games.stream().map(Game::getMin).mapToLong(CubeSet::power).sum();
     }
 
     record Game(int id, List<CubeSet> sets) {
         public boolean isPossible(int r, int g, int b) {
-            return sets.stream()
-                    .noneMatch(set -> set.red() > r || set.green() > g || set.blue() > b);
+            return sets.stream().noneMatch(set -> set.red() > r || set.green() > g || set.blue() > b);
+        }
+
+        public CubeSet getMin() {
+            int maxR = 0;
+            int maxG = 0;
+            int maxB = 0;
+
+            for (CubeSet set : sets) {
+                maxR = Math.max(maxR, set.red());
+                maxG = Math.max(maxG, set.green());
+                maxB = Math.max(maxB, set.blue());
+            }
+
+            return new CubeSet(maxR, maxG, maxB);
         }
     }
 
-    record CubeSet(int red, int green, int blue) { }
+    record CubeSet(int red, int green, int blue) {
+        public long power() {
+            return (long) red * green * blue;
+        }
+    }
 }
