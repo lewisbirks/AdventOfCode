@@ -38,22 +38,23 @@ public final class Day1 extends Day {
         boolean last = false;
         int num = 0;
         for (int i = 0, j = calibration.length() - 1; i < calibration.length(); i++, j--) {
-            if (first && last) {
-                break;
-            }
+            int digit;
             if (!first) {
-                int digit = getDigit(calibration, i, considerStrings, true);
+                digit = getDigit(calibration, i, considerStrings, true);
                 if (digit != -1) {
                     first = true;
                     num += 10 * digit;
                 }
             }
             if (!last) {
-                int digit = getDigit(calibration, j, considerStrings, false);
+                digit = getDigit(calibration, j, considerStrings, false);
                 if (digit != -1) {
                     num += digit;
                     last = true;
                 }
+            }
+            if (first && last) {
+                break;
             }
         }
         return num;
