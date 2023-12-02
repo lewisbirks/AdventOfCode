@@ -17,8 +17,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day2.java">Day 2</a></td>
-            <td><td>
-            <td><td>
+            <td>2486<td>
+            <td>87984<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day3.java">Day 3</a></td>
@@ -91,7 +91,9 @@ Year 2023
 Day 01: Trebuchet?!
 	Part 1: 55538 (runs: 1000, avg: 39µs, min: 21µs, max: 2ms, total: 00:00.039)
 	Part 2: 54875 (runs: 1000, avg: 169µs, min: 147µs, max: 2ms, total: 00:00.169)
-
+Day 02: Cube Conundrum
+	Part 1: 2486 (runs: 1000, avg: 15µs, min: 6µs, max: 2ms, total: 00:00.015)
+	Part 2: 87984 (runs: 1000, avg: 5µs, min: 3µs, max: 999µs, total: 00:00.005)
 ==========================
 </pre>
 </details>
