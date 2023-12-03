@@ -62,7 +62,7 @@ public final class Day3 extends Day {
         for (PartNumber partNumber : partNumberLocations) {
             Location location = partNumber.location();
             for (Point point : surrounding) {
-                if (point.y() == location.y() && point.x() >= location.xMin() && point.x() <= location.xMax()) {
+                if (location.contains(point)) {
                     connected.add(partNumber);
                     break;
                 }
@@ -78,5 +78,9 @@ public final class Day3 extends Day {
 
     record PartNumber(int number, Location location) {}
 
-    record Location(int y, int xMin, int xMax) {}
+    record Location(int y, int xMin, int xMax) {
+        public boolean contains(Point point) {
+            return point.y() == y && point.x() >= xMin && point.x() <= xMax;
+        }
+    }
 }
