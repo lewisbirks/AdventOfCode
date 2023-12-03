@@ -1,5 +1,9 @@
 package com.lewisbirks.adventofcode.common.coor;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public record Point(int x, int y) {
     public static final Point RIGHT = new Point(1, 0);
     public static final Point LEFT = new Point(-1, 0);
@@ -7,6 +11,8 @@ public record Point(int x, int y) {
     public static final Point DOWN = new Point(0, 1);
     public static final Point LEFT_DOWN = LEFT.add(DOWN);
     public static final Point RIGHT_DOWN = RIGHT.add(DOWN);
+    public static final Point LEFT_UP = LEFT.add(UP);
+    public static final Point RIGHT_UP = RIGHT.add(UP);
 
     public static Point of(String pair) {
         String[] points = pair.split(",");
@@ -43,5 +49,12 @@ public record Point(int x, int y) {
 
     public Point add(Point other) {
         return new Point(this.x + other.x, this.y + other.y);
+    }
+
+    public Set<Point> getSurrounding() {
+        return Stream.of(UP, DOWN, LEFT, RIGHT, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN)
+                .map(this::add)
+                .filter(point -> point.x >= 0 && point.y >= 0)
+                .collect(Collectors.toSet());
     }
 }
