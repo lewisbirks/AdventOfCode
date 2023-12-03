@@ -50,11 +50,24 @@ public final class Day3 extends Day {
     public Object part1() {
         Set<PartNumber> partNumbers = new HashSet<>(partNumberLocations);
         return symbols.stream()
-                .mapToLong(symbol -> getSurroundingPartNumbers(symbol, partNumbers, false))
+                .map(symbol -> getSurroundingPartNumbers(symbol, partNumbers))
+                .flatMap(Collection::stream)
+                .mapToLong(PartNumber::number)
                 .sum();
     }
 
-    private long getSurroundingPartNumbers(Symbol symbol, Set<PartNumber> partNumbers, boolean multiply) {
+    @Override
+    public Object part2() {
+        Set<PartNumber> partNumbers = new HashSet<>(partNumberLocations);
+        return symbols.stream()
+                .filter(Symbol::isGear)
+                .map(symbol -> getSurroundingPartNumbers(symbol, partNumbers))
+                .filter(parts -> parts.size() == 2)
+                .mapToLong(parts -> (long) parts.get(0).number() * parts.get(1).number())
+                .sum();
+    }
+
+    private List<PartNumber> getSurroundingPartNumbers(Symbol symbol, Set<PartNumber> partNumbers) {
         Set<Point> surrounding = symbol.position().getSurrounding();
         List<PartNumber> connected = new ArrayList<>();
         for (PartNumber partNumber : partNumbers) {
@@ -68,26 +81,15 @@ public final class Day3 extends Day {
                 }
             }
         }
+        // remove so they aren't searched over again
         connected.forEach(partNumbers::remove);
-        if (multiply) {
-            return !symbol.isGear(connected) ? 0 : ((long) connected.get(0).number) * connected.get(1).number;
-        }
-        return connected.stream().mapToLong(PartNumber::number).sum();
-    }
-
-    @Override
-    public Object part2() {
-        Set<PartNumber> partNumbers = new HashSet<>(partNumberLocations);
-        return symbols.stream()
-                .mapToLong(symbol -> getSurroundingPartNumbers(symbol, partNumbers, true))
-                .sum();
+        return connected;
     }
 
     record PartNumber(int number, Location location) {
         boolean isNear(Point point) {
-            return point.y() >= location().y() - 1 && point.y() <= location().y() + 1
-                    || point.x() >= location().xMin() - 1
-                            && point.x() <= location().xMax() + 1;
+            return point.y() >= location.y() - 1 && point.y() <= location.y() + 1
+                    || point.x() >= location.xMin() - 1 && point.x() <= location.xMax() + 1;
         }
     }
 
@@ -98,8 +100,11 @@ public final class Day3 extends Day {
     }
 
     record Symbol(char symbol, Point position) {
-        boolean isGear(Collection<PartNumber> connected) {
-            return symbol == '*' && connected.size() == 2;
+
+        private static final char GEAR = '*';
+
+        public boolean isGear() {
+            return symbol == GEAR;
         }
     }
 }
