@@ -22,8 +22,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day3.java">Day 3</a></td>
-            <td><td>
-            <td><td>
+            <td>527369<td>
+            <td>73074886<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day4.java">Day 4</a></td>
@@ -94,6 +94,9 @@ Day 01: Trebuchet?!
 Day 02: Cube Conundrum
 	Part 1: 2486 (runs: 1000, avg: 15µs, min: 6µs, max: 2ms, total: 00:00.015)
 	Part 2: 87984 (runs: 1000, avg: 5µs, min: 3µs, max: 999µs, total: 00:00.005)
+Day 03: Gear Ratios
+	Part 1: 527369 (runs: 1000, avg: 2ms, min: 2ms, max: 30ms, total: 00:02.779)
+	Part 2: 73074886 (runs: 1000, avg: 1ms, min: 1ms, max: 3ms, total: 00:01.888)
 ==========================
 </pre>
 </details>
