@@ -5,9 +5,7 @@ import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public final class Day3 extends Day {
 
@@ -48,7 +46,7 @@ public final class Day3 extends Day {
 
     @Override
     public Object part1() {
-        Set<PartNumber> partNumbers = new HashSet<>(partNumberLocations);
+        List<PartNumber> partNumbers = new ArrayList<>(partNumberLocations);
         return symbols.stream()
                 .map(symbol -> getSurroundingPartNumbers(symbol, partNumbers))
                 .flatMap(Collection::stream)
@@ -58,7 +56,7 @@ public final class Day3 extends Day {
 
     @Override
     public Object part2() {
-        Set<PartNumber> partNumbers = new HashSet<>(partNumberLocations);
+        List<PartNumber> partNumbers = new ArrayList<>(partNumberLocations);
         return symbols.stream()
                 .filter(Symbol::isGear)
                 .map(symbol -> getSurroundingPartNumbers(symbol, partNumbers))
@@ -67,8 +65,8 @@ public final class Day3 extends Day {
                 .sum();
     }
 
-    private List<PartNumber> getSurroundingPartNumbers(Symbol symbol, Set<PartNumber> partNumbers) {
-        Set<Point> surrounding = symbol.position().getSurrounding();
+    private List<PartNumber> getSurroundingPartNumbers(Symbol symbol, List<PartNumber> partNumbers) {
+        List<Point> surrounding = symbol.position().getSurrounding();
         List<PartNumber> connected = new ArrayList<>();
         for (PartNumber partNumber : partNumbers) {
             if (!partNumber.isNear(symbol.position())) {

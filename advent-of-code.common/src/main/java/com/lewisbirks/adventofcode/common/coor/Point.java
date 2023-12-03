@@ -1,7 +1,6 @@
 package com.lewisbirks.adventofcode.common.coor;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 import java.util.stream.Stream;
 
 public record Point(int x, int y) {
@@ -51,10 +50,10 @@ public record Point(int x, int y) {
         return new Point(this.x + other.x, this.y + other.y);
     }
 
-    public Set<Point> getSurrounding() {
+    public List<Point> getSurrounding() {
         return Stream.of(UP, DOWN, LEFT, RIGHT, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN)
                 .map(this::add)
                 .filter(point -> point.x >= 0 && point.y >= 0)
-                .collect(Collectors.toSet());
+                .toList();
     }
 }
