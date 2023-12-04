@@ -27,8 +27,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day4.java">Day 4</a></td>
-            <td><td>
-            <td><td>
+            <td>22488<td>
+            <td>7013204<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day5.java">Day 5</a></td>
@@ -97,6 +97,9 @@ Day 02: Cube Conundrum
 Day 03: Gear Ratios
 	Part 1: 527369 (runs: 1000, avg: 2ms, min: 2ms, max: 30ms, total: 00:02.779)
 	Part 2: 73074886 (runs: 1000, avg: 1ms, min: 1ms, max: 3ms, total: 00:01.888)
+Day 04: Scratchcards
+	Part 1: 22488 (runs: 1000, avg: 132µs, min: 121µs, max: 1ms, total: 00:00.132)
+	Part 2: 7013204 (runs: 1000, avg: 161µs, min: 139µs, max: 1ms, total: 00:00.161)
 ==========================
 </pre>
 </details>
