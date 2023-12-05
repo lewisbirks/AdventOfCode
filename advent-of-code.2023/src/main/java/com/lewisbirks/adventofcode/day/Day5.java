@@ -11,14 +11,14 @@ import java.util.stream.Stream;
 
 public final class Day5 extends Day {
 
-    List<Long> seeds;
-    List<Range> seedToSoil;
-    List<Range> soilToFertilizer;
-    List<Range> fertilizerToWater;
-    List<Range> waterToLight;
-    List<Range> lightToTemperature;
-    List<Range> temperatureToHumidity;
-    List<Range> humidityToLocation;
+    private List<Long> seeds;
+    private List<Range> seedToSoil;
+    private List<Range> soilToFertilizer;
+    private List<Range> fertilizerToWater;
+    private List<Range> waterToLight;
+    private List<Range> lightToTemperature;
+    private List<Range> temperatureToHumidity;
+    private List<Range> humidityToLocation;
 
     public Day5() {
         super(5, "If You Give A Seed A Fertilizer");
@@ -72,25 +72,28 @@ public final class Day5 extends Day {
     public Object part2() {
         List<Pair<Long, Long>> ranges = new ArrayList<>();
         for (int i = 0; i < seeds.size(); i += 2) {
-            ranges.add(new Pair<>(seeds.get(i), seeds.get(i) + seeds.get(i + 1) - 1));
+            ranges.add(new Pair<>(seeds.get(i), seeds.get(i) + seeds.get(i + 1)));
         }
+
         long location = 0;
         while (true) {
             long seed = locationToSeed(location);
-            boolean found = false;
-            for (Pair<Long, Long> range : ranges) {
-                if (range.left() <= seed && seed <= range.right()) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found) {
+            if (isValidSeed(ranges, seed)) {
                 break;
             }
             location++;
         }
 
         return location;
+    }
+
+    private static boolean isValidSeed(List<Pair<Long, Long>> ranges, long seed) {
+        for (Pair<Long, Long> range : ranges) {
+            if (range.left() <= seed && seed < range.right()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private long seedToLocation(long seed) {
