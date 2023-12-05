@@ -32,8 +32,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day5.java">Day 5</a></td>
-            <td><td>
-            <td><td>
+            <td>462648396<td>
+            <td>2520479<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day6.java">Day 6</a></td>
@@ -100,6 +100,9 @@ Day 03: Gear Ratios
 Day 04: Scratchcards
 	Part 1: 22488 (runs: 1000, avg: 132µs, min: 121µs, max: 1ms, total: 00:00.132)
 	Part 2: 7013204 (runs: 1000, avg: 161µs, min: 139µs, max: 1ms, total: 00:00.161)
+Day 05: If You Give A Seed A Fertilizer
+	Part 1: 462648396 (runs: 1000, avg: 4µs, min: 1µs, max: 146µs, total: 00:00.004)
+	Part 2: 2520479 (runs: 1000, avg: 226ms, min: 193ms, max: 239ms, total: 03:46.790)
 ==========================
 </pre>
 </details>
