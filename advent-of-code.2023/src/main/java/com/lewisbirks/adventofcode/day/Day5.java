@@ -3,9 +3,10 @@ package com.lewisbirks.adventofcode.day;
 import static java.util.function.Predicate.not;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
+import com.lewisbirks.adventofcode.common.tuple.Pair;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.LongUnaryOperator;
 import java.util.stream.Stream;
 
 public final class Day5 extends Day {
@@ -59,43 +60,89 @@ public final class Day5 extends Day {
 
     @Override
     public Object part1() {
-        return seeds.stream()
-            .mapToLong(source -> source)
-            .map(compose())
-            .min()
-            .orElse(-1);
+        long best = Long.MAX_VALUE;
+        for (Long seed : seeds) {
+            long location = seedToLocation(seed);
+            best = Math.min(location, best);
+        }
+        return best;
     }
 
     @Override
     public Object part2() {
-        return null;
-    }
-
-    private LongUnaryOperator compose() {
-        return mapToDestination(seedToSoil)
-            .andThen(mapToDestination(soilToFertilizer))
-            .andThen(mapToDestination(fertilizerToWater))
-            .andThen(mapToDestination(waterToLight))
-            .andThen(mapToDestination(lightToTemperature))
-            .andThen(mapToDestination(temperatureToHumidity))
-            .andThen(mapToDestination(humidityToLocation));
-    }
-
-    private LongUnaryOperator mapToDestination(List<Range> ranges) {
-        return source -> {
-            for (Range range : ranges) {
-                if (range.isSourceInRange(source)) {
-                    return range.mapToDestination(source);
+        List<Pair<Long, Long>> ranges = new ArrayList<>();
+        for (int i = 0; i < seeds.size(); i += 2) {
+            ranges.add(new Pair<>(seeds.get(i), seeds.get(i) + seeds.get(i + 1) - 1));
+        }
+        long location = 0;
+        while (true) {
+            long seed = locationToSeed(location);
+            boolean found = false;
+            for (Pair<Long, Long> range : ranges) {
+                if (range.left() <= seed && seed <= range.right()) {
+                    found = true;
+                    break;
                 }
             }
-            return source;
-        };
+            if (found) {
+                break;
+            }
+            location++;
+        }
+
+        return location;
+    }
+
+    private long seedToLocation(long seed) {
+        long soil = mapToDestination(seedToSoil, seed);
+        long fertilizer = mapToDestination(soilToFertilizer, soil);
+        long water = mapToDestination(fertilizerToWater, fertilizer);
+        long light = mapToDestination(waterToLight, water);
+        long temp = mapToDestination(lightToTemperature, light);
+        long hum = mapToDestination(temperatureToHumidity, temp);
+        return mapToDestination(humidityToLocation, hum);
+    }
+
+    private long locationToSeed(long location) {
+        long hum = mapToSource(humidityToLocation, location);
+        long temp = mapToSource(temperatureToHumidity, hum);
+        long light = mapToSource(lightToTemperature, temp);
+        long water = mapToSource(waterToLight, light);
+        long fertilizer = mapToSource(fertilizerToWater, water);
+        long soil = mapToSource(soilToFertilizer, fertilizer);
+        return mapToSource(seedToSoil, soil);
+    }
+
+    private long mapToDestination(List<Range> ranges, long source) {
+        for (Range range : ranges) {
+            if (range.isSourceInRange(source)) {
+                return range.mapToDestination(source);
+            }
+        }
+        return source;
+    }
+
+    private long mapToSource(List<Range> ranges, long destination) {
+        for (Range range : ranges) {
+            if (range.isDestinationInRange(destination)) {
+                return range.mapToSource(destination);
+            }
+        }
+        return destination;
     }
 
     record Range(long destinationStart, long sourceStart, long length) {
 
         public long mapToDestination(long source) {
             return destinationStart + (source - sourceStart);
+        }
+
+        public long mapToSource(long destination) {
+            return sourceStart + (destination - destinationStart);
+        }
+
+        public boolean isDestinationInRange(long destination) {
+            return destination >= destinationStart && destination <= destinationStart + length;
         }
 
         public boolean isSourceInRange(long source) {
