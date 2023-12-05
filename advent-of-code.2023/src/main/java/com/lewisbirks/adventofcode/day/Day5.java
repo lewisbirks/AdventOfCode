@@ -5,11 +5,7 @@ import static java.util.function.Predicate.not;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.IntUnaryOperator;
 import java.util.function.LongUnaryOperator;
-import java.util.function.UnaryOperator;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public final class Day5 extends Day {
