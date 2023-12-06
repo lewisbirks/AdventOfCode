@@ -20,7 +20,7 @@ public final class Day6 extends Day {
 
     @Override
     public void preload() {
-        List<String> document = getInput(line -> line.substring(line.indexOf(":") + 1).trim());
+        List<String> document = getInput(l -> l.substring(l.indexOf(":") + 1).trim());
 
         List<Race> races = new ArrayList<>();
 
@@ -64,15 +64,30 @@ public final class Day6 extends Day {
         }
 
         public long calculateNumberOfBetterOptions() {
-            long better = 0;
-            for (long i = 1; i < this.time; i++) {
-                long remainingTime = this.time - i;
-                long distance = i * remainingTime;
-                if (distance > record) {
-                    better++;
+            boolean startFound = false;
+            boolean endFound = false;
+            long start = 0;
+            long end = 0;
+            for (long i = 1, j = this.time - 1; i < this.time; i++, j--) {
+                if (!startFound && calcDistance(i) > record) {
+                    startFound = true;
+                    start = i;
+                }
+
+                if (!endFound && calcDistance(j) > record) {
+                    endFound = true;
+                    end = j;
+                }
+
+                if (startFound && endFound) {
+                    break;
                 }
             }
-            return better;
+            return end - start + 1;
+        }
+
+        private long calcDistance(long time) {
+            return time * (this.time - time);
         }
     }
 }

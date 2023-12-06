@@ -104,8 +104,8 @@ Day 05: If You Give A Seed A Fertilizer
 	Part 1: 462648396 (runs: 1000, avg: 4µs, min: 1µs, max: 146µs, total: 00:00.004)
 	Part 2: 2520479 (runs: 1000, avg: 226ms, min: 193ms, max: 239ms, total: 03:46.790)
 Day 06: Wait For It
-	Part 1: 3316275 (runs: 1000, avg: 977ns, min: 375ns, max: 33µs, total: 00:00.000)
-	Part 2: 27102791 (runs: 1000, avg: 27ms, min: 27ms, max: 33ms, total: 00:27.889)
+	Part 1: 3316275 (runs: 1000, avg: 779ns, min: 291ns, max: 13µs, total: 00:00.000)
+	Part 2: 27102791 (runs: 1000, avg: 6ms, min: 6ms, max: 7ms, total: 00:06.643)
 ==========================
 </pre>
 </details>
