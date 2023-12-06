@@ -3,7 +3,6 @@ package com.lewisbirks.adventofcode.day;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Day6Test {
@@ -16,14 +15,12 @@ class Day6Test {
     }
 
     @Test
-    @Disabled
     void part1() {
-        assertThat(underTest.part1()).isNotNull();
+        assertThat(underTest.part1()).isEqualTo(288L);
     }
 
     @Test
-    @Disabled
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(71503L);
     }
 }
