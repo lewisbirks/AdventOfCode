@@ -1,5 +1,7 @@
 package com.lewisbirks.adventofcode.day;
 
+import static com.lewisbirks.adventofcode.common.MathUtils.isInt;
+
 import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,7 +47,7 @@ public final class Day6 extends Day {
     public Object part1() {
         long product = 1;
         for (Race race : this.races) {
-            long better = race.calculateNumberOfBetterOptions();
+            long better = race.numberOfWaysToBeatRecord();
             if (better > 0) {
                 product *= better;
             }
@@ -55,39 +57,39 @@ public final class Day6 extends Day {
 
     @Override
     public Object part2() {
-        return this.race.calculateNumberOfBetterOptions();
+        return this.race.numberOfWaysToBeatRecord();
     }
 
-    record Race(long time, long record) {
+    record Race(long time, long distance) {
         public static Race of(String time, String record) {
             return new Race(Long.parseLong(time), Long.parseLong(record));
         }
 
-        public long calculateNumberOfBetterOptions() {
-            boolean startFound = false;
-            boolean endFound = false;
-            long start = 0;
-            long end = 0;
-            for (long i = 1, j = this.time - 1; i < this.time; i++, j--) {
-                if (!startFound && calcDistance(i) > record) {
-                    startFound = true;
-                    start = i;
-                }
+        public long numberOfWaysToBeatRecord() {
+            // Distance:
+            // d < x * (t - x)
+            // d < tx - x^2
+            // x^2 - tx + d > 0
+            // therefore just solve the quadratic
+            // ax^2 + bx + c = 0
+            // -b ± √(b^2 - 4ac)
+            // ----------------
+            //       2a
+            // b = -t
+            // a = 1
+            // c = d
+            double sqrt = Math.sqrt((time * time) - (4 * distance));
+            double positive = (time + sqrt) / 2.0d;
+            double negative = (time - sqrt) / 2.0d;
 
-                if (!endFound && calcDistance(j) > record) {
-                    endFound = true;
-                    end = j;
-                }
+            // seems to be a boundary issue when the difference is an integer, normally add one to account for the
+            // losses due to rounding but when the difference is an integer we need to alter by 1 for some reason
+            // to simulate these rounding losses
+            // (this only occurs in the test input...)
+            long upperBound = isInt(positive) ? ((long) positive) - 1 : (long) Math.floor(positive);
+            long lowerBound = isInt(negative) ? ((long) negative) + 1 : (long) Math.ceil(negative);
 
-                if (startFound && endFound) {
-                    break;
-                }
-            }
-            return end - start + 1;
-        }
-
-        private long calcDistance(long time) {
-            return time * (this.time - time);
+            return upperBound - lowerBound + 1;
         }
     }
 }
