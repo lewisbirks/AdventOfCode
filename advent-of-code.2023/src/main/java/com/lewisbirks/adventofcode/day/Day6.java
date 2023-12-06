@@ -12,6 +12,7 @@ public final class Day6 extends Day {
     private static final Pattern NUMBERS = Pattern.compile("(\\d+)");
 
     private List<Race> races;
+    private Race race;
 
     public Day6() {
         super(6, "Wait For It");
@@ -25,19 +26,24 @@ public final class Day6 extends Day {
 
         Matcher times = NUMBERS.matcher(document.get(0));
         Matcher distances = NUMBERS.matcher(document.get(1));
+        StringBuilder fullTime = new StringBuilder();
+        StringBuilder fullDistance = new StringBuilder();
 
         while (distances.find() && times.find()) {
             String time = times.group(1);
             String distance = distances.group(1);
             races.add(Race.of(time, distance));
+            fullTime.append(time);
+            fullDistance.append(distance);
         }
 
         this.races = Collections.unmodifiableList(races);
+        this.race = Race.of(fullTime.toString(), fullDistance.toString());
     }
 
     @Override
     public Object part1() {
-        int product = 1;
+        long product = 1;
         for (Race race : this.races) {
             long better = race.calculateNumberOfBetterOptions();
             if (better > 0) {
@@ -49,19 +55,19 @@ public final class Day6 extends Day {
 
     @Override
     public Object part2() {
-        return null;
+        return this.race.calculateNumberOfBetterOptions();
     }
 
-    record Race(int time, int record) {
+    record Race(long time, long record) {
         public static Race of(String time, String record) {
-            return new Race(Integer.parseInt(time), Integer.parseInt(record));
+            return new Race(Long.parseLong(time), Long.parseLong(record));
         }
 
-        public int calculateNumberOfBetterOptions() {
-            int better = 0;
-            for (int i = 1; i < this.time; i++) {
-                int remainingTime = this.time - i;
-                int distance = i * remainingTime;
+        public long calculateNumberOfBetterOptions() {
+            long better = 0;
+            for (long i = 1; i < this.time; i++) {
+                long remainingTime = this.time - i;
+                long distance = i * remainingTime;
                 if (distance > record) {
                     better++;
                 }
