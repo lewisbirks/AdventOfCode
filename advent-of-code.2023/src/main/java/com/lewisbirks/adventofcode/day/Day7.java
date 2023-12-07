@@ -5,7 +5,7 @@ import com.lewisbirks.adventofcode.common.domain.Day;
 public final class Day7 extends Day {
 
     public Day7() {
-        super(7, "");
+        super(7, "Camel Cards");
     }
 
     @Override
