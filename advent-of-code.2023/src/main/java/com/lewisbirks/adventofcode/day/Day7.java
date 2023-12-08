@@ -37,6 +37,10 @@ public final class Day7 extends Day {
     public Object part1() {
         List<Hand> hands = new ArrayList<>(this.hands);
         Collections.sort(hands);
+        return calculateWinnings(hands);
+    }
+
+    private static long calculateWinnings(List<Hand> hands) {
         long sum = 0;
         for (int i = 0; i < hands.size(); i++) {
             sum += ((long) (i + 1) * hands.get(i).getBid());
