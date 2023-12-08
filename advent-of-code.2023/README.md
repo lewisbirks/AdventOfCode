@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 8</a></td>
-            <td><td>
+            <td>13019<td>
             <td><td>
         </tr>
         <tr>
