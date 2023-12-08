@@ -42,8 +42,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day7.java">Day 7</a></td>
-            <td><td>
-            <td><td>
+            <td>247961593<td>
+            <td>248750699<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 8</a></td>
@@ -106,6 +106,9 @@ Day 05: If You Give A Seed A Fertilizer
 Day 06: Wait For It
 	Part 1: 3316275 (runs: 1000, avg: 5µs, min: 833ns, max: 1ms, total: 00:00.005)
 	Part 2: 27102791 (runs: 1000, avg: 763ns, min: 333ns, max: 20µs, total: 00:00.000)
+Day 07: Camel Cards
+	Part 1: 247961593 (runs: 1000, avg: 633µs, min: 588µs, max: 2ms, total: 00:00.633)
+	Part 2: 248750699 (runs: 1000, avg: 625µs, min: 583µs, max: 3ms, total: 00:00.625)
 ==========================
 </pre>
 </details>
