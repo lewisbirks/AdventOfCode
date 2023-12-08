@@ -15,15 +15,23 @@ class Day8Test {
         underTest.preload();
     }
 
+    /*
+    Test input between the two days operate on different rules, here is the input for part 1
+
+    LLR
+
+    AAA = (BBB, BBB)
+    BBB = (AAA, ZZZ)
+    ZZZ = (ZZZ, ZZZ)
+    */
     @Test
     @Disabled
     void part1() {
-        assertThat(underTest.part1()).isNotNull();
+        assertThat(underTest.part1()).isEqualTo(6L);
     }
 
     @Test
-    @Disabled
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(6L);
     }
 }

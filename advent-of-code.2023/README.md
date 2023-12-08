@@ -47,8 +47,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day8.java">Day 8</a></td>
-            <td><td>
-            <td><td>
+            <td>13019<td>
+            <td>13524038372771<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day9.java">Day 9</a></td>
@@ -109,6 +109,9 @@ Day 06: Wait For It
 Day 07: Camel Cards
 	Part 1: 247961593 (runs: 1000, avg: 633µs, min: 588µs, max: 2ms, total: 00:00.633)
 	Part 2: 248750699 (runs: 1000, avg: 625µs, min: 583µs, max: 3ms, total: 00:00.625)
+Day 08: Haunted Wasteland
+	Part 1: 13019 (runs: 1000, avg: 27µs, min: 22µs, max: 723µs, total: 00:00.027)
+	Part 2: 13524038372771 (runs: 1000, avg: 453µs, min: 408µs, max: 6ms, total: 00:00.453)
 ==========================
 </pre>
 </details>
