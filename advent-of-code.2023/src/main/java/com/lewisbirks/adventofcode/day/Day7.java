@@ -3,7 +3,7 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.collection.FrequencyMap;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public final class Day7 extends Day {
@@ -36,7 +36,7 @@ public final class Day7 extends Day {
     @Override
     public Object part1() {
         List<Hand> hands = new ArrayList<>(this.hands);
-        Collections.sort(hands);
+        hands.sort(Hand.standardComparison());
         return calculateWinnings(hands);
     }
 
@@ -53,7 +53,7 @@ public final class Day7 extends Day {
         return null;
     }
 
-    static class Hand implements Comparable<Hand> {
+    static class Hand {
 
         private static final List<Character> VALID_CARDS =
                 List.of('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A');
@@ -94,23 +94,28 @@ public final class Day7 extends Day {
             return handType;
         }
 
-        @Override
-        public int compareTo(Hand o) {
-            int handComparison = getType().compareTo(o.getType());
-            if (handComparison != 0) {
-                return handComparison;
-            }
-            for (int i = 0; i < cards.size(); i++) {
-                Character card = cards.get(i);
-                Character oCard = o.cards.get(i);
-                int power = VALID_CARDS.indexOf(card);
-                int oPower = VALID_CARDS.indexOf(oCard);
-                int cardComparison = Integer.compare(power, oPower);
-                if (cardComparison != 0) {
-                    return cardComparison;
+        public static Comparator<Hand> standardComparison() {
+            return comparator(VALID_CARDS);
+        }
+
+        private static Comparator<Hand> comparator(List<Character> powerRanking) {
+            return (hand, other) -> {
+                int handComparison = hand.getType().compareTo(other.getType());
+                if (handComparison != 0) {
+                    return handComparison;
                 }
-            }
-            return 0;
+                for (int i = 0; i < hand.cards.size(); i++) {
+                    Character card = hand.cards.get(i);
+                    Character oCard = other.cards.get(i);
+                    int power = powerRanking.indexOf(card);
+                    int oPower = powerRanking.indexOf(oCard);
+                    int cardComparison = Integer.compare(power, oPower);
+                    if (cardComparison != 0) {
+                        return cardComparison;
+                    }
+                }
+                return 0;
+            };
         }
 
         @Override
