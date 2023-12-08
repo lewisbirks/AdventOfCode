@@ -65,6 +65,7 @@ public final class Day8 extends Day {
     // Iterating until it synced up was taking far too long, people were suggesting LCM of the loop size
     // Loop size just happens to be the first time it takes to reach Z
     // This feels like the wrong approach but it works 🙃
+    // No wonder it took forever 13_524_038_372_771 is quite a large number :D
     @Override
     public Object part2() {
         Node[] nodes = cache.entrySet().stream()

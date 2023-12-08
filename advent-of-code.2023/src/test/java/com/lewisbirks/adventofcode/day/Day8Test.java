@@ -32,6 +32,6 @@ class Day8Test {
 
     @Test
     void part2() {
-        assertThat(underTest.part2()).isEqualTo(6);
+        assertThat(underTest.part2()).isEqualTo(6L);
     }
 }
