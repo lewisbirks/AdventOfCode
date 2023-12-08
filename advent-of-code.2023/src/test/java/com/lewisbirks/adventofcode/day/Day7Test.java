@@ -16,9 +16,8 @@ class Day7Test {
     }
 
     @Test
-    @Disabled
     void part1() {
-        assertThat(underTest.part1()).isNotNull();
+        assertThat(underTest.part1()).isEqualTo(6440L);
     }
 
     @Test
