@@ -1,13 +1,10 @@
 package com.lewisbirks.adventofcode.day;
 
 import com.lewisbirks.adventofcode.common.domain.Day;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public final class Day9 extends Day {
 
-    private List<List<Integer>> histories;
+    private long[][] histories;
 
     public static void main(String[] args) {
         new Day9().process();
@@ -19,33 +16,49 @@ public final class Day9 extends Day {
 
     @Override
     public void preload() {
-        histories =
-                getInput(s -> Arrays.stream(s.split(" ")).map(Integer::valueOf).toList());
+        histories = getInput(s -> {
+                    String[] chunks = s.split(" ");
+                    long[] history = new long[chunks.length];
+                    for (int i = 0; i < chunks.length; i++) {
+                        history[i] = Long.parseLong(chunks[i]);
+                    }
+                    return history;
+                })
+                .toArray(long[][]::new);
     }
 
     @Override
     public Object part1() {
-        return histories.stream().mapToLong(this::generateNext).sum();
+        long sum = 0L;
+        for (int i = 0; i < histories.length; i++) {
+            sum += generateNext(histories[i]);
+        }
+        return sum;
     }
 
     @Override
     public Object part2() {
-        return histories.stream().mapToLong(this::generateFirst).sum();
+        long sum = 0L;
+        for (int i = 0; i < histories.length; i++) {
+            sum += generateFirst(histories[i]);
+        }
+        return sum;
     }
 
-    private long generateNext(List<Integer> values) {
-        List<Integer> differences = new ArrayList<>();
+    private long generateNext(long[] values) {
+        int size = values.length;
+        long[] differences = new long[values.length - 1];
         boolean isAllZero = true;
 
-        for (int i = 1; i < values.size(); i++) {
-            int difference = values.get(i) - values.get(i - 1);
-            differences.add(difference);
+        for (int i = 1; i < size; i++) {
+            long difference = values[i] - values[i - 1];
+            differences[i - 1] = difference;
             if (isAllZero && difference != 0) {
                 isAllZero = false;
             }
         }
 
-        int previous = values.get(values.size() - 1);
+        long previous = values[size - 1];
         if (isAllZero) {
             return previous;
         }
@@ -53,14 +66,15 @@ public final class Day9 extends Day {
         return generateNext(differences) + previous;
     }
 
-    private long generateFirst(List<Integer> values) {
-        List<Integer> differences = new ArrayList<>();
+    private long generateFirst(long[] values) {
+        int size = values.length;
+        long[] differences = new long[values.length - 1];
 
-        for (int i = values.size() - 1; i >= 1; i--) {
-            int difference = values.get(i) - values.get(i - 1);
-            differences.add(difference);
+        for (int i = size - 1, j = 0; i >= 1; i--, j++) {
+            long difference = values[i] - values[i - 1];
+            differences[j] = difference;
         }
 
-        return values.get(0) - generateNext(differences);
+        return values[0] - generateNext(differences);
     }
 }

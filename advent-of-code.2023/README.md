@@ -113,8 +113,8 @@ Day 08: Haunted Wasteland
 	Part 1: 13019 (runs: 1000, avg: 27µs, min: 22µs, max: 723µs, total: 00:00.027)
 	Part 2: 13524038372771 (runs: 1000, avg: 453µs, min: 408µs, max: 6ms, total: 00:00.453)
 Day 09: Mirage Maintenance
-	Part 1: 1877825184 (runs: 1000, avg: 323µs, min: 261µs, max: 3ms, total: 00:00.323)
-	Part 2: 1108 (runs: 1000, avg: 264µs, min: 241µs, max: 1ms, total: 00:00.264)
+	Part 1: 1877825184 (runs: 1000, avg: 24µs, min: 20µs, max: 838µs, total: 00:00.024)
+	Part 2: 1108 (runs: 1000, avg: 24µs, min: 20µs, max: 885µs, total: 00:00.024)
 ==========================
 </pre>
 </details>
