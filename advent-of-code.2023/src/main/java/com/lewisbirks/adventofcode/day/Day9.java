@@ -47,20 +47,20 @@ public final class Day9 extends Day {
 
     private long generateNext(long[] values) {
         int size = values.length;
-        long[] differences = new long[values.length - 1];
-        boolean isAllZero = true;
+        long[] differences = new long[size - 1];
+        boolean isAllSame = true;
 
-        for (int i = 1; i < size; i++) {
-            long difference = values[i] - values[i - 1];
-            differences[i - 1] = difference;
-            if (isAllZero && difference != 0) {
-                isAllZero = false;
+        for (int i = 0; i < size - 1; i++) {
+            long difference = values[i + 1] - values[i];
+            differences[i] = difference;
+            if (isAllSame && i > 0 && differences[i - 1] != difference) {
+                isAllSame = false;
             }
         }
 
         long previous = values[size - 1];
-        if (isAllZero) {
-            return previous;
+        if (isAllSame) {
+            return differences[0] + previous;
         }
 
         return generateNext(differences) + previous;
