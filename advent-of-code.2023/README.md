@@ -53,7 +53,7 @@
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day9.java">Day 9</a></td>
             <td>1877825184<td>
-            <td><td>
+            <td>1108<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day10.java">Day 10</a></td>
@@ -112,6 +112,9 @@ Day 07: Camel Cards
 Day 08: Haunted Wasteland
 	Part 1: 13019 (runs: 1000, avg: 27µs, min: 22µs, max: 723µs, total: 00:00.027)
 	Part 2: 13524038372771 (runs: 1000, avg: 453µs, min: 408µs, max: 6ms, total: 00:00.453)
+Day 09: Mirage Maintenance
+	Part 1: 1877825184 (runs: 1000, avg: 323µs, min: 261µs, max: 3ms, total: 00:00.323)
+	Part 2: 1108 (runs: 1000, avg: 264µs, min: 241µs, max: 1ms, total: 00:00.264)
 ==========================
 </pre>
 </details>

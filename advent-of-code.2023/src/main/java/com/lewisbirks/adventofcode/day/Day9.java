@@ -30,7 +30,7 @@ public final class Day9 extends Day {
 
     @Override
     public Object part2() {
-        return null;
+        return histories.stream().mapToLong(this::generateFirst).sum();
     }
 
     private long generateNext(List<Integer> values) {
@@ -51,5 +51,16 @@ public final class Day9 extends Day {
         }
 
         return generateNext(differences) + previous;
+    }
+
+    private long generateFirst(List<Integer> values) {
+        List<Integer> differences = new ArrayList<>();
+
+        for (int i = values.size() - 1; i >= 1; i--) {
+            int difference = values.get(i) - values.get(i - 1);
+            differences.add(difference);
+        }
+
+        return values.get(0) - generateNext(differences);
     }
 }
