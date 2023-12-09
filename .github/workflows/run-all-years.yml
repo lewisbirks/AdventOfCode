@@ -29,7 +29,6 @@ jobs:
         distribution: 'temurin'
     - name: Build
       run: |
-        mvn clean -B --no-transfer-progress package -DskipTests
-        find . -type f -name "2*.jar" -exec cp {} ./ \;
+        mvn clean -ntp package -pl advent-of-code.${{ matrix.year }} -am -DskipTests
     - name: Running year ${{ matrix.year }}
-      run: java -jar ${{ matrix.year }}.jar
+      run: java -jar advent-of-code.${{ matrix.year }}/target/${{ matrix.year }}.jar
