@@ -83,39 +83,38 @@
     </table>
 </details>
 <details>
-    <summary>Console performance output</summary>
+    <summary>Console output</summary>
     <pre>
 ==========================
 Year 2023
 ==========================
 Day 01: Trebuchet?!
-	Part 1: 55538 (runs: 1000, avg: 39µs, min: 21µs, max: 2ms, total: 00:00.039)
-	Part 2: 54875 (runs: 1000, avg: 169µs, min: 147µs, max: 2ms, total: 00:00.169)
+	Part 1: 55538 (2ms)
+	Part 2: 54875 (1ms)
 Day 02: Cube Conundrum
-	Part 1: 2486 (runs: 1000, avg: 15µs, min: 6µs, max: 2ms, total: 00:00.015)
-	Part 2: 87984 (runs: 1000, avg: 5µs, min: 3µs, max: 999µs, total: 00:00.005)
+	Part 1: 2486 (2ms)
+	Part 2: 87984 (1ms)
 Day 03: Gear Ratios
-	Part 1: 527369 (runs: 1000, avg: 2ms, min: 2ms, max: 30ms, total: 00:02.779)
-	Part 2: 73074886 (runs: 1000, avg: 1ms, min: 1ms, max: 3ms, total: 00:01.888)
+	Part 1: 527369 (35ms)
+	Part 2: 73074886 (9ms)
 Day 04: Scratchcards
-	Part 1: 22488 (runs: 1000, avg: 132µs, min: 121µs, max: 1ms, total: 00:00.132)
-	Part 2: 7013204 (runs: 1000, avg: 161µs, min: 139µs, max: 1ms, total: 00:00.161)
+	Part 1: 22488 (1ms)
+	Part 2: 7013204 (8ms)
 Day 05: If You Give A Seed A Fertilizer
-	Part 1: 462648396 (runs: 1000, avg: 4µs, min: 1µs, max: 146µs, total: 00:00.004)
-	Part 2: 2520479 (runs: 1000, avg: 226ms, min: 193ms, max: 239ms, total: 03:46.790)
+	Part 1: 462648396 (153µs)
+	Part 2: 2520479 (215ms)
 Day 06: Wait For It
-	Part 1: 3316275 (runs: 1000, avg: 5µs, min: 833ns, max: 1ms, total: 00:00.005)
-	Part 2: 27102791 (runs: 1000, avg: 763ns, min: 333ns, max: 20µs, total: 00:00.000)
+	Part 1: 3316275 (777µs)
+	Part 2: 27102791 (6µs)
 Day 07: Camel Cards
-	Part 1: 247961593 (runs: 1000, avg: 633µs, min: 588µs, max: 2ms, total: 00:00.633)
-	Part 2: 248750699 (runs: 1000, avg: 625µs, min: 583µs, max: 3ms, total: 00:00.625)
+	Part 1: 247961593 (2ms)
+	Part 2: 248750699 (2ms)
 Day 08: Haunted Wasteland
-	Part 1: 13019 (runs: 1000, avg: 27µs, min: 22µs, max: 723µs, total: 00:00.027)
-	Part 2: 13524038372771 (runs: 1000, avg: 453µs, min: 408µs, max: 6ms, total: 00:00.453)
+	Part 1: 13019 (963µs)
+	Part 2: 13524038372771 (6ms)
 Day 09: Mirage Maintenance
-	Part 1: 1877825184 (runs: 1000, avg: 24µs, min: 20µs, max: 838µs, total: 00:00.024)
-	Part 2: 1108 (runs: 1000, avg: 24µs, min: 20µs, max: 885µs, total: 00:00.024)
-==========================
+	Part 1: 1877825184 (302µs)
+	Part 2: 1108 (879µs)
 </pre>
 </details>
 

@@ -84,40 +84,40 @@
     </table>
 </details>
 <details>
-    <summary>Console performance output</summary>
+    <summary>Console output</summary>
     <pre>
 ==========================
 Year 2022
 ==========================
 Day 01: Calorie Counting
-	Part 1: 69501 (runs: 1000, avg: 30µs, min: 15µs, max: 1ms, total: 00:00.030)
-	Part 2: 202346 (runs: 1000, avg: 37µs, min: 21µs, max: 1ms, total: 00:00.037)
+	Part 1: 69501 (1ms)
+	Part 2: 202346 (1ms)
 Day 02: Rock Paper Scissors
-	Part 1: 10994 (runs: 1000, avg: 14µs, min: 11µs, max: 971µs, total: 00:00.014)
-	Part 2: 12526 (runs: 1000, avg: 13µs, min: 11µs, max: 822µs, total: 00:00.013)
+	Part 1: 10994 (1ms)
+	Part 2: 12526 (616µs)
 Day 03: Rucksack Reorganization
-	Part 1: 8202 (runs: 1000, avg: 81µs, min: 59µs, max: 2ms, total: 00:00.081)
-	Part 2: 2864 (runs: 1000, avg: 28µs, min: 17µs, max: 3ms, total: 00:00.028)
+	Part 1: 8202 (3ms)
+	Part 2: 2864 (2ms)
 Day 04: Camp Cleanup
-	Part 1: 462 (runs: 1000, avg: 12µs, min: 7µs, max: 749µs, total: 00:00.012)
-	Part 2: 835 (runs: 1000, avg: 14µs, min: 11µs, max: 608µs, total: 00:00.014)
+	Part 1: 462 (654µs)
+	Part 2: 835 (466µs)
 Day 05: Supply Stacks
-	Part 1: BWNCQRMDB (runs: 1000, avg: 20µs, min: 11µs, max: 1ms, total: 00:00.020)
-	Part 2: NHWZCBNBF (runs: 1000, avg: 37µs, min: 26µs, max: 1ms, total: 00:00.037)
+	Part 1: BWNCQRMDB (2ms)
+	Part 2: NHWZCBNBF (1ms)
 Day 06: Tuning Trouble
-	Part 1: 1647 (runs: 1000, avg: 61µs, min: 42µs, max: 1ms, total: 00:00.061)
-	Part 2: 2447 (runs: 1000, avg: 60µs, min: 44µs, max: 945µs, total: 00:00.060)
+	Part 1: 1647 (4ms)
+	Part 2: 2447 (511µs)
 Day 07: No Space Left On Device
-	Part 1: 1513699 (runs: 1000, avg: 36µs, min: 25µs, max: 2ms, total: 00:00.036)
-	Part 2: 7991939 (runs: 1000, avg: 33µs, min: 26µs, max: 1ms, total: 00:00.033)
+	Part 1: 1513699 (3ms)
+	Part 2: 7991939 (1ms)
 Day 08: Treetop Tree House
-	Part 1: 1812 (runs: 1000, avg: 314µs, min: 261µs, max: 1ms, total: 00:00.314)
-	Part 2: 315495 (runs: 1000, avg: 252µs, min: 218µs, max: 1ms, total: 00:00.252)
+	Part 1: 1812 (1ms)
+	Part 2: 315495 (1ms)
 Day 09: Rope Bridge
-	Part 1: 6023 (runs: 1000, avg: 443µs, min: 351µs, max: 17ms, total: 00:00.443)
-	Part 2: 2533 (runs: 1000, avg: 933µs, min: 791µs, max: 2ms, total: 00:00.933)
+	Part 1: 6023 (20ms)
+	Part 2: 2533 (5ms)
 Day 10: Cathode-Ray Tube
-	Part 1: 10760 (runs: 1000, avg: 5µs, min: 1µs, max: 116µs, total: 00:00.005)
+	Part 1: 10760 (73µs)
 	Part 2: 
 ####.###...##..###..#..#.####..##..#..#.
 #....#..#.#..#.#..#.#..#.#....#..#.#..#.
@@ -125,19 +125,41 @@ Day 10: Cathode-Ray Tube
 #....###..#.##.###..#..#.#....#.##.#..#.
 #....#....#..#.#....#..#.#....#..#.#..#.
 #....#.....###.#....#..#.#.....###.#..#.
- (runs: 1000, avg: 8µs, min: 2µs, max: 148µs, total: 00:00.008)
+ (84µs)
 Day 11: Monkey in the Middle
-	Part 1: 90882 (runs: 1000, avg: 62µs, min: 40µs, max: 2ms, total: 00:00.062)
-	Part 2: 30893109657 (runs: 1000, avg: 37ms, min: 27ms, max: 45ms, total: 00:37.679)
+	Part 1: 90882 (2ms)
+	Part 2: 30893109657 (53ms)
 Day 12: Hill Climbing Algorithm
-	Part 1: 420 (runs: 1000, avg: 573µs, min: 464µs, max: 8ms, total: 00:00.573)
-	Part 2: 414 (runs: 1000, avg: 608µs, min: 499µs, max: 2ms, total: 00:00.608)
+	Part 1: 420 (8ms)
+	Part 2: 414 (3ms)
 Day 13: Distress Signal
-	Part 1: 5659 (runs: 1000, avg: 13µs, min: 7µs, max: 327µs, total: 00:00.013)
-	Part 2: 22110 (runs: 1000, avg: 134µs, min: 112µs, max: 3ms, total: 00:00.134)
+	Part 1: 5659 (277µs)
+	Part 2: 22110 (3ms)
 Day 14: Regolith Reservoir
-	Part 1: 655 (runs: 1000, avg: 567µs, min: 501µs, max: 6ms, total: 00:00.567)
-	Part 2: 26484 (runs: 1000, avg: 113ms, min: 102ms, max: 160ms, total: 01:53.361)
+	Part 1: 655 (5ms)
+	Part 2: 26484 (166ms)
+Day 15: 
+	Not implemented... skipping
+Day 16: 
+	Not implemented... skipping
+Day 17: 
+	Not implemented... skipping
+Day 18: 
+	Not implemented... skipping
+Day 19: 
+	Not implemented... skipping
+Day 20: 
+	Not implemented... skipping
+Day 21: 
+	Not implemented... skipping
+Day 22: 
+	Not implemented... skipping
+Day 23: 
+	Not implemented... skipping
+Day 24: 
+	Not implemented... skipping
+Day 25: 
+	Not implemented... skipping
 ==========================
 </pre>
 </details>
