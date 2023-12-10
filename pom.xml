@@ -124,7 +124,6 @@
           <java>
             <palantirJavaFormat>
               <style>PALANTIR</style>
-              <version>2.38.0</version>
             </palantirJavaFormat>
             <excludes>
               <exclude>**/target/**</exclude>
