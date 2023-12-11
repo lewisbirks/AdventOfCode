@@ -62,7 +62,7 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day11.java">Day 11</a></td>
-            <td><td>
+            <td>9274989<td>
             <td><td>
         </tr>
         <tr>
@@ -118,6 +118,9 @@ Day 09: Mirage Maintenance
 Day 10: Pipe Maze
 	Part 1: 6838 (1ms)
 	Part 2: 451 (2ms)
+Day 11: Cosmic Expansion
+	Part 1: 9274989 (2ms)
+	Part 2: 357134560737 (1ms)
 </pre>
 </details>
 
