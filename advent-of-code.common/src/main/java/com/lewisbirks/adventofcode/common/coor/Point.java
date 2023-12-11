@@ -57,6 +57,10 @@ public record Point(int x, int y) {
                 .toList();
     }
 
+    public int calculateCartesianDistance(Point other) {
+        return Math.abs(other.x - this.x) + Math.abs(other.y - this.y);
+    }
+
     @Override
     public String toString() {
         return "[" + x + ", " + y + ']';
