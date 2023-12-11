@@ -41,7 +41,7 @@ public final class Day11 extends Day {
         for (int i = 0; i < numGalaxies; i++) {
             Point galaxy = galaxies[i];
             for (int j = i + 1; j < numGalaxies; j++) {
-              sum += galaxy.calculateCartesianDistance(galaxies[j]);
+                sum += galaxy.calculateCartesianDistance(galaxies[j]);
             }
         }
         return sum;
