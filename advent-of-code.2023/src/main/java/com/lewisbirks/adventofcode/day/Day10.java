@@ -8,18 +8,20 @@ import static com.lewisbirks.adventofcode.common.coor.Point.UP;
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.function.TriConsumer;
 
 public final class Day10 extends Day {
 
     private Pipe start = null;
+    private char[][] maze;
+    private int maxX;
+    private int maxY;
 
     public static void main(String[] args) {
         new Day10().process();
@@ -31,11 +33,11 @@ public final class Day10 extends Day {
 
     @Override
     public void preload() {
-        char[][] maze = getInput(String::toCharArray).toArray(char[][]::new);
-        final Map<Point, Pipe> cache = new HashMap<>();
-        int maxY = maze.length;
-        int maxX = maze[0].length;
+        maze = getInput(String::toCharArray).toArray(char[][]::new);
+        maxY = maze.length;
+        maxX = maze[0].length;
 
+        final Map<Point, Pipe> cache = new HashMap<>();
         TriConsumer<Pipe, Point, Consumer<Pipe>> mapper = (pipe, location, pipeConsumer) -> {
             if (location.x() >= 0 && location.x() < maxX && location.y() >= 0 && location.y() < maxY) {
                 pipeConsumer.accept(cache.computeIfAbsent(location, l -> new Pipe(maze[l.y()][l.x()], l)));
@@ -58,7 +60,10 @@ public final class Day10 extends Day {
                 if (symbol == 'S') {
                     start = pipe;
                     symbol = getStaringChar(location, maze, maxX, maxY);
-                    System.out.println("Mapped start to " + symbol);
+                    if (debug) {
+                        System.out.println("Start is in " + start + " and is being mapped to " + symbol);
+                    }
+                    maze[y][x] = symbol;
                 }
 
                 /*
@@ -72,27 +77,30 @@ public final class Day10 extends Day {
                    S is the starting position of the animal; there is a pipe on this tile,
                      but your sketch doesn't show what shape the pipe has.
 
-                       Λ Λ |
-                       | | |
-                  -----J | L---->
-                 --------+------>  This isn't quite right but the logic added to Pipe#next fixes things
-                  -----7 | F---->
-                       | | |
-                       V | |
+                   Somehow I'm incapable of mapping things correctly
+                   If I could do that correctly then I wouldn't need to use Pipe#next and could
+                   instead just call pipe.in or pipe.out
+                        | | |
+                        | | |
+                  <-----J | L----->
+                  --------+------->
+                  <-----7 | F----->
+                        | | |
+                        | V |
 
                 */
                 Point inLocation =
                         switch (symbol) {
-                            case '|', 'F' -> DOWN;
-                            case '-', 'J', '7' -> LEFT;
-                            case 'L' -> UP;
+                            case '|', 'J', 'L' -> UP;
+                            case '-' -> LEFT;
+                            case '7', 'F' -> DOWN;
                             default -> throw new IllegalArgumentException("Unexpected character " + symbol);
                         };
                 Point outLocation =
                         switch (symbol) {
-                            case '|', 'J' -> UP;
-                            case '-', 'F', 'L' -> RIGHT;
-                            case '7' -> DOWN;
+                            case '|' -> DOWN;
+                            case '-', 'L', 'F' -> RIGHT;
+                            case 'J', '7' -> LEFT;
                             default -> throw new IllegalArgumentException("Unexpected character " + symbol);
                         };
 
@@ -100,32 +108,6 @@ public final class Day10 extends Day {
                 outputMapper.accept(pipe, location.add(outLocation));
             }
         }
-
-        if (start == null) {
-            throw new IllegalStateException("Should have found a start point");
-        }
-    }
-
-    @Override
-    public Object part1() {
-
-        Pipe forward = start.out;
-        Pipe reverse = start.in;
-        int count = 1;
-        Pipe previousF = start;
-        Pipe previousR = start;
-        do {
-            Pipe temp = forward;
-            forward = forward.next(previousF);
-            previousF = temp;
-
-            temp = reverse;
-            reverse = reverse.next(previousR);
-            previousR = temp;
-
-            count++;
-        } while (forward != reverse);
-        return count;
     }
 
     private char getStaringChar(Point start, char[][] maze, int maxX, int maxY) {
@@ -146,9 +128,6 @@ public final class Day10 extends Day {
 
         char actualStart;
         if (couldUp) {
-            if (couldLeft && couldRight) {
-                throw new IllegalStateException("Somehow the start could be to the left or right as well as up");
-            }
             if (couldLeft) {
                 actualStart = 'J';
             } else if (couldRight) {
@@ -157,9 +136,6 @@ public final class Day10 extends Day {
                 actualStart = '|';
             }
         } else if (couldDown) {
-            if (couldLeft && couldRight) {
-                throw new IllegalStateException("Somehow the start could be to the left or right as well as down");
-            }
             if (couldLeft) {
                 actualStart = '7';
             } else if (couldRight) {
@@ -173,17 +149,58 @@ public final class Day10 extends Day {
         return actualStart;
     }
 
-    private String route(List<Pipe> p) {
-        return p.stream().map(Pipe::toString).collect(Collectors.joining(" -> "));
+    @Override
+    public Object part1() {
+        return getWalls().size() / 2;
     }
 
     @Override
     public Object part2() {
-        return null;
+        Set<Point> walls = getWalls();
+
+        int count = 0;
+        for (int y = 0; y < maze.length; y++) {
+            boolean enclosed = false;
+            for (int x = 0; x < maze[y].length; x++) {
+                char pipe = maze[y][x];
+                Point position = new Point(x, y);
+                boolean isWall = walls.contains(position);
+                if (isWall && (pipe == '|' || pipe == 'J' || pipe == 'L')) {
+                    enclosed = !enclosed;
+                } else if (enclosed && !isWall) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    private Set<Point> getWalls() {
+        Pipe forward = start.out;
+        Pipe reverse = start.in;
+        Pipe previousF = start;
+        Pipe previousR = start;
+
+        Set<Point> walls = new HashSet<>(Set.of(start.location, forward.location, reverse.location));
+
+        do {
+            Pipe temp = forward;
+            forward = forward.next(previousF);
+            previousF = temp;
+
+            temp = reverse;
+            reverse = reverse.next(previousR);
+            previousR = temp;
+
+            walls.add(forward.location);
+            walls.add(reverse.location);
+        } while (forward != reverse);
+
+        return walls;
     }
 
     static class Pipe {
-
         private final char symbol;
         private final Point location;
         private Pipe out;
@@ -203,36 +220,12 @@ public final class Day10 extends Day {
         }
 
         public Pipe next(Pipe p) {
-            if (p == in) {
-                return out;
-            }
-            if (p == out) {
-                return in;
-            }
-            throw new IllegalArgumentException(
-                    "Given pipe %s must be one of the outputs %s or %s".formatted(p, in, out));
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            Pipe pipe = (Pipe) o;
-            return Objects.equals(location, pipe.location);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(location);
+            return p == in ? out : in;
         }
 
         @Override
         public String toString() {
-            return symbol + "[" + location.x() + "," + location.y() + "]";
+            return symbol + " " + location;
         }
     }
 }

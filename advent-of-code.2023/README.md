@@ -57,8 +57,8 @@
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day10.java">Day 10</a></td>
-            <td><td>
-            <td><td>
+            <td>6838<td>
+            <td>451<td>
         </tr>
         <tr>
             <td><a href="src/main/java/com/lewisbirks/adventofcode/day/Day11.java">Day 11</a></td>
@@ -115,6 +115,9 @@ Day 08: Haunted Wasteland
 Day 09: Mirage Maintenance
 	Part 1: 1877825184 (302µs)
 	Part 2: 1108 (879µs)
+Day 10: Pipe Maze
+	Part 1: 6838 (1ms)
+	Part 2: 451 (2ms)
 </pre>
 </details>
 
