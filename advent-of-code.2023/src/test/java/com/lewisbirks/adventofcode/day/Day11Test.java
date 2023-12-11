@@ -2,9 +2,12 @@ package com.lewisbirks.adventofcode.day;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class Day11Test {
 
@@ -20,9 +23,14 @@ class Day11Test {
         assertThat(underTest.part1()).isEqualTo(374L);
     }
 
-    @Test
-    @Disabled
-    void part2() {
-        assertThat(underTest.part2()).isNotNull();
+    @ParameterizedTest
+    @MethodSource("part2Examples")
+    void part2(int modifier, long answer) {
+        underTest.part2Modifier = modifier;
+        assertThat(underTest.part2()).isEqualTo(answer);
+    }
+
+    private static Stream<Arguments> part2Examples() {
+        return Stream.of(Arguments.arguments(10, 1030L), Arguments.arguments(100, 8410L));
     }
 }

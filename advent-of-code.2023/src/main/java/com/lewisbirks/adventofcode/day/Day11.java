@@ -3,93 +3,86 @@ package com.lewisbirks.adventofcode.day;
 import com.lewisbirks.adventofcode.common.coor.Point;
 import com.lewisbirks.adventofcode.common.domain.Day;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class Day11 extends Day {
 
-  public static void main(String[] args) {
-    new Day11().process();
-  }
-
-  private List<Point> galaxies;
-
-  public Day11() {
-    super(11, "Cosmic Expansion");
-  }
-
-  @Override
-  public void preload() {
-    List<String> unprocessed = getInput();
-
-    int rowLength = unprocessed.get(0).length();
-    boolean[] columnEmpty = new boolean[rowLength];
-
-    for (int i = 0; i < rowLength; i++) {
-      boolean empty = true;
-      for (String row : unprocessed) {
-        if (row.charAt(i) == '#') {
-          empty = false;
-          break;
-        }
-      }
-      columnEmpty[i] = empty;
+    public static void main(String[] args) {
+        new Day11().process();
     }
 
-    List<char[]> processed = new ArrayList<>(unprocessed.size());
-    for (String row : unprocessed) {
-      StringBuilder expanded = new StringBuilder(row.length());
-      boolean empty = true;
-      for (int i = 0; i < row.length(); i++) {
-        char symbol = row.charAt(i);
-        expanded.append(symbol);
-        if (columnEmpty[i]) {
-          expanded.append('.');
-        }
-        if (empty && symbol == '#') {
-          empty = false;
-        }
-      }
+    int part2Modifier = 1_000_000;
+    private char[][] sky;
 
-      char[] processedRow = expanded.toString().toCharArray();
-      processed.add(processedRow);
-
-
-      if (!row.contains("#")) {
-        processed.add(processedRow);
-      }
+    public Day11() {
+        super(11, "Cosmic Expansion");
     }
 
-    char[][] image = processed.toArray(new char[0][]);
+    @Override
+    public void preload() {
+        sky = getInput(String::toCharArray).toArray(char[][]::new);
+    }
 
-    galaxies = new ArrayList<>();
+    @Override
+    public Object part1() {
+        return sumDistances(getGalaxies(2));
+    }
 
-    for (int y = 0; y < image.length; y++) {
-      for (int x = 0; x < image[y].length; x++) {
-        if (image[y][x] == '#') {
-          galaxies.add(new Point(x, y));
+    @Override
+    public Object part2() {
+        return sumDistances(getGalaxies(part2Modifier));
+    }
+
+    private long sumDistances(Point[] galaxies) {
+        long sum = 0;
+        int numGalaxies = galaxies.length;
+        for (int i = 0; i < numGalaxies; i++) {
+            Point galaxy = galaxies[i];
+            for (int j = i + 1; j < numGalaxies; j++) {
+                int distance = galaxy.calculateCartesianDistance(galaxies[j]);
+                sum += distance;
+            }
         }
-      }
-    }
-  }
-
-  @Override
-  public Object part1() {
-    long sum = 0;
-    Point[] galaxies = this.galaxies.toArray(new Point[0]);
-    int numGalaxies = galaxies.length;
-    for (int i = 0; i < numGalaxies; i++) {
-      Point galaxy = galaxies[i];
-      for (int j = i + 1; j < numGalaxies; j++) {
-        int distance = galaxy.calculateCartesianDistance(galaxies[j]);
-        sum += distance;
-      }
+        return sum;
     }
 
-    return sum;
-  }
+    private Point[] getGalaxies(int modifier) {
+        int expansion = 0;
+        Map<Point, Point> originalPointMap = new HashMap<>();
+        int maxX = sky[0].length;
+        int maxY = sky.length;
 
-  @Override
-  public Object part2() {
-    return null;
-  }
+        for (int y = 0; y < maxY; y++) {
+            boolean isEmpty = true;
+            for (int x = 0; x < maxX; x++) {
+                if (sky[y][x] == '#') {
+                    isEmpty = false;
+                    originalPointMap.put(new Point(x, y), new Point(x, y + ((expansion * modifier) - expansion)));
+                }
+            }
+            if (isEmpty) {
+                expansion++;
+            }
+        }
+
+        List<Point> galaxies = new ArrayList<>(originalPointMap.size());
+        expansion = 0;
+        for (int x = 0; x < maxX; x++) {
+            boolean isEmpty = true;
+            for (int y = 0; y < maxY; y++) {
+                if (sky[y][x] == '#') {
+                    isEmpty = false;
+                    Point found = originalPointMap.get(new Point(x, y));
+                    galaxies.add(found.add(new Point((expansion * modifier) - expansion, 0)));
+                }
+            }
+            if (isEmpty) {
+                expansion++;
+            }
+        }
+
+        return galaxies.toArray(new Point[0]);
+    }
 }
