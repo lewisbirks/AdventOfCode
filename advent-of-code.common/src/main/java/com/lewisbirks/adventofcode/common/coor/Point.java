@@ -56,4 +56,9 @@ public record Point(int x, int y) {
                 .filter(point -> point.x >= 0 && point.y >= 0)
                 .toList();
     }
+
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + ']';
+    }
 }
