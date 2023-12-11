@@ -41,29 +41,28 @@ public final class Day11 extends Day {
         for (int i = 0; i < numGalaxies; i++) {
             Point galaxy = galaxies[i];
             for (int j = i + 1; j < numGalaxies; j++) {
-                int distance = galaxy.calculateCartesianDistance(galaxies[j]);
-                sum += distance;
+              sum += galaxy.calculateCartesianDistance(galaxies[j]);
             }
         }
         return sum;
     }
 
     private Point[] getGalaxies(int modifier) {
-        int expansion = 0;
         Map<Point, Point> originalPointMap = new HashMap<>();
         int maxX = sky[0].length;
         int maxY = sky.length;
 
+        int expansion = 0;
         for (int y = 0; y < maxY; y++) {
             boolean isEmpty = true;
             for (int x = 0; x < maxX; x++) {
                 if (sky[y][x] == '#') {
                     isEmpty = false;
-                    originalPointMap.put(new Point(x, y), new Point(x, y + ((expansion * modifier) - expansion)));
+                    originalPointMap.put(new Point(x, y), new Point(x, y + expansion));
                 }
             }
             if (isEmpty) {
-                expansion++;
+                expansion += modifier - 1;
             }
         }
 
@@ -75,14 +74,14 @@ public final class Day11 extends Day {
                 if (sky[y][x] == '#') {
                     isEmpty = false;
                     Point found = originalPointMap.get(new Point(x, y));
-                    galaxies.add(found.add(new Point((expansion * modifier) - expansion, 0)));
+                    galaxies.add(new Point(found.x() + expansion, found.y()));
                 }
             }
             if (isEmpty) {
-                expansion++;
+                expansion += modifier - 1;
             }
         }
 
-        return galaxies.toArray(new Point[0]);
+        return galaxies.toArray(Point[]::new);
     }
 }
