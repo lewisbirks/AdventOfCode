@@ -16,14 +16,12 @@ class Day13Test {
     }
 
     @Test
-    @Disabled
     void part1() {
-        assertThat(underTest.part1()).isNotNull();
+        assertThat(underTest.part1()).isEqualTo(405);
     }
 
     @Test
-    @Disabled
     void part2() {
-        assertThat(underTest.part2()).isNotNull();
+        assertThat(underTest.part2()).isEqualTo(400);
     }
 }
