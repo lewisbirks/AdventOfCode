@@ -9,6 +9,7 @@ on:
 
 jobs:
     lint:
+        name: Linting
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -20,6 +21,7 @@ jobs:
             - name: Lint
               run: mvn -ntp -U spotless:check
     test:
+        name: Testing
         strategy:
             matrix:
                 version: [ '17', '21', '22' ] 
